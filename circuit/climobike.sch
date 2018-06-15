@@ -1,0 +1,366 @@
+EESchema Schematic File Version 4
+LIBS:climobike-cache
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Sensor:DHT22 U?
+U 1 1 5B2341F0
+P 4300 3050
+F 0 "U?" H 4070 3096 50  0000 R CNN
+F 1 "DHT22" H 4070 3005 50  0000 R CNN
+F 2 "" H 4450 3300 50  0001 C CNN
+F 3 "http://akizukidenshi.com/download/ds/aosong/DHT11.pdf" H 4450 3300 50  0001 C CNN
+	1    4300 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L modules:MQ-X MQ?
+U 1 1 5B2366A8
+P 4550 2100
+F 0 "MQ?" H 4319 1635 50  0000 C CNN
+F 1 "MQ-6" H 4319 1726 50  0000 C CNN
+F 2 "" H 4450 2100 50  0001 C CNN
+F 3 "" H 4450 2100 50  0001 C CNN
+	1    4550 2100
+	-1   0    0    1   
+$EndComp
+$Comp
+L modules:NEO-6M GPS?
+U 1 1 5B23685E
+P 3050 2000
+F 0 "GPS?" H 3269 1435 50  0000 C CNN
+F 1 "NEO-6M" H 3269 1526 50  0000 C CNN
+F 2 "" H 3050 2000 50  0001 C CNN
+F 3 "" H 3050 2000 50  0001 C CNN
+	1    3050 2000
+	-1   0    0    1   
+$EndComp
+$Comp
+L modules:U_SDCARD SD?
+U 1 1 5B236966
+P 3050 2750
+F 0 "SD?" H 3500 2900 50  0000 C CNN
+F 1 "U_SDCARD" H 3500 3000 50  0000 C CNN
+F 2 "" H 2300 3000 50  0001 C CNN
+F 3 "" H 2300 3000 50  0001 C CNN
+	1    3050 2750
+	-1   0    0    1   
+$EndComp
+$Comp
+L ESP32-footprints-Shem-Lib:ESP32 U?
+U 1 1 5B236D99
+P 8200 2450
+F 0 "U?" H 8200 4287 60  0000 C CNN
+F 1 "ESP32" H 8200 4181 60  0000 C CNN
+F 2 "ESP32-footprints-Lib:ESP32" H 8650 3350 60  0001 C CNN
+F 3 "" H 8650 3350 60  0001 C CNN
+	1    8200 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5B236F22
+P 4200 3350
+F 0 "#PWR?" H 4200 3100 50  0001 C CNN
+F 1 "GND" H 4205 3177 50  0000 C CNN
+F 2 "" H 4200 3350 50  0001 C CNN
+F 3 "" H 4200 3350 50  0001 C CNN
+	1    4200 3350
+	1    0    0    -1  
+$EndComp
+Text GLabel 4600 3050 2    50   BiDi ~ 0
+DHT_PIN
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5B237115
+P 5050 1900
+F 0 "#PWR?" H 5050 1750 50  0001 C CNN
+F 1 "+3.3V" V 5065 2028 50  0000 L CNN
+F 2 "" H 5050 1900 50  0001 C CNN
+F 3 "" H 5050 1900 50  0001 C CNN
+	1    5050 1900
+	0    1    1    0   
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5B23714D
+P 4200 2750
+F 0 "#PWR?" H 4200 2600 50  0001 C CNN
+F 1 "+3.3V" H 4215 2923 50  0000 C CNN
+F 2 "" H 4200 2750 50  0001 C CNN
+F 3 "" H 4200 2750 50  0001 C CNN
+	1    4200 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5B237162
+P 3250 1700
+F 0 "#PWR?" H 3250 1550 50  0001 C CNN
+F 1 "+3.3V" V 3265 1828 50  0000 L CNN
+F 2 "" H 3250 1700 50  0001 C CNN
+F 3 "" H 3250 1700 50  0001 C CNN
+	1    3250 1700
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5B23718A
+P 5050 2050
+F 0 "#PWR?" H 5050 1800 50  0001 C CNN
+F 1 "GND" V 5055 1922 50  0000 R CNN
+F 2 "" H 5050 2050 50  0001 C CNN
+F 3 "" H 5050 2050 50  0001 C CNN
+	1    5050 2050
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5B2371E5
+P 3250 2850
+F 0 "#PWR?" H 3250 2700 50  0001 C CNN
+F 1 "+3.3V" V 3265 2978 50  0000 L CNN
+F 2 "" H 3250 2850 50  0001 C CNN
+F 3 "" H 3250 2850 50  0001 C CNN
+	1    3250 2850
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5B237231
+P 3250 2750
+F 0 "#PWR?" H 3250 2500 50  0001 C CNN
+F 1 "GND" V 3255 2622 50  0000 R CNN
+F 2 "" H 3250 2750 50  0001 C CNN
+F 3 "" H 3250 2750 50  0001 C CNN
+	1    3250 2750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5B2372E2
+P 3250 2150
+F 0 "#PWR?" H 3250 1900 50  0001 C CNN
+F 1 "GND" V 3255 2022 50  0000 R CNN
+F 2 "" H 3250 2150 50  0001 C CNN
+F 3 "" H 3250 2150 50  0001 C CNN
+	1    3250 2150
+	0    -1   -1   0   
+$EndComp
+Text GLabel 3250 1850 2    50   Input ~ 0
+GPS_RX
+Text GLabel 3250 2000 2    50   Output ~ 0
+GPS_TX
+Text GLabel 3250 2950 2    47   Output ~ 0
+SD_MISO
+Text GLabel 3250 3050 2    47   Input ~ 0
+SD_MOSI
+Text GLabel 3250 3150 2    47   Input ~ 0
+SD_CLK
+Text GLabel 3250 3250 2    47   Input ~ 0
+SD_CS
+$Comp
+L modules:MQ-X MQ?
+U 1 1 5B237575
+P 5650 2100
+F 0 "MQ?" H 5419 1635 50  0000 C CNN
+F 1 "MQ-2" H 5419 1726 50  0000 C CNN
+F 2 "" H 5550 2100 50  0001 C CNN
+F 3 "" H 5550 2100 50  0001 C CNN
+	1    5650 2100
+	-1   0    0    1   
+$EndComp
+$Comp
+L modules:MQ-X MQ?
+U 1 1 5B2375BD
+P 5600 3100
+F 0 "MQ?" H 5369 2635 50  0000 C CNN
+F 1 "MQ-135" H 5369 2726 50  0000 C CNN
+F 2 "" H 5500 3100 50  0001 C CNN
+F 3 "" H 5500 3100 50  0001 C CNN
+	1    5600 3100
+	-1   0    0    1   
+$EndComp
+Text GLabel 5050 2350 2    50   Output ~ 0
+GLP_OUT
+Text GLabel 6150 2350 2    50   Output ~ 0
+CO2_OUT
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5B2376FF
+P 6150 1900
+F 0 "#PWR?" H 6150 1750 50  0001 C CNN
+F 1 "+3.3V" V 6165 2028 50  0000 L CNN
+F 2 "" H 6150 1900 50  0001 C CNN
+F 3 "" H 6150 1900 50  0001 C CNN
+	1    6150 1900
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5B237737
+P 6150 2050
+F 0 "#PWR?" H 6150 1800 50  0001 C CNN
+F 1 "GND" V 6155 1922 50  0000 R CNN
+F 2 "" H 6150 2050 50  0001 C CNN
+F 3 "" H 6150 2050 50  0001 C CNN
+	1    6150 2050
+	0    -1   -1   0   
+$EndComp
+Text GLabel 5050 2200 2    50   Output ~ 0
+GLP_FLAG
+Text GLabel 6150 2200 2    50   Output ~ 0
+CO2_FLAG
+$Comp
+L power:GND #PWR?
+U 1 1 5B2377B9
+P 6100 3050
+F 0 "#PWR?" H 6100 2800 50  0001 C CNN
+F 1 "GND" V 6105 2922 50  0000 R CNN
+F 2 "" H 6100 3050 50  0001 C CNN
+F 3 "" H 6100 3050 50  0001 C CNN
+	1    6100 3050
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5B23780B
+P 6100 2900
+F 0 "#PWR?" H 6100 2750 50  0001 C CNN
+F 1 "+3.3V" V 6115 3028 50  0000 L CNN
+F 2 "" H 6100 2900 50  0001 C CNN
+F 3 "" H 6100 2900 50  0001 C CNN
+	1    6100 2900
+	0    1    1    0   
+$EndComp
+Text GLabel 6100 3350 2    50   Output ~ 0
+TOX_OUT
+Text GLabel 6100 3200 2    50   Output ~ 0
+TOX_FLAG
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5B237B0B
+P 7350 900
+F 0 "#PWR?" H 7350 750 50  0001 C CNN
+F 1 "+3.3V" V 7365 1028 50  0000 L CNN
+F 2 "" H 7350 900 50  0001 C CNN
+F 3 "" H 7350 900 50  0001 C CNN
+	1    7350 900 
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5B237B5F
+P 7350 1000
+F 0 "#PWR?" H 7350 850 50  0001 C CNN
+F 1 "+3.3V" V 7365 1128 50  0000 L CNN
+F 2 "" H 7350 1000 50  0001 C CNN
+F 3 "" H 7350 1000 50  0001 C CNN
+	1    7350 1000
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5B237B78
+P 7350 1100
+F 0 "#PWR?" H 7350 950 50  0001 C CNN
+F 1 "+3.3V" V 7365 1228 50  0000 L CNN
+F 2 "" H 7350 1100 50  0001 C CNN
+F 3 "" H 7350 1100 50  0001 C CNN
+	1    7350 1100
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5B237B91
+P 7350 1200
+F 0 "#PWR?" H 7350 1050 50  0001 C CNN
+F 1 "+3.3V" V 7365 1328 50  0000 L CNN
+F 2 "" H 7350 1200 50  0001 C CNN
+F 3 "" H 7350 1200 50  0001 C CNN
+	1    7350 1200
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5B237BAA
+P 7350 1300
+F 0 "#PWR?" H 7350 1150 50  0001 C CNN
+F 1 "+3.3V" V 7365 1428 50  0000 L CNN
+F 2 "" H 7350 1300 50  0001 C CNN
+F 3 "" H 7350 1300 50  0001 C CNN
+	1    7350 1300
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5B237BC3
+P 7350 1400
+F 0 "#PWR?" H 7350 1250 50  0001 C CNN
+F 1 "+3.3V" V 7365 1528 50  0000 L CNN
+F 2 "" H 7350 1400 50  0001 C CNN
+F 3 "" H 7350 1400 50  0001 C CNN
+	1    7350 1400
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5B237BF1
+P 7350 1550
+F 0 "#PWR?" H 7350 1400 50  0001 C CNN
+F 1 "+3.3V" V 7365 1678 50  0000 L CNN
+F 2 "" H 7350 1550 50  0001 C CNN
+F 3 "" H 7350 1550 50  0001 C CNN
+	1    7350 1550
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5B237C26
+P 7350 3900
+F 0 "#PWR?" H 7350 3650 50  0001 C CNN
+F 1 "GND" V 7355 3772 50  0000 R CNN
+F 2 "" H 7350 3900 50  0001 C CNN
+F 3 "" H 7350 3900 50  0001 C CNN
+	1    7350 3900
+	0    1    1    0   
+$EndComp
+Text GLabel 9050 3900 2    47   Input ~ 0
+SD_MISO
+Text GLabel 9050 3800 2    47   Output ~ 0
+SD_MOSI
+Text GLabel 9050 3700 2    47   Output ~ 0
+SD_CLK
+Text GLabel 9050 3600 2    47   Output ~ 0
+SD_CS
+Text GLabel 9050 1900 2    50   BiDi ~ 0
+DHT_PIN
+Text GLabel 9050 2000 2    50   Input ~ 0
+TOX_OUT
+Text GLabel 9050 2100 2    50   Input ~ 0
+TOX_FLAG
+Text GLabel 9050 2200 2    50   Input ~ 0
+CO2_OUT
+Text GLabel 9050 2300 2    50   Input ~ 0
+CO2_FLAG
+Text GLabel 9050 2400 2    50   Input ~ 0
+GLP_OUT
+Text GLabel 9050 2500 2    50   Input ~ 0
+GLP_FLAG
+Text GLabel 9050 2600 2    50   Output ~ 0
+GPS_RX
+Text GLabel 9050 2700 2    50   Input ~ 0
+GPS_TX
+$EndSCHEMATC
