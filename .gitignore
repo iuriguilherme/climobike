@@ -1,3 +1,7 @@
 .*
 !.gitignore
 *~
+.pioenvs
+.piolibdeps
+src/*.txt
+platformio.ini
