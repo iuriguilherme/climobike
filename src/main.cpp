@@ -1,4 +1,5 @@
 /*
+.piolibdeps
  * 	Climobike GPS + Sensors RAW Code
  * 	Authors:	Alisson Claudino (https://inf.ufrgs.br/~acjesus)
  * 				Desobediente Civil (https://notabug.org/desci)
@@ -21,9 +22,12 @@
 // Relógio
 //#include <DS1307.h>
 
+// SD
 //#include <FS.h>
 //#include <SD.h>
 //#include <SPI.h>
+
+// Bluetooth
 //#include "BluetoothSerial.h"
 
 // GPS
@@ -47,9 +51,9 @@ const char * networkName = "Velivery 2";
 const char * networkPswd = "salvaroplaneta";
 
 // HTTP
-//const char* host = "192.168.0.100"; // AlissonTop
-//const char * host = "192.168.0.198"; // mineiro-2
-const char * host = "192.168.0.195"; // precisao
+//const char* httpHost = "192.168.0.100"; // AlissonTop
+//const char * httpHost = "192.168.0.198"; // mineiro-2
+const char * httpHost = "192.168.0.195"; // precisao
 //const int httpPort = 8080; // Phant
 const int httpPort = 8081; // ipfs-1
 // Phant
@@ -59,7 +63,6 @@ const int httpPort = 8081; // ipfs-1
 
 // GPS
 // The serial connection to the GPS module
-//HardwareSerial ss(1);
 //String url;
 //String data;
 //byte gpsData;
@@ -71,7 +74,8 @@ static const int TXPin = 4;
 //static const int TXPin = 16;
 static const uint32_t GPSBaud = 9600;
 TinyGPSPlus gps;
-SoftwareSerial ss(RXPin, TXPin);
+SoftwareSerial ss(RXPin, TXPin, false, 64);
+//HardwareSerial ss(1);
 
 // MQ4
 //float metan;
@@ -86,6 +90,7 @@ SoftwareSerial ss(RXPin, TXPin);
 //DS1307 relogio;  //Inicialização de objetos de tipos relógio, data e Serial
 //RTCDateTime date;
 
+// Bluetooth
 //BluetoothSerial SerialBT;
 
 // Wifi
@@ -146,51 +151,70 @@ void setup() {
   // Inicializa Relógio
   //relogio.begin();
 
-  // Inicializa GPS
-  //ss.begin(9600, SERIAL_8N1, 16, 17);
-  ss.begin(GPSBaud);
 
-  // Inicializa DHT
+  // DHT
   //dht.begin();
-
-  // Inicializa Wifi
-  WiFi.begin(networkName, networkPswd);
-  delay(5000);
 
   // SD
   //configureSD();
   //file = SD.open("/rawData.dat", FILE_WRITE);
 
   // Wifi
+  WiFi.begin(networkName, networkPswd);
+  //delay(5000);
+  Serial.print("Tentando conectar em ");
+  Serial.print(networkName);
+  Serial.print(" com ");
+  Serial.print(networkPswd);
   while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
+    delay(1000);
     Serial.print(".");
   }
-  Serial.println("");
-  Serial.println("WiFi connected");
-  Serial.println("IP address: ");
+  Serial.println();
+  Serial.println("WiFi conectado!");
+  Serial.print("Nosso IP: ");
   Serial.println(WiFi.localIP());
 
   // HTTP
-  Serial.print("connecting to ");
-  Serial.println(host);
-  if (!server.connect(host, httpPort)) {
-    Serial.println("connection failed");
+  Serial.print("Tentando conectar em ");
+  Serial.print(httpHost);
+  Serial.print(":");
+  Serial.print(httpPort);
+  Serial.print("...");
+  if (server.connect(httpHost, httpPort)) {
+    Serial.println(" sucesso!");
+  } else {
+    Serial.println(" falhou!");
   }
 
   // Relógio
   //date = relogio.getDateTime();
-  Serial.print("\nData de inicio da aquisição: ");
+  //Serial.print("\nData de inicio da aquisição: ");
   //Serial.print(date.year);
-  Serial.print("-");
+  //Serial.print("-");
   //Serial.print(date.month);
-  Serial.print("-");
+  //Serial.print("-");
   //Serial.print(date.day);
-  Serial.print(" ");
+  //Serial.print(" ");
   //Serial.print(date.hour);
-  Serial.print(":");
+  //Serial.print(":");
   //Serial.print(date.minute);
-  Serial.println();
+  //Serial.println();
+
+  // GPS
+  // esp32dev v2
+  //ss.begin(9600, SERIAL_8N1, 16, 17);
+  // esp32dev v1
+  //ss.begin(9600, SERIAL_8N1, 2, 4);
+  // SoftwareSerial
+  ss.begin(GPSBaud);
+  Serial.print("Tentando iniciar GPS com ");
+  Serial.print(GPSBaud);
+  while (!(ss.available() > 0)) {
+    delay(1000);
+    Serial.print(".");
+  }
+  Serial.println(" sucesso!");
 }
 
 void loop() {
@@ -207,48 +231,51 @@ void loop() {
   while (ss.available() > 0) {
     //gpsData = ss.read();
     gps.encode(ss.read());
-    Serial.print("gps lat:");
-    Serial.print(gps.location.lat(), 6);
-    Serial.print("gps lng:");
-    Serial.print(gps.location.lng(), 6);
+    if (gps.location.isUpdated()){
+      Serial.print("gps lat:");
+      Serial.print(gps.location.lat(), 6);
+      Serial.print("gps lng:");
+      Serial.print(gps.location.lng(), 6);
+      Serial.println();
+    }
   }
-  Serial.println();
 
   // Imprime dados DHT
-  Serial.print("tempe: ");
+  //Serial.print("tempe: ");
   //Serial.print(dht.readTemperature());
-  Serial.println();
+  //Serial.println();
   //printServer("tempe",dht.readTemperature());    
-  Serial.print("humid: ");
+  //Serial.print("humid: ");
   //Serial.print(dht.readHumidity());
-  Serial.println();
+  //Serial.println();
   //printServer("humid",dht.readHumidity());
 
   // Imprime dados do sensor de Metano MQ4
-  Serial.print("metan: ");
+  //Serial.print("metan: ");
   //metan = adc1_get_voltage(ADC1_CHANNEL_6);
   //Serial.print(metan);
-  Serial.println();
+  //Serial.println();
   //printServer("metan",metan);
 
 }
 
-void printServer(String keyword, float data) {
+//void printServer(String keyword, float data) {
 //  if (iteract==20) {
 //    if(file) {
 //      file.close();
 //    }
 //  } else {
-    String url="";
-    String sdData="\n";
-    sdData+=keyword;
-    sdData+="=";
-    sdData+=data;
-    if (!server.connect(host, httpPort)) {
-      Serial.println("connection failed");
-    }
+//    String url="";
+//    String sdData="\n";
+//    sdData+=keyword;
+//    sdData+="=";
+//    sdData+=data;
 
-    url = "/input/";
+//    if (!server.connect(httpHost, httpPort)) {
+//      Serial.println("connection failed");
+//    }
+
+//    url = "/input/";
 //    url += streamId;
 //    url += "?private_key=";
 //    url += privateKey;
@@ -257,22 +284,22 @@ void printServer(String keyword, float data) {
 //    url += "=";
 //    url += data;
 
-    server.print(String("GET ") +
-      url +
-      " HTTP/1.1\r\n" +
-      "Host: " +
-      host +
-      "\r\n" +
-      "Connection: close\r\n\r\n");
+//    server.print(String("GET ") +
+//      url +
+//      " HTTP/1.1\r\n" +
+//      "Host: " +
+//      httpHost +
+//      "\r\n" +
+//      "Connection: close\r\n\r\n");
 
-    while (server.available()) {
-      String line = server.readStringUntil('\n');
-      Serial.print(line);
-    }
+//    while (server.available()) {
+//      String line = server.readStringUntil('\n');
+//      Serial.print(line);
+//    }
 
 //    writeFile(sdData.c_str());
 //    delay(1000);
 //    iteract++;
 //  }
-}
+//}
 
