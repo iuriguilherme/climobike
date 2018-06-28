@@ -18,6 +18,9 @@
 #include <SD.h>
 #include <SPI.h>
 //#include "BluetoothSerial.h"
+// GPS
+#include <TinyGPS++.h>
+#include <SoftwareSerial.h>
 
 #define DHTTYPE DHT22
 #define DHTPIN 27
