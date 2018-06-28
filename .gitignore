@@ -1,6 +1,7 @@
 .*
 !.gitignore
 *~
+*.py[co]
 .pioenvs
 .piolibdeps
 src/*.txt
