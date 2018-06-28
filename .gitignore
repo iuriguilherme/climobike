@@ -3,6 +3,3 @@
 *~
 *.py[co]
 src/*.txt
-platformio.ini
-.pioenvs
-.piolibdeps
