@@ -34,9 +34,7 @@
 //#include <NMEAGPS.h>
 //#include <GPSport.h>
 #include <TinyGPS++.h>
-#include <SoftwareSerial.h>
-
-
+//#include <SoftwareSerial.h>
 
 // DHT
 //#define DHTTYPE DHT22
@@ -66,16 +64,17 @@ const int httpPort = 8081; // ipfs-1
 //String url;
 //String data;
 //byte gpsData;
+String gpsData = "";
 // esp32dev v1
-static const int RXPin = 2;
-static const int TXPin = 4;
+static const int RXPin = 16;
+static const int TXPin = 17;
 // esp32dev v2
 //static const int RXPin = 17;
 //static const int TXPin = 16;
 static const uint32_t GPSBaud = 9600;
 TinyGPSPlus gps;
-SoftwareSerial ss(RXPin, TXPin, false, 64);
-//HardwareSerial ss(1);
+//SoftwareSerial ss(RXPin, TXPin);
+HardwareSerial ss(1);
 
 // MQ4
 //float metan;
@@ -113,9 +112,9 @@ void printServer(String keyword, float data);
 //  }
 //}
 
-//void configureSD() {
+void setupSD() {
 //  uint8_t cardType = SD.cardType();
-//
+
 //  if (!SD.begin()) {
 //    Serial.println("Card Mount Failed");
 //    return;
@@ -124,8 +123,8 @@ void printServer(String keyword, float data);
 //    Serial.println("No SD card attached");
 //    return;
 //  }
-//
-//  Serial.print("SD Card Type: ");
+
+  Serial.print("SD Card Type: ");
 //  if (cardType == CARD_MMC) {
 //    Serial.println("MMC");
 //  } else if (cardType == CARD_SD) {
@@ -135,31 +134,14 @@ void printServer(String keyword, float data);
 //  } else {
 //    Serial.println("UNKNOWN");
 //  }
-//
+
 //  uint64_t cardSize = SD.cardSize() / (1024 * 1024);
 //  Serial.printf("SD Card Size: %lluMB\n", cardSize);
-//}
 
-void setup() {
-  // MQ4
-  //adc1_config_width(ADC_WIDTH_12Bit);
-  //adc1_config_channel_atten(ADC1_CHANNEL_6,ADC_ATTEN_0db);
+//  file = SD.open("/rawData.dat", FILE_WRITE);
+}
 
-  Serial.begin(9600);
-  //SerialBT.begin("clo");
-
-  // Inicializa Relógio
-  //relogio.begin();
-
-
-  // DHT
-  //dht.begin();
-
-  // SD
-  //configureSD();
-  //file = SD.open("/rawData.dat", FILE_WRITE);
-
-  // Wifi
+void setupWifi() {
   WiFi.begin(networkName, networkPswd);
   //delay(5000);
   Serial.print("Tentando conectar em ");
@@ -174,8 +156,9 @@ void setup() {
   Serial.println("WiFi conectado!");
   Serial.print("Nosso IP: ");
   Serial.println(WiFi.localIP());
+}
 
-  // HTTP
+void setupHttp() {
   Serial.print("Tentando conectar em ");
   Serial.print(httpHost);
   Serial.print(":");
@@ -186,28 +169,20 @@ void setup() {
   } else {
     Serial.println(" falhou!");
   }
+}
 
-  // Relógio
-  //date = relogio.getDateTime();
-  //Serial.print("\nData de inicio da aquisição: ");
-  //Serial.print(date.year);
-  //Serial.print("-");
-  //Serial.print(date.month);
-  //Serial.print("-");
-  //Serial.print(date.day);
-  //Serial.print(" ");
-  //Serial.print(date.hour);
-  //Serial.print(":");
-  //Serial.print(date.minute);
-  //Serial.println();
-
-  // GPS
+void setupGPS() {
+  // HardwareSerial
   // esp32dev v2
   //ss.begin(9600, SERIAL_8N1, 16, 17);
   // esp32dev v1
   //ss.begin(9600, SERIAL_8N1, 2, 4);
+  // definido antes
+  ss.begin(GPSBaud, SERIAL_8N1, RXPin, TXPin, false);
+
   // SoftwareSerial
-  ss.begin(GPSBaud);
+  //ss.begin(GPSBaud);
+
   Serial.print("Tentando iniciar GPS com ");
   Serial.print(GPSBaud);
   while (!(ss.available() > 0)) {
@@ -215,6 +190,89 @@ void setup() {
     Serial.print(".");
   }
   Serial.println(" sucesso!");
+}
+
+void setupDHT() {
+//  dht.begin();
+}
+
+void setupRelogio() {
+//  relogio.begin();
+//  date = relogio.getDateTime();
+  Serial.print("\nData de inicio da aquisição: ");
+//  Serial.print(date.year);
+  Serial.print("-");
+//  Serial.print(date.month);
+  Serial.print("-");
+//  Serial.print(date.day);
+  Serial.print(" ");
+//  Serial.print(date.hour);
+  Serial.print(":");
+//  Serial.print(date.minute);
+  Serial.println();
+}
+
+void loopGPS() {
+  // Imprime dados GPS
+  gpsData = "";
+  while (ss.available() > 0) {
+    gps.encode(ss.read());
+    if (gps.location.isUpdated()) {
+      gpsData += "{";
+      gpsData += "date";
+      gpsData += ":";
+      gpsData += gps.date.value();
+      gpsData += ",";
+      gpsData += "time";
+      gpsData += ":";
+      gpsData += gps.time.value();
+      gpsData += ",";
+      gpsData += "spd";
+      gpsData += ":";
+      gpsData += gps.speed.mps();
+      gpsData += ",";
+      gpsData += "alt";
+      gpsData += ":";
+      gpsData += gps.altitude.meters();
+      gpsData += ",";
+      gpsData += "lat";
+      gpsData += ":";
+      gpsData += gps.location.lat();
+      gpsData += ",";
+      gpsData += "lng";
+      gpsData += ":";
+      gpsData += gps.location.lng();
+      gpsData += ",";
+      gpsData += "sat";
+      gpsData += ":";
+      gpsData += gps.satellites.value();
+      gpsData += ",";
+      gpsData += "hdo";
+      gpsData += ":";
+      gpsData += gps.hdop.value();
+      gpsData += ",";
+      gpsData += "}";
+    }
+    if (gpsData != "") {
+      Serial.println(gpsData);
+    }
+  }
+}
+
+void setup() {
+  // MQ4
+  //adc1_config_width(ADC_WIDTH_12Bit);
+  //adc1_config_channel_atten(ADC1_CHANNEL_6,ADC_ATTEN_0db);
+
+  Serial.begin(9600);
+  //SerialBT.begin("clo");
+
+  //setupDHT();
+  //setupSD();
+  //setupWifi();
+  //setupHttp();
+  //setupRelogio();
+  setupGPS();
 }
 
 void loop() {
@@ -227,18 +285,7 @@ void loop() {
   //Serial.print(relogio.getDateTime());
   //Serial.println();
 
-  // Imprime dados GPS
-  while (ss.available() > 0) {
-    //gpsData = ss.read();
-    gps.encode(ss.read());
-    if (gps.location.isUpdated()){
-      Serial.print("gps lat:");
-      Serial.print(gps.location.lat(), 6);
-      Serial.print("gps lng:");
-      Serial.print(gps.location.lng(), 6);
-      Serial.println();
-    }
-  }
+  loopGPS();
 
   // Imprime dados DHT
   //Serial.print("tempe: ");
