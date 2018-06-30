@@ -1,35 +1,30 @@
 /*
-.piolibdeps
- * 	Climobike GPS + Sensors RAW Code
- * 	Authors:	Alisson Claudino (https://inf.ufrgs.br/~acjesus)
- * 				Desobediente Civil (https://notabug.org/desci)
- *	License:	GNU GPLv3
+ * 	ClimoBike v0.0.2.0
+ *  Board:  esp32dev (v1, v2)
+ * 	Authors:  Alisson Claudino (https://inf.ufrgs.br/~acjesus)
+ *            Desobediente Civil (https://notabug.org/desci)
+ *	License:  GNU GPLv3
 */
 
 
 
+// Arduino
 #include <Arduino.h>
-
 // DHT
 //#include <driver/adc.h>
 //#include <DHT.h>
-
 // WiFi
 #include <WiFi.h>
 #include <WiFiClient.h>
 #include <WiFiUdp.h>
-
 // Relógio
 //#include <DS1307.h>
-
 // SD
 //#include <FS.h>
 //#include <SD.h>
 //#include <SPI.h>
-
 // Bluetooth
 //#include "BluetoothSerial.h"
-
 // GPS
 //#include <NMEAGPS.h>
 //#include <GPSport.h>
@@ -217,45 +212,45 @@ void loopGPS() {
   gpsData = "";
   while (ss.available() > 0) {
     gps.encode(ss.read());
-    if (gps.location.isUpdated()) {
-      gpsData += "{";
-      gpsData += "date";
-      gpsData += ":";
-      gpsData += gps.date.value();
-      gpsData += ",";
-      gpsData += "time";
-      gpsData += ":";
-      gpsData += gps.time.value();
-      gpsData += ",";
-      gpsData += "spd";
-      gpsData += ":";
-      gpsData += gps.speed.mps();
-      gpsData += ",";
-      gpsData += "alt";
-      gpsData += ":";
-      gpsData += gps.altitude.meters();
-      gpsData += ",";
-      gpsData += "lat";
-      gpsData += ":";
-      gpsData += gps.location.lat();
-      gpsData += ",";
-      gpsData += "lng";
-      gpsData += ":";
-      gpsData += gps.location.lng();
-      gpsData += ",";
-      gpsData += "sat";
-      gpsData += ":";
-      gpsData += gps.satellites.value();
-      gpsData += ",";
-      gpsData += "hdo";
-      gpsData += ":";
-      gpsData += gps.hdop.value();
-      gpsData += ",";
-      gpsData += "}";
-    }
-    if (gpsData != "") {
-      Serial.println(gpsData);
-    }
+  }
+  if (gps.location.isUpdated()) {
+    gpsData += "{";
+    gpsData += "date";
+    gpsData += ":";
+    gpsData += gps.date.value();
+    gpsData += ",";
+    gpsData += "time";
+    gpsData += ":";
+    gpsData += gps.time.value();
+    gpsData += ",";
+    gpsData += "speed";
+    gpsData += ":";
+    gpsData += gps.speed.mps();
+    gpsData += ",";
+    gpsData += "altitude";
+    gpsData += ":";
+    gpsData += gps.altitude.meters();
+    gpsData += ",";
+    gpsData += "latitude";
+    gpsData += ":";
+    gpsData += gps.location.lat();
+    gpsData += ",";
+    gpsData += "longitude";
+    gpsData += ":";
+    gpsData += gps.location.lng();
+    gpsData += ",";
+    gpsData += "satellites";
+    gpsData += ":";
+    gpsData += gps.satellites.value();
+    gpsData += ",";
+    gpsData += "hdop";
+    gpsData += ":";
+    gpsData += gps.hdop.value();
+    gpsData += ",";
+    gpsData += "}";
+  }
+  if (gpsData != "") {
+    Serial.println(gpsData);
   }
 }
 
