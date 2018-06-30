@@ -33,7 +33,7 @@ HardwareSerial ss(1);
 String url;
 String data;
 byte gpsData;
-float metan;
+float metan,toxic,monca;
 DHT dht(DHTPIN,DHTTYPE);
 File file;
 DS1307 relogio;  //Inicialização de objetos de tipos relógio, data e Serial
@@ -88,8 +88,15 @@ void configureSD()
 }
 
 void setup(){
+	delay(300);
+	adc_power_on();
+	adc_gpio_init(ADC_UNIT_1,ADC_CHANNEL_6);
+	adc_gpio_init(ADC_UNIT_1,ADC_CHANNEL_5);
+	adc_gpio_init(ADC_UNIT_1,ADC_CHANNEL_4);
 	adc1_config_width(ADC_WIDTH_12Bit);
 	adc1_config_channel_atten(ADC1_CHANNEL_6,ADC_ATTEN_0db);
+	adc1_config_channel_atten(ADC1_CHANNEL_5,ADC_ATTEN_0db);
+	adc1_config_channel_atten(ADC1_CHANNEL_4,ADC_ATTEN_0db);
 	Serial.begin(9600);
 	//SerialBT.begin("clo");
 	relogio.begin();
@@ -126,12 +133,13 @@ void setup(){
   	Serial.print(date.day);    Serial.print(" ");
 	Serial.print(date.hour); Serial.print(":");
   	Serial.print(date.minute); Serial.println();
-  
+  	
 
 }
 
 
 void loop(){
+	
 	Serial.print("Local IP:");
 	Serial.println(WiFi.localIP());
 
@@ -146,24 +154,34 @@ void loop(){
 	Serial.print("$TEMPE,");
 	Serial.print(dht.readTemperature());
 	Serial.println();
-	
 	printServer("tempe",dht.readTemperature());    
 
 	Serial.print("$HUMID,");
 	Serial.print(dht.readHumidity());
 	Serial.println();
-
 	printServer("humid",dht.readHumidity());
+	
 	// Imprime dados do sensor de Metano
-	Serial.print("$METAN,");
-	metan = adc1_get_voltage(ADC1_CHANNEL_6);
+	Serial.print("$CH4,");
+	metan = adc1_get_raw(ADC1_CHANNEL_6);
+	delay(300);
 	Serial.print(metan);
 	Serial.println();
-	
-	printServer("metan",metan);
+	printServer("CH4",metan);
 
+	Serial.print("$NO,");
+	toxic = adc1_get_raw(ADC1_CHANNEL_5);
+	delay(300);
+	Serial.print(toxic);
+	Serial.println();
+	printServer("NO",toxic);
 
-	
+	Serial.print("$CO,");
+	monca = adc1_get_raw(ADC1_CHANNEL_4);
+	delay(300);
+	Serial.print(monca);
+	Serial.println();
+	printServer("CO",monca);
 
     
 }
