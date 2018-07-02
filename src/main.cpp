@@ -26,8 +26,6 @@
 // Bluetooth
 //#include "BluetoothSerial.h"
 // GPS
-//#include <NMEAGPS.h>
-//#include <GPSport.h>
 #include <TinyGPS++.h>
 //#include <SoftwareSerial.h>
 
@@ -49,23 +47,18 @@ const char * networkPswd = "salvaroplaneta";
 const char * httpHost = "192.168.0.195"; // precisao
 //const int httpPort = 8080; // Phant
 const int httpPort = 8081; // ipfs-1
+WiFiClient server;
 // Phant
 //const char * streamId   = "1DygKVeN0luAy3mPZdDWudlPXWB";
 //const char * privateKey = "a70nN8gMz3uwN8peYjEbTvG6PWa";
 //int iteract=0;
-
-// GPS
-// The serial connection to the GPS module
 //String url;
 //String data;
-//byte gpsData;
+
+// GPS
 String gpsData = "";
-// esp32dev v1
 static const int RXPin = 16;
 static const int TXPin = 17;
-// esp32dev v2
-//static const int RXPin = 17;
-//static const int TXPin = 16;
 static const uint32_t GPSBaud = 9600;
 TinyGPSPlus gps;
 //SoftwareSerial ss(RXPin, TXPin);
@@ -87,12 +80,10 @@ HardwareSerial ss(1);
 // Bluetooth
 //BluetoothSerial SerialBT;
 
-// Wifi
-WiFiClient server;
-
 
 
 void printServer(String keyword, float data);
+void printServer(String keyword, String data);
 
 //void writeFile(const char * message) {
 //  Serial.printf("Writing file: %s\n", "/rawData.dat");
@@ -325,6 +316,38 @@ void loop() {
 //    url += keyword;
 //    url += "=";
 //    url += data;
+
+//    server.print(String("GET ") +
+//      url +
+//      " HTTP/1.1\r\n" +
+//      "Host: " +
+//      httpHost +
+//      "\r\n" +
+//      "Connection: close\r\n\r\n");
+
+//    while (server.available()) {
+//      String line = server.readStringUntil('\n');
+//      Serial.print(line);
+//    }
+
+//    writeFile(sdData.c_str());
+//    delay(1000);
+//    iteract++;
+//  }
+//}
+
+void ipfsObject(String dict) {
+    String url="";
+
+    if (!server.connect(httpHost, httpPort)) {
+      Serial.println("connection failed");
+    }
+
+    // ipfs-1
+    url = "/ipfs/";
+    url += "add";
+    url += "?arg=";
+    url += dict;
 
 //    server.print(String("GET ") +
 //      url +
