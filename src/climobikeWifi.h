@@ -170,18 +170,5 @@ void ipfsObject(String dict) {
 //  }
 }
 
-void writeFile(const char * message) {
-//  Serial.printf("Writing file: %s\n", "/rawData.dat");
-//  if (!file) {
-//    Serial.println("Failed to open file for writing");
-//    return;
-//  }
-//  if (file.println(message)) {
-//    Serial.println("File written");
-//  } else {
-//    Serial.println("Write failed");
-//  }
-}
-
 #endif
 
