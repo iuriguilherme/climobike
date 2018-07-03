@@ -1,5 +1,5 @@
 /*
- *  ClimoBike todos módulos v0.0.2.0
+ *  ClimoBike Módulo Wifi v0.0.2.0
  *  Board:  esp32dev (v1, v2)
  *  Authors:
  *    Alisson Claudino (https://inf.ufrgs.br/~acjesus)
@@ -16,33 +16,19 @@
  * Se não, veja http://www.gnu.org/licenses/.
 */
 
-/* Sensores analógicos */
-#include <driver/adc.h>
+#ifndef CLIMOBIKEWIFI_H
+#define CLIMOBIKEWIFI_H
 
-/* DHT */
-#include <DHT.h>
+#if defined(ARDUINO) && ARDUINO >= 100
+#include "Arduino.h"
+#else
+#include "WProgram.h"
+#endif
 
-/* WiFi */
 #include <WiFi.h>
 #include <WiFiClient.h>
 #include <WiFiUdp.h>
 
-/* Relógio */
-#include <DS1307.h>
-
-/* SD */
-#include <FS.h>
-#include <SD.h>
-#include <SPI.h>
-
-/* Bluetooth */
-//#include "BluetoothSerial.h"
-
-/* DHT */
-#define DHTTYPE DHT22
-#define DHTPIN 27
-
-/* Wifi */
 /* Foi o Alisson que botou as senhas de todas as redes do Velivery aqui */
 //pdelete key 40BaPA7qvxhwda0XOorVfO6wlVZ
 const char * networkName = "Velivery 2";
@@ -62,61 +48,11 @@ int iteract=0;
 String url;
 String data;
 
-/* Gases */
-float metan,toxic,monca;
-
-/* DHT */
-DHT dht(DHTPIN,DHTTYPE);
-
-/* SD */
-File file;
-
-/* Relógio */
-DS1307 relogio;  //Inicialização de objetos de tipos relógio, data e Serial
-RTCDateTime date;
-
-/* Bluetooth */
-//BluetoothSerial SerialBT;
-
-/* Wifi */
 WiFiClient server;
 
 void printServer(String keyword, float data);
 void printServer(String keyword, String data);
-void writeFile(const char * message);
 void ipfsObject(String dict);
-
-void setupSd() {
-  Serial.print("Tentando iniciar cartão SD...");
-//  uint8_t cardType = SD.cardType();
-
-//  if (!SD.begin()) {
-//    Serial.println("Card Mount Failed");
-//    return;
-//  }
-//  if (cardType == CARD_NONE) {
-//    Serial.println("No SD card attached");
-//    return;
-//  }
-
-//  Serial.print("SD Card Type: ");
-//  if (cardType == CARD_MMC) {
-//    Serial.println("MMC");
-//  } else if (cardType == CARD_SD) {
-//    Serial.println("SDSC");
-//  } else if (cardType == CARD_SDHC) {
-//    Serial.println("SDHC");
-//  } else {
-//    Serial.println("UNKNOWN");
-//  }
-
-//  uint64_t cardSize = SD.cardSize() / (1024 * 1024);
-//  Serial.printf("SD Card Size: %lluMB\n", cardSize);
-
-//  file = SD.open("/rawData.dat", FILE_WRITE);
-  Serial.print(" mentira"); //mentira
-  Serial.println("!");
-}
 
 void setupWifi() {
   Serial.print("Tentando conectar wifi...");
@@ -152,113 +88,10 @@ void setupHttp() {
   Serial.println("!");
 }
 
-void setupAnal() {
-  Serial.print("Tentando iniciar sensores analógicos...");
-//  adc_power_on();
-//  adc_gpio_init(ADC_UNIT_1,ADC_CHANNEL_6);
-//  adc_gpio_init(ADC_UNIT_1,ADC_CHANNEL_5);
-//  adc_gpio_init(ADC_UNIT_1,ADC_CHANNEL_4);
-//  adc1_config_width(ADC_WIDTH_12Bit);
-//  adc1_config_channel_atten(ADC1_CHANNEL_6,ADC_ATTEN_0db);
-//  adc1_config_channel_atten(ADC1_CHANNEL_5,ADC_ATTEN_0db);
-//  adc1_config_channel_atten(ADC1_CHANNEL_4,ADC_ATTEN_0db);
-  Serial.print(" mentira"); //mentira
-  Serial.println("!");
-}
-
-void setupRelogio() {
-  Serial.print("Tentando iniciar Relógio...");
-//  relogio.begin();
-//  date = relogio.getDateTime();
-//  Serial.print("\nData de inicio da aquisição: ");
-//  Serial.print(date.year);
-//  Serial.print("-");
-//  Serial.print(date.month);
-//  Serial.print("-");
-//  Serial.print(date.day);
-//  Serial.print(" ");
-//  Serial.print(date.hour);
-//  Serial.print(":");
-//  Serial.print(date.minute);
-  Serial.print(" mentira"); //mentira
-  Serial.println("!");
-}
-
-void setupDht() {
-  Serial.print("Tentando iniciar DHT...");
-//  Serial.print(" deu ");
-//  if (dht.begin()) {
-//    Serial.print("certo");
-//  } else {
-//    Serial.print("merda");
-//  }
-  Serial.print(" mentira"); //mentira
-  Serial.println("!");
-}
-
-void setupBluetooth() {
-  Serial.print("Tentando iniciar Bluetooth...");
-  //SerialBT.begin("clo");
-  Serial.print(" mentira"); //mentira
-  Serial.println("!");
-}
-
 void loopWifi() {
   Serial.print("ipv4: ");
   Serial.print(WiFi.localIP());
   Serial.println();
-}
-
-void loopRelogio() {
-  Serial.print("timestamp: ");
-  //Serial.print(relogio.getDateTime());
-  Serial.print("2018-07-03 18:00"); //mentira
-  Serial.println();
-}
-
-void loopDht() {
-  /* Imprime dados DHT */
-
-  Serial.print("tempe: ");
-//  Serial.print(dht.readTemperature());
-  Serial.print("25.0"); // mentira
-  Serial.println();
-
-//  printServer("tempe",dht.readTemperature());    
-
-  Serial.print("humid: ");
-//  Serial.print(dht.readHumidity());
-  Serial.print("50.0"); // mentira
-  Serial.println();
-
-//  printServer("humid",dht.readHumidity());
-}
-
-void loopGases() {
-  /* Metano MQ4 */
-  Serial.print("ch4: ");
-//  metan = adc1_get_raw(ADC1_CHANNEL_6);
-  delay(300);
-//  Serial.print(metan);
-  Serial.print("bastante"); //mentira
-  Serial.println();
-//  printServer("CH4",metan);
-
-  /* Gases tóxicos */
-  Serial.print("no: ");
-//  toxic = adc1_get_raw(ADC1_CHANNEL_5);
-  delay(300);
-//  Serial.print(toxic);
-  Serial.print("pouco"); //mentira
-  Serial.println();
-//  printServer("NO",toxic);
-  Serial.print("co: ");
-//  monca = adc1_get_raw(ADC1_CHANNEL_4);
-  delay(300);
-//  Serial.print(monca);
-  Serial.print("mais ou menos"); //mentira
-  Serial.println();
-//  printServer("CO",monca);
 }
 
 void printServer(String keyword, float data) {
@@ -349,4 +182,6 @@ void writeFile(const char * message) {
 //    Serial.println("Write failed");
 //  }
 }
+
+#endif
 

@@ -1,5 +1,5 @@
 /*
- *  ClimoBike módulo GPS v0.0.2.0
+ *  ClimoBike Módulo GPS v0.0.2.0
  *  Board:  esp32dev (v1, v2)
  *  Authors:
  *    Alisson Claudino (https://inf.ufrgs.br/~acjesus)
@@ -16,8 +16,8 @@
  * Se não, veja http://www.gnu.org/licenses/.
 */
 
-#ifndef CLIMOBIKESETUPGPS_H
-#define CLIMOBIKESETUPGPS_H
+#ifndef CLIMOBIKEGPS_H
+#define CLIMOBIKEGPS_H
 
 #if defined(ARDUINO) && ARDUINO >= 100
 #include "Arduino.h"

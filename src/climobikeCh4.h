@@ -1,5 +1,5 @@
 /*
- *  ClimoBike v0.0.2.0
+ *  ClimoBike Módulo Metano v0.0.2.0
  *  Board:  esp32dev (v1, v2)
  *  Authors:
  *    Alisson Claudino (https://inf.ufrgs.br/~acjesus)
@@ -16,43 +16,19 @@
  * Se não, veja http://www.gnu.org/licenses/.
 */
 
+#ifndef CLIMOBIKECH4_H
+#define CLIMOBIKECH4_H
+
 #if defined(ARDUINO) && ARDUINO >= 100
 #include "Arduino.h"
 #else
 #include "WProgram.h"
 #endif
 
-/* Todos módulos */
-#include <climobikeTudo.h>
+float metan;
 
-/* GPS */
-#include <climobikeGps.h>
-
-void setup(){
-
-  delay(300);
-  setupAnal();
-
-  Serial.begin(9600);
-
-  setupBluetooth();
-  setupRelogio();
-  setupDht();
-  setupWifi();
-  setupSd();
-  setupHttp();
-  setupGps();
-
+void loopCh4() {
 }
 
-void loop() {
-
-  loopWifi();
-  loopRelogio();
-  loopDht();
-  loopAnal();
-  loopGps();
-  loopSd();
-
-}
+#endif
 

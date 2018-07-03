@@ -1,5 +1,5 @@
 /*
- *  ClimoBike v0.0.2.0
+ *  ClimoBike Módulo Bluetooth v0.0.2.0
  *  Board:  esp32dev (v1, v2)
  *  Authors:
  *    Alisson Claudino (https://inf.ufrgs.br/~acjesus)
@@ -16,43 +16,25 @@
  * Se não, veja http://www.gnu.org/licenses/.
 */
 
+#ifndef CLIMOBIKEBLUETOOTH_H
+#define CLIMOBIKEBLUETOOTH_H
+
 #if defined(ARDUINO) && ARDUINO >= 100
 #include "Arduino.h"
 #else
 #include "WProgram.h"
 #endif
 
-/* Todos módulos */
-#include <climobikeTudo.h>
+//#include "BluetoothSerial.h"
 
-/* GPS */
-#include <climobikeGps.h>
+//BluetoothSerial SerialBT;
 
-void setup(){
-
-  delay(300);
-  setupAnal();
-
-  Serial.begin(9600);
-
-  setupBluetooth();
-  setupRelogio();
-  setupDht();
-  setupWifi();
-  setupSd();
-  setupHttp();
-  setupGps();
-
+void setupBluetooth() {
+  Serial.print("Tentando iniciar Bluetooth...");
+  //SerialBT.begin("clo");
+  Serial.print(" mentira"); //mentira
+  Serial.println("!");
 }
 
-void loop() {
-
-  loopWifi();
-  loopRelogio();
-  loopDht();
-  loopAnal();
-  loopGps();
-  loopSd();
-
-}
+#endif
 
