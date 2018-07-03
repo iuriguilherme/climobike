@@ -15,6 +15,7 @@
  * com este programa (veja o arquivo LICENSE.md).
  * Se não, veja http://www.gnu.org/licenses/.
 */
+
 #ifndef CLIMOBIKESETUPGPS_H
 #define CLIMOBIKESETUPGPS_H
 
