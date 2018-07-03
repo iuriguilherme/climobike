@@ -31,40 +31,40 @@ float metan,toxic,monca;
 
 void setupAnal() {
   Serial.print("Tentando iniciar sensores analógicos de gasese tóxicos...");
-//  adc_power_on();
-//  adc_gpio_init(ADC_UNIT_1,ADC_CHANNEL_6);
-//  adc_gpio_init(ADC_UNIT_1,ADC_CHANNEL_5);
-//  adc_gpio_init(ADC_UNIT_1,ADC_CHANNEL_4);
-//  adc1_config_width(ADC_WIDTH_12Bit);
-//  adc1_config_channel_atten(ADC1_CHANNEL_6,ADC_ATTEN_0db);
-//  adc1_config_channel_atten(ADC1_CHANNEL_5,ADC_ATTEN_0db);
-//  adc1_config_channel_atten(ADC1_CHANNEL_4,ADC_ATTEN_0db);
-  Serial.print(" mentira"); //mentira
+  adc_power_on();
+  adc_gpio_init(ADC_UNIT_1,ADC_CHANNEL_6);
+  adc_gpio_init(ADC_UNIT_1,ADC_CHANNEL_5);
+  adc_gpio_init(ADC_UNIT_1,ADC_CHANNEL_4);
+  adc1_config_width(ADC_WIDTH_12Bit);
+  adc1_config_channel_atten(ADC1_CHANNEL_6,ADC_ATTEN_0db);
+  adc1_config_channel_atten(ADC1_CHANNEL_5,ADC_ATTEN_0db);
+  adc1_config_channel_atten(ADC1_CHANNEL_4,ADC_ATTEN_0db);
+  Serial.print(" feito");
   Serial.println("!");
 }
 
 void loopAnal() {
   /* Metano MQ4 */
   Serial.print("ch4: ");
-//  metan = adc1_get_raw(ADC1_CHANNEL_6);
+  metan = adc1_get_raw(ADC1_CHANNEL_6);
   delay(300);
-//  Serial.print(metan);
-  Serial.print("bastante"); //mentira
+  Serial.print(metan);
+/*  Serial.print("bastante"); //mentira*/
   Serial.println();
 //  printServer("CH4",metan);
   /* Gases tóxicos */
   Serial.print("no: ");
-//  toxic = adc1_get_raw(ADC1_CHANNEL_5);
+  toxic = adc1_get_raw(ADC1_CHANNEL_5);
   delay(300);
-//  Serial.print(toxic);
-  Serial.print("pouco"); //mentira
+  Serial.print(toxic);
+/*  Serial.print("pouco"); //mentira*/
   Serial.println();
 //  printServer("NO",toxic);
   Serial.print("co: ");
-//  monca = adc1_get_raw(ADC1_CHANNEL_4);
+  monca = adc1_get_raw(ADC1_CHANNEL_4);
   delay(300);
-//  Serial.print(monca);
-  Serial.print("mais ou menos"); //mentira
+  Serial.print(monca);
+/*  Serial.print("mais ou menos"); //mentira*/
   Serial.println();
 //  printServer("CO",monca);
 }

@@ -28,30 +28,41 @@
 #include <DS1307.h>
 
 DS1307 relogio;  //Inicialização de objetos de tipos relógio, data e Serial
-RTCDateTime date;
+RTCDateTime datetime;
 
 void setupRelogio() {
   Serial.print("Tentando iniciar Relógio...");
-//  relogio.begin();
-//  date = relogio.getDateTime();
-//  Serial.print("\nData de inicio da aquisição: ");
-//  Serial.print(date.year);
-//  Serial.print("-");
-//  Serial.print(date.month);
-//  Serial.print("-");
-//  Serial.print(date.day);
-//  Serial.print(" ");
-//  Serial.print(date.hour);
-//  Serial.print(":");
-//  Serial.print(date.minute);
+/*  Serial.print(" deu ");*/
+/*  relogio.begin();*/
+/*  datetime = relogio.getDateTime();*/
+/*  if ((int)datetime.year > 0) {*/
+/*    Serial.print(" certo");*/
+/*  } else {*/
+/*    Serial.print(" merda");*/
+/*  }*/
   Serial.print(" mentira"); //mentira
   Serial.println("!");
 }
 
 void loopRelogio() {
   Serial.print("timestamp: ");
-  //Serial.print(relogio.getDateTime());
-  Serial.print("2018-07-03 18:00"); //mentira
+/*  datetime = relogio.getDateTime();*/
+  String timestamp = "";
+  timestamp += "'";
+/*  if ((int)datetime.year > 0) {*/
+/*    timestamp += datetime.year;*/
+/*    timestamp += "-";*/
+/*    timestamp += datetime.month;*/
+/*    timestamp += "-";*/
+/*    timestamp += datetime.day;*/
+/*    timestamp += " ";*/
+/*    timestamp += datetime.hour;*/
+/*    timestamp += ":";*/
+/*    timestamp += datetime.minute;*/
+/*  }*/
+  timestamp += "2018-07-03 18:00"; //mentira
+  timestamp += "'";
+  Serial.print(timestamp);
   Serial.println();
 }
 

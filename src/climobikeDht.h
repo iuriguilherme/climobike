@@ -34,13 +34,9 @@ DHT dht(DHTPIN,DHTTYPE);
 
 void setupDht() {
   Serial.print("Tentando iniciar DHT...");
-//  Serial.print(" deu ");
-//  if (dht.begin()) {
-//    Serial.print("certo");
-//  } else {
-//    Serial.print("merda");
-//  }
-  Serial.print(" mentira"); //mentira
+  dht.begin();
+  Serial.print(" feito");
+/*  Serial.print(" mentira"); //mentira*/
   Serial.println("!");
 }
 
@@ -48,15 +44,15 @@ void loopDht() {
   /* Imprime dados DHT */
 
   Serial.print("tempe: ");
-//  Serial.print(dht.readTemperature());
-  Serial.print("25.0"); // mentira
+  Serial.print(dht.readTemperature());
+/*  Serial.print("25.0"); // mentira*/
   Serial.println();
 
 //  printServer("tempe",dht.readTemperature());    
 
   Serial.print("humid: ");
-//  Serial.print(dht.readHumidity());
-  Serial.print("50.0"); // mentira
+  Serial.print(dht.readHumidity());
+/*  Serial.print("50.0"); // mentira*/
   Serial.println();
 
 //  printServer("humid",dht.readHumidity());
