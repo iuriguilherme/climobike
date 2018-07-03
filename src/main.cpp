@@ -25,10 +25,6 @@
 //#include <SPI.h>
 // Bluetooth
 //#include "BluetoothSerial.h"
-// GPS
-#include <TinyGPS++.h>
-//#include <SoftwareSerial.h>
-
 // DHT
 //#define DHTTYPE DHT22
 //#define DHTPIN 27
@@ -56,13 +52,7 @@ WiFiClient server;
 //String data;
 
 // GPS
-String gpsData = "";
-static const int RXPin = 16;
-static const int TXPin = 17;
-static const uint32_t GPSBaud = 9600;
-TinyGPSPlus gps;
-//SoftwareSerial ss(RXPin, TXPin);
-HardwareSerial ss(1);
+#include <climobikeGps.h>
 
 // MQ4
 //float metan;
@@ -157,31 +147,6 @@ void setupHttp() {
   }
 }
 
-void setupGPS() {
-  // HardwareSerial
-  // esp32dev v2
-  //ss.begin(9600, SERIAL_8N1, 16, 17);
-  // esp32dev v1
-  //ss.begin(9600, SERIAL_8N1, 2, 4);
-  // definido antes
-  ss.begin(GPSBaud, SERIAL_8N1, RXPin, TXPin, false);
-
-  // SoftwareSerial
-  //ss.begin(GPSBaud);
-
-  Serial.print("Tentando iniciar GPS com ");
-  Serial.print(GPSBaud);
-  while (!(ss.available() > 0)) {
-    delay(1000);
-    Serial.print(".");
-  }
-  Serial.println(" sucesso!");
-}
-
-void setupDHT() {
-//  dht.begin();
-}
-
 void setupRelogio() {
 //  relogio.begin();
 //  date = relogio.getDateTime();
@@ -198,51 +163,9 @@ void setupRelogio() {
   Serial.println();
 }
 
-void loopGPS() {
-  // Imprime dados GPS
-  gpsData = "";
-  while (ss.available() > 0) {
-    gps.encode(ss.read());
-  }
-  if (gps.location.isUpdated()) {
-    gpsData += "{";
-    gpsData += "date";
-    gpsData += ":";
-    gpsData += gps.date.value();
-    gpsData += ",";
-    gpsData += "time";
-    gpsData += ":";
-    gpsData += gps.time.value();
-    gpsData += ",";
-    gpsData += "speed";
-    gpsData += ":";
-    gpsData += gps.speed.mps();
-    gpsData += ",";
-    gpsData += "altitude";
-    gpsData += ":";
-    gpsData += gps.altitude.meters();
-    gpsData += ",";
-    gpsData += "latitude";
-    gpsData += ":";
-    gpsData += gps.location.lat();
-    gpsData += ",";
-    gpsData += "longitude";
-    gpsData += ":";
-    gpsData += gps.location.lng();
-    gpsData += ",";
-    gpsData += "satellites";
-    gpsData += ":";
-    gpsData += gps.satellites.value();
-    gpsData += ",";
-    gpsData += "hdop";
-    gpsData += ":";
-    gpsData += gps.hdop.value();
-    gpsData += ",";
-    gpsData += "}";
-  }
-  if (gpsData != "") {
-    Serial.println(gpsData);
-  }
+void setupDHT() {
+//  Serial.print("Tentando iniciar GPS com ");
+//  dht.begin();
 }
 
 void setup() {
@@ -258,7 +181,7 @@ void setup() {
   //setupWifi();
   //setupHttp();
   //setupRelogio();
-  setupGPS();
+  setupGps();
 }
 
 void loop() {
@@ -271,7 +194,7 @@ void loop() {
   //Serial.print(relogio.getDateTime());
   //Serial.println();
 
-  loopGPS();
+  loopGps();
 
   // Imprime dados DHT
   //Serial.print("tempe: ");
@@ -366,5 +289,5 @@ void ipfsObject(String dict) {
 //    delay(1000);
 //    iteract++;
 //  }
-//}
+}
 
