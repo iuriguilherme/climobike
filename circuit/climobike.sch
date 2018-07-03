@@ -1,4 +1,5 @@
 EESchema Schematic File Version 4
+LIBS:climobike-cache
 EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
@@ -30,7 +31,7 @@ U 1 1 5B2366A8
 P 4950 1500
 F 0 "MQ2" H 4719 1035 50  0000 C CNN
 F 1 "MQ-7" H 4719 1126 50  0000 C CNN
-F 2 "" H 4850 1500 50  0001 C CNN
+F 2 "Module:MQ-Sensor" H 4850 1500 50  0001 C CNN
 F 3 "" H 4850 1500 50  0001 C CNN
 	1    4950 1500
 	-1   0    0    1   
@@ -154,7 +155,7 @@ U 1 1 5B237575
 P 5950 1500
 F 0 "MQ4" H 5719 1035 50  0000 C CNN
 F 1 "MQ-4" H 5719 1126 50  0000 C CNN
-F 2 "" H 5850 1500 50  0001 C CNN
+F 2 "Module:MQ-Sensor" H 5850 1500 50  0001 C CNN
 F 3 "" H 5850 1500 50  0001 C CNN
 	1    5950 1500
 	-1   0    0    1   
@@ -165,7 +166,7 @@ U 1 1 5B2375BD
 P 3900 1500
 F 0 "MQ1" H 3669 1035 50  0000 C CNN
 F 1 "MQ-135" H 3669 1126 50  0000 C CNN
-F 2 "" H 3800 1500 50  0001 C CNN
+F 2 "Module:MQ-Sensor" H 3800 1500 50  0001 C CNN
 F 3 "" H 3800 1500 50  0001 C CNN
 	1    3900 1500
 	-1   0    0    1   
@@ -196,10 +197,6 @@ F 3 "" H 6450 1450 50  0001 C CNN
 	1    6450 1450
 	0    -1   -1   0   
 $EndComp
-Text GLabel 5450 1600 2    50   Output ~ 0
-CO_FLAG
-Text GLabel 6450 1600 2    50   Output ~ 0
-MET_FLAG
 $Comp
 L power:GND #PWR0110
 U 1 1 5B2377B9
@@ -224,8 +221,6 @@ F 3 "" H 4400 1300 50  0001 C CNN
 $EndComp
 Text GLabel 4400 1750 2    50   Output ~ 0
 TOX_OUT
-Text GLabel 4400 1600 2    50   Output ~ 0
-TOX_FLAG
 Text GLabel 9750 2000 2    47   Input ~ 0
 SD_MISO
 Text GLabel 9750 1400 2    47   Output ~ 0
@@ -234,20 +229,14 @@ Text GLabel 9750 2100 2    47   Output ~ 0
 SD_CLK
 Text GLabel 9750 2200 2    47   Output ~ 0
 SD_CS
-Text GLabel 7450 2300 0    50   BiDi ~ 0
+Text GLabel 7450 2400 0    50   BiDi ~ 0
 DHT_PIN
 Text GLabel 7450 1900 0    50   Input ~ 0
 TOX_OUT
-Text GLabel 7450 2100 0    50   Input ~ 0
-TOX_FLAG
 Text GLabel 7450 1700 0    50   Input ~ 0
 CO_OUT
-Text GLabel 7450 2400 0    50   Input ~ 0
-CO_FLAG
 Text GLabel 7450 2000 0    50   Input ~ 0
 MET_OUT
-Text GLabel 7450 2200 0    50   Input ~ 0
-MET_FLAG
 Text GLabel 9750 2300 2    50   Output ~ 0
 GPS_RX
 Text GLabel 9750 2400 2    50   Input ~ 0
@@ -332,96 +321,6 @@ Text GLabel 9750 1800 2    50   BiDi ~ 0
 CLOCK_SDA
 Text GLabel 9750 1500 2    50   BiDi ~ 0
 CLOCK_SCL
-$Comp
-L modules:MQ-X MQ5
-U 1 1 5B37BDE5
-P 6750 4150
-F 0 "MQ5" H 6519 3685 50  0000 C CNN
-F 1 "MQ-Y" H 6519 3776 50  0000 C CNN
-F 2 "" H 6650 4150 50  0001 C CNN
-F 3 "" H 6650 4150 50  0001 C CNN
-	1    6750 4150
-	-1   0    0    1   
-$EndComp
-$Comp
-L modules:MQ-X MQ3
-U 1 1 5B37BFC9
-P 5700 4150
-F 0 "MQ3" H 5469 3685 50  0000 C CNN
-F 1 "MQ-X" H 5469 3776 50  0000 C CNN
-F 2 "" H 5600 4150 50  0001 C CNN
-F 3 "" H 5600 4150 50  0001 C CNN
-	1    5700 4150
-	-1   0    0    1   
-$EndComp
-Text GLabel 7450 1800 0    50   Input ~ 0
-X_OUT
-Text GLabel 7450 1600 0    50   Input ~ 0
-Y_OUT
-Text GLabel 7450 2500 0    50   Input ~ 0
-X_FLAG
-Text GLabel 7450 2700 0    50   Input ~ 0
-Y_FLAG
-$Comp
-L climobike-cache:+3.3V #PWR0115
-U 1 1 5B37C3CF
-P 6250 3900
-F 0 "#PWR0115" H 6250 3750 50  0001 C CNN
-F 1 "+3.3V" H 6265 4073 50  0000 C CNN
-F 2 "" H 6250 3900 50  0001 C CNN
-F 3 "" H 6250 3900 50  0001 C CNN
-	1    6250 3900
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	6200 3950 6250 3950
-Wire Wire Line
-	6250 3950 6250 3900
-$Comp
-L climobike-cache:+3.3V #PWR0116
-U 1 1 5B37C45D
-P 7300 3900
-F 0 "#PWR0116" H 7300 3750 50  0001 C CNN
-F 1 "+3.3V" H 7315 4073 50  0000 C CNN
-F 2 "" H 7300 3900 50  0001 C CNN
-F 3 "" H 7300 3900 50  0001 C CNN
-	1    7300 3900
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	7250 3950 7300 3950
-Wire Wire Line
-	7300 3950 7300 3900
-Text GLabel 6200 4250 2    50   Output ~ 0
-X_FLAG
-Text GLabel 6200 4400 2    50   Output ~ 0
-X_OUT
-Text GLabel 7250 4250 2    50   Output ~ 0
-Y_FLAG
-Text GLabel 7250 4400 2    50   Output ~ 0
-Y_OUT
-$Comp
-L power:GND #PWR0117
-U 1 1 5B37C6CD
-P 6200 4100
-F 0 "#PWR0117" H 6200 3850 50  0001 C CNN
-F 1 "GND" V 6200 4000 50  0000 R CNN
-F 2 "" H 6200 4100 50  0001 C CNN
-F 3 "" H 6200 4100 50  0001 C CNN
-	1    6200 4100
-	0    -1   -1   0   
-$EndComp
-$Comp
-L power:GND #PWR0118
-U 1 1 5B37C75C
-P 7250 4100
-F 0 "#PWR0118" H 7250 3850 50  0001 C CNN
-F 1 "GND" V 7250 4000 50  0000 R CNN
-F 2 "" H 7250 4100 50  0001 C CNN
-F 3 "" H 7250 4100 50  0001 C CNN
-	1    7250 4100
-	0    -1   -1   0   
-$EndComp
 Text Notes 4250 2350 0    50   ~ 0
                  MQ Gas Sensor Modules\n\nMQ-4 (CH4), MQ-7 (CO), MQ-135 (NH3, CO2 and C6H6)
 Wire Notes Line
@@ -482,16 +381,6 @@ Wire Notes Line
 	7000 950  7000 3500
 Wire Notes Line
 	7000 3500 10300 3500
-Text Notes 6000 4800 0    50   ~ 0
-Extra MQ Gas Sensor Sockets\n
-Wire Notes Line
-	7600 4850 7600 3600
-Wire Notes Line
-	7600 3600 5600 3600
-Wire Notes Line
-	5600 3600 5600 4850
-Wire Notes Line
-	5600 4850 7600 4850
 $Comp
 L power:GND #PWR0119
 U 1 1 5B384361
@@ -549,48 +438,47 @@ F 3 "" H 7450 1300 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 NoConn ~ 7450 1400
-NoConn ~ 7450 1500
 $Comp
 L Connector:Jack-DC J1
 U 1 1 5B39CB4A
-P 6100 2950
-F 0 "J1" H 6178 3275 50  0000 C CNN
-F 1 "Jack-DC" H 6178 3184 50  0000 C CNN
-F 2 "Connector_BarrelJack:BarrelJack_Horizontal" H 6150 2910 50  0001 C CNN
-F 3 "~" H 6150 2910 50  0001 C CNN
-	1    6100 2950
+P 5950 3050
+F 0 "J1" H 6028 3375 50  0000 C CNN
+F 1 "Jack-DC" H 6028 3284 50  0000 C CNN
+F 2 "Connector_BarrelJack:BarrelJack_Horizontal" H 6000 3010 50  0001 C CNN
+F 3 "~" H 6000 3010 50  0001 C CNN
+	1    5950 3050
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR0114
 U 1 1 5B39E7AA
-P 6450 3000
-F 0 "#PWR0114" H 6450 2750 50  0001 C CNN
-F 1 "GND" V 6455 2872 50  0000 R CNN
-F 2 "" H 6450 3000 50  0001 C CNN
-F 3 "" H 6450 3000 50  0001 C CNN
-	1    6450 3000
-	0    -1   -1   0   
+P 6300 3200
+F 0 "#PWR0114" H 6300 2950 50  0001 C CNN
+F 1 "GND" H 6200 3150 50  0000 R CNN
+F 2 "" H 6300 3200 50  0001 C CNN
+F 3 "" H 6300 3200 50  0001 C CNN
+	1    6300 3200
+	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	6400 2850 6450 2850
+	6250 2950 6300 2950
 Wire Wire Line
-	6450 2850 6450 2800
+	6300 2950 6300 2900
 Wire Wire Line
-	6400 2950 6425 2950
+	6250 3050 6275 3050
 Wire Wire Line
-	6425 2950 6425 3000
+	6275 3050 6275 3100
 Wire Wire Line
-	6425 3000 6450 3000
+	6275 3100 6300 3100
 $Comp
 L power:VCC #PWR0120
 U 1 1 5B3A12FD
-P 6450 2800
-F 0 "#PWR0120" H 6450 2650 50  0001 C CNN
-F 1 "VCC" H 6467 2973 50  0000 C CNN
-F 2 "" H 6450 2800 50  0001 C CNN
-F 3 "" H 6450 2800 50  0001 C CNN
-	1    6450 2800
+P 6300 2900
+F 0 "#PWR0120" H 6300 2750 50  0001 C CNN
+F 1 "VCC" H 6317 3073 50  0000 C CNN
+F 2 "" H 6300 2900 50  0001 C CNN
+F 3 "" H 6300 2900 50  0001 C CNN
+	1    6300 2900
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -615,19 +503,129 @@ F 3 "" H 3250 2450 50  0001 C CNN
 	1    3250 2450
 	0    1    1    0   
 $EndComp
-Text Notes 5775 3275 0    50   ~ 0
+Text Notes 5750 3500 0    50   ~ 0
 Input Voltage - 4V to 10V\n
-Wire Notes Line
-	5750 2550 5750 3300
-Wire Notes Line
-	6850 2550 6850 3300
-Wire Notes Line
-	5750 2550 6850 2550
-Wire Notes Line
-	5750 3300 6850 3300
 Wire Wire Line
-	6400 3050 6425 3050
+	6275 3150 6275 3100
+Connection ~ 6275 3100
+$Comp
+L Sensor_Optical:LDR03 R2
+U 1 1 5B3A2ED2
+P 6100 4450
+F 0 "R2" H 6170 4496 50  0000 L CNN
+F 1 "LDR" H 6170 4405 50  0000 L CNN
+F 2 "OptoDevice:R_LDR_7x6mm_P5.1mm_Vertical" V 6275 4450 50  0001 C CNN
+F 3 "http://www.elektronica-componenten.nl/WebRoot/StoreNL/Shops/61422969/54F1/BA0C/C664/31B9/2173/C0A8/2AB9/2AEF/LDR03IMP.pdf" H 6100 4400 50  0001 C CNN
+	1    6100 4450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R1
+U 1 1 5B3A2F8B
+P 6100 4050
+F 0 "R1" H 6170 4096 50  0000 L CNN
+F 1 "R_SHUNT" H 6170 4005 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 6030 4050 50  0001 C CNN
+F 3 "~" H 6100 4050 50  0001 C CNN
+	1    6100 4050
+	1    0    0    -1  
+$EndComp
+Text GLabel 7450 1500 0    50   Input ~ 0
+LDR_V
+$Comp
+L power:GND #PWR02
+U 1 1 5B3A36CF
+P 6100 4600
+F 0 "#PWR02" H 6100 4350 50  0001 C CNN
+F 1 "GND" H 6105 4427 50  0000 C CNN
+F 2 "" H 6100 4600 50  0001 C CNN
+F 3 "" H 6100 4600 50  0001 C CNN
+	1    6100 4600
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:VCC #PWR01
+U 1 1 5B3A3765
+P 6100 3900
+F 0 "#PWR01" H 6100 3750 50  0001 C CNN
+F 1 "VCC" H 6117 4073 50  0000 C CNN
+F 2 "" H 6100 3900 50  0001 C CNN
+F 3 "" H 6100 3900 50  0001 C CNN
+	1    6100 3900
+	1    0    0    -1  
+$EndComp
+Text GLabel 6150 4250 2    50   Input ~ 0
+LDR_V
 Wire Wire Line
-	6425 3050 6425 3000
-Connection ~ 6425 3000
+	6100 4200 6100 4250
+Wire Wire Line
+	6100 4250 6150 4250
+Connection ~ 6100 4250
+Wire Wire Line
+	6100 4250 6100 4300
+Text Notes 5750 4950 0    50   ~ 0
+LIGHT SENSOR MODULE
+Wire Notes Line
+	5700 3650 5700 5000
+Wire Notes Line
+	6650 3650 6650 5000
+Wire Notes Line
+	5700 5000 6650 5000
+Wire Notes Line
+	5700 3650 6650 3650
+$Comp
+L Device:CP_Small C1
+U 1 1 5B3A7F06
+P 6550 2950
+F 0 "C1" H 6638 2996 50  0000 L CNN
+F 1 "1000u" H 6600 2800 50  0000 L CNN
+F 2 "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm" H 6550 2950 50  0001 C CNN
+F 3 "~" H 6550 2950 50  0001 C CNN
+	1    6550 2950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6250 3150 6275 3150
+$Comp
+L power:VCC #PWR0126
+U 1 1 5B3A928D
+P 6550 2850
+F 0 "#PWR0126" H 6550 2700 50  0001 C CNN
+F 1 "VCC" H 6567 3023 50  0000 C CNN
+F 2 "" H 6550 2850 50  0001 C CNN
+F 3 "" H 6550 2850 50  0001 C CNN
+	1    6550 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0127
+U 1 1 5B3A92B4
+P 6550 3050
+F 0 "#PWR0127" H 6550 2800 50  0001 C CNN
+F 1 "GND" H 6600 2900 50  0000 R CNN
+F 2 "" H 6550 3050 50  0001 C CNN
+F 3 "" H 6550 3050 50  0001 C CNN
+	1    6550 3050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6300 3100 6300 3200
+Wire Notes Line
+	5700 2550 6850 2550
+Wire Notes Line
+	5700 3550 6850 3550
+Wire Notes Line
+	6850 2550 6850 3550
+Wire Notes Line
+	5700 2550 5700 3550
+NoConn ~ 7450 2700
+NoConn ~ 7450 2500
+NoConn ~ 7450 1800
+NoConn ~ 7450 1600
+NoConn ~ 7450 2100
+NoConn ~ 7450 2200
+NoConn ~ 7450 2300
+NoConn ~ 6450 1600
+NoConn ~ 5450 1600
+NoConn ~ 4400 1600
 $EndSCHEMATC
