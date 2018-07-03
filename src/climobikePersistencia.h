@@ -31,56 +31,61 @@
 
 File file;
 
-void writeFile(const char * message);
+void writeFile(const char * message, String arquivo);
 
 void setupSd() {
   Serial.print("Tentando iniciar cartão SD...");
-//  uint8_t cardType = SD.cardType();
 
-//  if (!SD.begin()) {
-//    Serial.println("Card Mount Failed");
-//    return;
-//  }
-//  if (cardType == CARD_NONE) {
-//    Serial.println("No SD card attached");
-//    return;
-//  }
+  uint8_t cardType = SD.cardType();
+  if (!SD.begin()) {
+    Serial.println("falhou!");
+  } else if (cardType == CARD_NONE) {
+    Serial.println("nenhum cartão detectado!");
+  } else {
+    Serial.print("Sucesso! Tipo de cartão:");
+    if (cardType == CARD_MMC) {
+      Serial.print("MMC");
+    } else if (cardType == CARD_SD) {
+      Serial.print("SDSC");
+    } else if (cardType == CARD_SDHC) {
+      Serial.print("SDHC");
+    } else {
+      Serial.print("UNKNOWN");
+    }
+    Serial.println(".");
+    uint64_t cardSize = SD.cardSize() / (1024 * 1024);
+    Serial.printf("Tamanho do cartão: %lluMB\n", cardSize);
+  }
 
-//  Serial.print("SD Card Type: ");
-//  if (cardType == CARD_MMC) {
-//    Serial.println("MMC");
-//  } else if (cardType == CARD_SD) {
-//    Serial.println("SDSC");
-//  } else if (cardType == CARD_SDHC) {
-//    Serial.println("SDHC");
-//  } else {
-//    Serial.println("UNKNOWN");
-//  }
-
-//  uint64_t cardSize = SD.cardSize() / (1024 * 1024);
-//  Serial.printf("SD Card Size: %lluMB\n", cardSize);
-
-//  file = SD.open("/rawData.dat", FILE_WRITE);
-  Serial.print(" mentira"); //mentira
-  Serial.println("!");
+/*  Serial.print(" mentira"); //mentira*/
+/*  Serial.println("!");*/
 }
 
 void loopSd() {
-  writeFile("Gravei nada em lugar nenhum!");
+  Serial.print("Testando escrita no cartão...");
+  String arquivo = "/rawData.dat";
+  String gravarDados = "";
+  gravarDados += "tempo=";
+  gravarDados += millis();
+  /* TODO testar cartão para ver se está funcionando aqui, e tratar erros */
+  writeFile(gravarDados.c_str(), arquivo);
+/*  writeFile("Gravei nada em lugar nenhum!"); //mentira*/
+
 }
 
-void writeFile(const char * message) {
-//  Serial.printf("Writing file: %s\n", "/rawData.dat");
-//  if (!file) {
-//    Serial.println("Failed to open file for writing");
-//    return;
-//  }
-//  if (file.println(message)) {
-//    Serial.println("File written");
-//  } else {
-//    Serial.println("Write failed");
-//  }
-  Serial.println(message); //mentira
+void writeFile(const char * message, String arquivo) {
+  /* TODO testar cartão para ver se está funcionando aqui, e tratar erros */
+  file = SD.open(arquivo, FILE_WRITE);
+  Serial.printf("Escrevendo %s no arquivo: %s\n", message, arquivo.c_str());
+  if (!file) {
+    Serial.println("Erro tentando abrir o arquivo!");
+  } else if (file.println(message)) {
+    file.close();
+    Serial.println("Sucesso!");
+  } else {
+    Serial.println("Erro tentando escrever no arquivo");
+  }
+  file.close();
 }
 
 #endif

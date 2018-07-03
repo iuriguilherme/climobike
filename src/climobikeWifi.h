@@ -55,7 +55,7 @@ void printServer(String keyword, String data);
 void ipfsObject(String dict);
 
 void setupWifi() {
-  Serial.print("Tentando conectar wifi...");
+  Serial.print("Tentando iniciar Wifi...");
   WiFi.begin(networkName, networkPswd);
   Serial.print(" em ");
   Serial.print(networkName);
