@@ -33,9 +33,8 @@ RTCDateTime datetime;
 void setupRelogio() {
   Serial.print("Tentando iniciar Relógio...");
 /*  Serial.print(" deu ");*/
-/*  relogio.begin();*/
-/*  datetime = relogio.getDateTime();*/
-/*  if ((int)datetime.year > 0) {*/
+/*  if ((relogio.isReady() > 0)) {*/
+/*    relogio.begin();*/
 /*    Serial.print(" certo");*/
 /*  } else {*/
 /*    Serial.print(" merda");*/
@@ -45,22 +44,26 @@ void setupRelogio() {
 }
 
 void loopRelogio() {
-  Serial.print("timestamp: ");
-/*  datetime = relogio.getDateTime();*/
   String timestamp = "";
   timestamp += "'";
-/*  if ((int)datetime.year > 0) {*/
-/*    timestamp += datetime.year;*/
-/*    timestamp += "-";*/
-/*    timestamp += datetime.month;*/
-/*    timestamp += "-";*/
-/*    timestamp += datetime.day;*/
-/*    timestamp += " ";*/
-/*    timestamp += datetime.hour;*/
-/*    timestamp += ":";*/
-/*    timestamp += datetime.minute;*/
-/*  }*/
-  timestamp += "2018-07-03 18:00"; //mentira
+  Serial.print("timestamp: ");
+/*  if ((relogio.isReady() > 0)) {*/
+  if (false) {
+    datetime = relogio.getDateTime();
+    if ((int)datetime.year > 0) {
+      timestamp += datetime.year;
+      timestamp += "-";
+      timestamp += datetime.month;
+      timestamp += "-";
+      timestamp += datetime.day;
+      timestamp += " ";
+      timestamp += datetime.hour;
+      timestamp += ":";
+      timestamp += datetime.minute;
+    }
+  } else {
+    timestamp += "2018-07-03 18:00"; //mentira
+  }
   timestamp += "'";
   Serial.print(timestamp);
   Serial.println();

@@ -56,20 +56,20 @@ void ipfsObject(String dict);
 
 void setupWifi() {
   Serial.print("Tentando conectar wifi...");
-//  WiFi.begin(networkName, networkPswd);
-//  Serial.print(" em ");
-//  Serial.print(networkName);
-//  Serial.print(" com ");
-//  Serial.print(networkPswd);
-//  while (WiFi.status() != WL_CONNECTED) {
-//    delay(1000);
-//    Serial.print(".");
-//  }
-//  Serial.println();
-//  Serial.print("Nosso IP: ");
-//  Serial.print(WiFi.localIP());
-//  Serial.print("WiFi conectado");
-  Serial.print(" mentira"); //mentira
+  WiFi.begin(networkName, networkPswd);
+  Serial.print(" em ");
+  Serial.print(networkName);
+  Serial.print(" com ");
+  Serial.print(networkPswd);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.print(".");
+  }
+  Serial.println();
+  Serial.print("Nosso IP: ");
+  Serial.print(WiFi.localIP());
+  Serial.print("WiFi conectado");
+/*  Serial.print(" mentira"); //mentira*/
   Serial.println("!");
 }
 
