@@ -22,19 +22,18 @@
 #include "WProgram.h"
 #endif
 
-/* Todos módulos */
-#include <climobikeTudo.h>
-
-/* GPS */
+#include <climobikeBluetooth.h>
+#include <climobikeAnal.h>
+#include <climobikeDht.h>
+#include <climobikeRelogio.h>
+#include <climobikeWifi.h>
+#include <climobikePersistencia.h>
 #include <climobikeGps.h>
 
 void setup(){
-
   delay(300);
-  setupAnal();
-
   Serial.begin(9600);
-
+  setupAnal();
   setupBluetooth();
   setupRelogio();
   setupDht();
@@ -42,17 +41,14 @@ void setup(){
   setupSd();
   setupHttp();
   setupGps();
-
 }
 
 void loop() {
-
   loopWifi();
   loopRelogio();
   loopDht();
   loopAnal();
   loopGps();
   loopSd();
-
 }
 
