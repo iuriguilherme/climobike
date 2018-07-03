@@ -1,0 +1,633 @@
+EESchema Schematic File Version 4
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L sensors:DHT22_Temperature_Humidity U1
+U 1 1 5B2341F0
+P 4600 4900
+F 0 "U1" H 4950 5700 50  0000 R CNN
+F 1 "DHT22" H 4700 5800 50  0000 R CNN
+F 2 "Module:DHT22_Temperature_Humidity" H 4750 5150 50  0001 C CNN
+F 3 "http://akizukidenshi.com/download/ds/aosong/DHT11.pdf" H 4750 5150 50  0001 C CNN
+	1    4600 4900
+	1    0    0    -1  
+$EndComp
+$Comp
+L modules:MQ-X MQ2
+U 1 1 5B2366A8
+P 4950 1500
+F 0 "MQ2" H 4719 1035 50  0000 C CNN
+F 1 "MQ-7" H 4719 1126 50  0000 C CNN
+F 2 "" H 4850 1500 50  0001 C CNN
+F 3 "" H 4850 1500 50  0001 C CNN
+	1    4950 1500
+	-1   0    0    1   
+$EndComp
+$Comp
+L modules:NEO-6M GPS1
+U 1 1 5B23685E
+P 3100 1600
+F 0 "GPS1" H 3319 1035 50  0000 C CNN
+F 1 "NEO-6M" H 3319 1126 50  0000 C CNN
+F 2 "Module:Ublox-NEO-6M" H 3100 1600 50  0001 C CNN
+F 3 "" H 3100 1600 50  0001 C CNN
+	1    3100 1600
+	-1   0    0    1   
+$EndComp
+$Comp
+L modules:U_SDCARD SD1
+U 1 1 5B236966
+P 3050 2350
+F 0 "SD1" H 3500 2500 50  0000 C CNN
+F 1 "U_SDCARD" H 3500 2600 50  0000 C CNN
+F 2 "Module:CATALEX-SDCARD" H 2300 2600 50  0001 C CNN
+F 3 "" H 2300 2600 50  0001 C CNN
+	1    3050 2350
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:GND #PWR0101
+U 1 1 5B236F22
+P 4800 4950
+F 0 "#PWR0101" H 4800 4700 50  0001 C CNN
+F 1 "GND" H 4805 4777 50  0000 C CNN
+F 2 "" H 4800 4950 50  0001 C CNN
+F 3 "" H 4800 4950 50  0001 C CNN
+	1    4800 4950
+	0    -1   -1   0   
+$EndComp
+Text GLabel 4550 4900 3    50   BiDi ~ 0
+DHT_PIN
+$Comp
+L power:+3.3V #PWR0102
+U 1 1 5B237115
+P 5450 1300
+F 0 "#PWR0102" H 5450 1150 50  0001 C CNN
+F 1 "+3.3V" V 5465 1428 50  0000 L CNN
+F 2 "" H 5450 1300 50  0001 C CNN
+F 3 "" H 5450 1300 50  0001 C CNN
+	1    5450 1300
+	0    1    1    0   
+$EndComp
+$Comp
+L power:+3.3V #PWR0103
+U 1 1 5B23714D
+P 4400 4950
+F 0 "#PWR0103" H 4400 4800 50  0001 C CNN
+F 1 "+3.3V" H 4415 5123 50  0000 C CNN
+F 2 "" H 4400 4950 50  0001 C CNN
+F 3 "" H 4400 4950 50  0001 C CNN
+	1    4400 4950
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:+3.3V #PWR0104
+U 1 1 5B237162
+P 3300 1300
+F 0 "#PWR0104" H 3300 1150 50  0001 C CNN
+F 1 "+3.3V" V 3315 1428 50  0000 L CNN
+F 2 "" H 3300 1300 50  0001 C CNN
+F 3 "" H 3300 1300 50  0001 C CNN
+	1    3300 1300
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR0105
+U 1 1 5B23718A
+P 5450 1450
+F 0 "#PWR0105" H 5450 1200 50  0001 C CNN
+F 1 "GND" V 5455 1322 50  0000 R CNN
+F 2 "" H 5450 1450 50  0001 C CNN
+F 3 "" H 5450 1450 50  0001 C CNN
+	1    5450 1450
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR0106
+U 1 1 5B237231
+P 3250 2350
+F 0 "#PWR0106" H 3250 2100 50  0001 C CNN
+F 1 "GND" V 3250 2250 50  0000 R CNN
+F 2 "" H 3250 2350 50  0001 C CNN
+F 3 "" H 3250 2350 50  0001 C CNN
+	1    3250 2350
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR0107
+U 1 1 5B2372E2
+P 3300 1750
+F 0 "#PWR0107" H 3300 1500 50  0001 C CNN
+F 1 "GND" V 3305 1622 50  0000 R CNN
+F 2 "" H 3300 1750 50  0001 C CNN
+F 3 "" H 3300 1750 50  0001 C CNN
+	1    3300 1750
+	0    -1   -1   0   
+$EndComp
+Text GLabel 3300 1450 2    50   Input ~ 0
+GPS_RX
+Text GLabel 3300 1600 2    50   Output ~ 0
+GPS_TX
+Text GLabel 3250 2550 2    47   Output ~ 0
+SD_MISO
+Text GLabel 3250 2650 2    47   Input ~ 0
+SD_MOSI
+Text GLabel 3250 2750 2    47   Input ~ 0
+SD_CLK
+Text GLabel 3250 2850 2    47   Input ~ 0
+SD_CS
+$Comp
+L modules:MQ-X MQ4
+U 1 1 5B237575
+P 5950 1500
+F 0 "MQ4" H 5719 1035 50  0000 C CNN
+F 1 "MQ-4" H 5719 1126 50  0000 C CNN
+F 2 "" H 5850 1500 50  0001 C CNN
+F 3 "" H 5850 1500 50  0001 C CNN
+	1    5950 1500
+	-1   0    0    1   
+$EndComp
+$Comp
+L modules:MQ-X MQ1
+U 1 1 5B2375BD
+P 3900 1500
+F 0 "MQ1" H 3669 1035 50  0000 C CNN
+F 1 "MQ-135" H 3669 1126 50  0000 C CNN
+F 2 "" H 3800 1500 50  0001 C CNN
+F 3 "" H 3800 1500 50  0001 C CNN
+	1    3900 1500
+	-1   0    0    1   
+$EndComp
+Text GLabel 5450 1750 2    50   Output ~ 0
+CO_OUT
+Text GLabel 6450 1750 2    50   Output ~ 0
+MET_OUT
+$Comp
+L power:+3.3V #PWR0108
+U 1 1 5B2376FF
+P 6450 1300
+F 0 "#PWR0108" H 6450 1150 50  0001 C CNN
+F 1 "+3.3V" V 6465 1428 50  0000 L CNN
+F 2 "" H 6450 1300 50  0001 C CNN
+F 3 "" H 6450 1300 50  0001 C CNN
+	1    6450 1300
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR0109
+U 1 1 5B237737
+P 6450 1450
+F 0 "#PWR0109" H 6450 1200 50  0001 C CNN
+F 1 "GND" V 6455 1322 50  0000 R CNN
+F 2 "" H 6450 1450 50  0001 C CNN
+F 3 "" H 6450 1450 50  0001 C CNN
+	1    6450 1450
+	0    -1   -1   0   
+$EndComp
+Text GLabel 5450 1600 2    50   Output ~ 0
+CO_FLAG
+Text GLabel 6450 1600 2    50   Output ~ 0
+MET_FLAG
+$Comp
+L power:GND #PWR0110
+U 1 1 5B2377B9
+P 4400 1450
+F 0 "#PWR0110" H 4400 1200 50  0001 C CNN
+F 1 "GND" V 4405 1322 50  0000 R CNN
+F 2 "" H 4400 1450 50  0001 C CNN
+F 3 "" H 4400 1450 50  0001 C CNN
+	1    4400 1450
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:+3.3V #PWR0111
+U 1 1 5B23780B
+P 4400 1300
+F 0 "#PWR0111" H 4400 1150 50  0001 C CNN
+F 1 "+3.3V" V 4415 1428 50  0000 L CNN
+F 2 "" H 4400 1300 50  0001 C CNN
+F 3 "" H 4400 1300 50  0001 C CNN
+	1    4400 1300
+	0    1    1    0   
+$EndComp
+Text GLabel 4400 1750 2    50   Output ~ 0
+TOX_OUT
+Text GLabel 4400 1600 2    50   Output ~ 0
+TOX_FLAG
+Text GLabel 9750 2000 2    47   Input ~ 0
+SD_MISO
+Text GLabel 9750 1400 2    47   Output ~ 0
+SD_MOSI
+Text GLabel 9750 2100 2    47   Output ~ 0
+SD_CLK
+Text GLabel 9750 2200 2    47   Output ~ 0
+SD_CS
+Text GLabel 7450 2300 0    50   BiDi ~ 0
+DHT_PIN
+Text GLabel 7450 1900 0    50   Input ~ 0
+TOX_OUT
+Text GLabel 7450 2100 0    50   Input ~ 0
+TOX_FLAG
+Text GLabel 7450 1700 0    50   Input ~ 0
+CO_OUT
+Text GLabel 7450 2400 0    50   Input ~ 0
+CO_FLAG
+Text GLabel 7450 2000 0    50   Input ~ 0
+MET_OUT
+Text GLabel 7450 2200 0    50   Input ~ 0
+MET_FLAG
+Text GLabel 9750 2300 2    50   Output ~ 0
+GPS_RX
+Text GLabel 9750 2400 2    50   Input ~ 0
+GPS_TX
+Wire Wire Line
+	4400 4950 4450 4950
+Wire Wire Line
+	4450 4950 4450 4900
+Wire Wire Line
+	4750 4900 4750 4950
+Wire Wire Line
+	4750 4950 4800 4950
+$Comp
+L ESP32-DevKitC:ESP32-DevKitC IC1
+U 1 1 5B37A25E
+P 7450 1300
+F 0 "IC1" H 8600 1565 50  0000 C CNN
+F 1 "ESP32-DevKitC" H 8600 1474 50  0000 C CNN
+F 2 "Module:ESP32-DEVKIT-C" H 9600 1400 50  0001 L CNN
+F 3 "http://esp-idf.readthedocs.io/en/latest/get-started/get-started-devkitc.html" H 9600 1300 50  0001 L CNN
+F 4 "WiFi / 802.11 Development Tools ESP32 General Development Kit, ESP-WROOM-32 on the board" H 9600 1200 50  0001 L CNN "Description"
+F 5 "5" H 9600 1100 50  0001 L CNN "Height"
+F 6 "Espressif Systems" H 9600 1000 50  0001 L CNN "Manufacturer_Name"
+F 7 "ESP32-DevKitC" H 9600 900 50  0001 L CNN "Manufacturer_Part_Number"
+F 8 "" H 9600 800 50  0001 L CNN "RS Part Number"
+F 9 "" H 9600 700 50  0001 L CNN "RS Price/Stock"
+F 10 "ESP32-DevKitC" H 9600 600 50  0001 L CNN "Arrow Part Number"
+F 11 "" H 9600 500 50  0001 L CNN "Arrow Price/Stock"
+	1    7450 1300
+	1    0    0    -1  
+$EndComp
+$Comp
+L crumpschemes:Tiny_RTC_DS1307 U2
+U 1 1 5B37B15C
+P 4850 3250
+F 0 "U2" H 4850 3937 60  0000 C CNN
+F 1 "Tiny_RTC_DS1307" H 4850 3831 60  0000 C CNN
+F 2 "Module:Tiny_RTC_DS1307" H 4900 3350 60  0001 C CNN
+F 3 "" H 4900 3350 60  0000 C CNN
+	1    4850 3250
+	1    0    0    -1  
+$EndComp
+NoConn ~ 5350 2900
+NoConn ~ 5350 3000
+NoConn ~ 5350 3100
+NoConn ~ 5350 3200
+NoConn ~ 5350 3300
+NoConn ~ 5350 3400
+NoConn ~ 5350 3500
+NoConn ~ 4350 2900
+Text GLabel 4350 3100 0    50   BiDi ~ 0
+CLOCK_SDA
+Text GLabel 4350 3000 0    50   BiDi ~ 0
+CLOCK_SCL
+$Comp
+L power:+3V3 #PWR0112
+U 1 1 5B37B428
+P 4350 3200
+F 0 "#PWR0112" H 4350 3050 50  0001 C CNN
+F 1 "+3V3" V 4350 3300 50  0000 L CNN
+F 2 "" H 4350 3200 50  0001 C CNN
+F 3 "" H 4350 3200 50  0001 C CNN
+	1    4350 3200
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR0113
+U 1 1 5B37B52B
+P 4300 3350
+F 0 "#PWR0113" H 4300 3100 50  0001 C CNN
+F 1 "GND" H 4305 3177 50  0000 C CNN
+F 2 "" H 4300 3350 50  0001 C CNN
+F 3 "" H 4300 3350 50  0001 C CNN
+	1    4300 3350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4300 3350 4300 3300
+Wire Wire Line
+	4300 3300 4350 3300
+Text GLabel 9750 1800 2    50   BiDi ~ 0
+CLOCK_SDA
+Text GLabel 9750 1500 2    50   BiDi ~ 0
+CLOCK_SCL
+$Comp
+L modules:MQ-X MQ5
+U 1 1 5B37BDE5
+P 6750 4150
+F 0 "MQ5" H 6519 3685 50  0000 C CNN
+F 1 "MQ-Y" H 6519 3776 50  0000 C CNN
+F 2 "" H 6650 4150 50  0001 C CNN
+F 3 "" H 6650 4150 50  0001 C CNN
+	1    6750 4150
+	-1   0    0    1   
+$EndComp
+$Comp
+L modules:MQ-X MQ3
+U 1 1 5B37BFC9
+P 5700 4150
+F 0 "MQ3" H 5469 3685 50  0000 C CNN
+F 1 "MQ-X" H 5469 3776 50  0000 C CNN
+F 2 "" H 5600 4150 50  0001 C CNN
+F 3 "" H 5600 4150 50  0001 C CNN
+	1    5700 4150
+	-1   0    0    1   
+$EndComp
+Text GLabel 7450 1800 0    50   Input ~ 0
+X_OUT
+Text GLabel 7450 1600 0    50   Input ~ 0
+Y_OUT
+Text GLabel 7450 2500 0    50   Input ~ 0
+X_FLAG
+Text GLabel 7450 2700 0    50   Input ~ 0
+Y_FLAG
+$Comp
+L climobike-cache:+3.3V #PWR0115
+U 1 1 5B37C3CF
+P 6250 3900
+F 0 "#PWR0115" H 6250 3750 50  0001 C CNN
+F 1 "+3.3V" H 6265 4073 50  0000 C CNN
+F 2 "" H 6250 3900 50  0001 C CNN
+F 3 "" H 6250 3900 50  0001 C CNN
+	1    6250 3900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6200 3950 6250 3950
+Wire Wire Line
+	6250 3950 6250 3900
+$Comp
+L climobike-cache:+3.3V #PWR0116
+U 1 1 5B37C45D
+P 7300 3900
+F 0 "#PWR0116" H 7300 3750 50  0001 C CNN
+F 1 "+3.3V" H 7315 4073 50  0000 C CNN
+F 2 "" H 7300 3900 50  0001 C CNN
+F 3 "" H 7300 3900 50  0001 C CNN
+	1    7300 3900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7250 3950 7300 3950
+Wire Wire Line
+	7300 3950 7300 3900
+Text GLabel 6200 4250 2    50   Output ~ 0
+X_FLAG
+Text GLabel 6200 4400 2    50   Output ~ 0
+X_OUT
+Text GLabel 7250 4250 2    50   Output ~ 0
+Y_FLAG
+Text GLabel 7250 4400 2    50   Output ~ 0
+Y_OUT
+$Comp
+L power:GND #PWR0117
+U 1 1 5B37C6CD
+P 6200 4100
+F 0 "#PWR0117" H 6200 3850 50  0001 C CNN
+F 1 "GND" V 6200 4000 50  0000 R CNN
+F 2 "" H 6200 4100 50  0001 C CNN
+F 3 "" H 6200 4100 50  0001 C CNN
+	1    6200 4100
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR0118
+U 1 1 5B37C75C
+P 7250 4100
+F 0 "#PWR0118" H 7250 3850 50  0001 C CNN
+F 1 "GND" V 7250 4000 50  0000 R CNN
+F 2 "" H 7250 4100 50  0001 C CNN
+F 3 "" H 7250 4100 50  0001 C CNN
+	1    7250 4100
+	0    -1   -1   0   
+$EndComp
+Text Notes 4250 2350 0    50   ~ 0
+                 MQ Gas Sensor Modules\n\nMQ-4 (CH4), MQ-7 (CO), MQ-135 (NH3, CO2 and C6H6)
+Wire Notes Line
+	6900 2400 6900 950 
+Wire Notes Line
+	6900 950  3800 950 
+Wire Notes Line
+	3800 950  3800 2400
+Wire Notes Line
+	3800 2400 6900 2400
+Text Notes 4050 3750 0    50   ~ 0
+DS1307 Real Time Clock Module\n
+Wire Notes Line
+	5550 3800 5550 2500
+Wire Notes Line
+	5550 2500 3800 2500
+Wire Notes Line
+	3800 2500 3800 3800
+Wire Notes Line
+	3800 3800 5550 3800
+Text Notes 2400 2050 0    50   ~ 0
+NEO-6M NMEA GPS Module
+Wire Notes Line
+	3700 2100 3700 950 
+Wire Notes Line
+	3700 950  2350 950 
+Wire Notes Line
+	2350 950  2350 2100
+Wire Notes Line
+	2350 2100 3700 2100
+Text Notes 2500 3100 0    50   ~ 0
+Micro SD-Card SPI Module
+Wire Notes Line
+	3650 3150 3650 2200
+Wire Notes Line
+	3650 2200 2350 2200
+Wire Notes Line
+	2350 2200 2350 3150
+Wire Notes Line
+	2350 3150 3650 3150
+Text Notes 3850 5600 0    50   ~ 0
+                 DHT-22 \n\nTemperature and Humidity Sensor Module
+Wire Notes Line
+	5500 5650 5500 3900
+Wire Notes Line
+	3800 3900 3800 5650
+Wire Notes Line
+	3800 3900 5450 3900
+Wire Notes Line
+	3800 5650 5500 5650
+Text Notes 8150 3450 0    50   ~ 0
+DOIT ESP32-DEVKIT Module\n
+Wire Notes Line
+	10300 3500 10300 950 
+Wire Notes Line
+	10300 950  7000 950 
+Wire Notes Line
+	7000 950  7000 3500
+Wire Notes Line
+	7000 3500 10300 3500
+Text Notes 6000 4800 0    50   ~ 0
+Extra MQ Gas Sensor Sockets\n
+Wire Notes Line
+	7600 4850 7600 3600
+Wire Notes Line
+	7600 3600 5600 3600
+Wire Notes Line
+	5600 3600 5600 4850
+Wire Notes Line
+	5600 4850 7600 4850
+$Comp
+L power:GND #PWR0119
+U 1 1 5B384361
+P 7450 2600
+F 0 "#PWR0119" H 7450 2350 50  0001 C CNN
+F 1 "GND" V 7455 2472 50  0000 R CNN
+F 2 "" H 7450 2600 50  0001 C CNN
+F 3 "" H 7450 2600 50  0001 C CNN
+	1    7450 2600
+	0    1    1    0   
+$EndComp
+NoConn ~ 7450 2800
+NoConn ~ 7450 2900
+NoConn ~ 7450 3000
+NoConn ~ 9750 3100
+NoConn ~ 9750 3000
+NoConn ~ 9750 2900
+NoConn ~ 9750 2800
+NoConn ~ 9750 2700
+NoConn ~ 9750 2600
+NoConn ~ 9750 2500
+$Comp
+L power:GND #PWR0121
+U 1 1 5B38664E
+P 9750 1900
+F 0 "#PWR0121" H 9750 1650 50  0001 C CNN
+F 1 "GND" V 9750 1800 50  0000 R CNN
+F 2 "" H 9750 1900 50  0001 C CNN
+F 3 "" H 9750 1900 50  0001 C CNN
+	1    9750 1900
+	0    -1   -1   0   
+$EndComp
+NoConn ~ 9750 1700
+NoConn ~ 9750 1600
+$Comp
+L power:GND #PWR0122
+U 1 1 5B386D81
+P 9750 1300
+F 0 "#PWR0122" H 9750 1050 50  0001 C CNN
+F 1 "GND" V 9750 1200 50  0000 R CNN
+F 2 "" H 9750 1300 50  0001 C CNN
+F 3 "" H 9750 1300 50  0001 C CNN
+	1    9750 1300
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:+3V3 #PWR0123
+U 1 1 5B386EB1
+P 7450 1300
+F 0 "#PWR0123" H 7450 1150 50  0001 C CNN
+F 1 "+3V3" V 7450 1400 50  0000 L CNN
+F 2 "" H 7450 1300 50  0001 C CNN
+F 3 "" H 7450 1300 50  0001 C CNN
+	1    7450 1300
+	0    -1   -1   0   
+$EndComp
+NoConn ~ 7450 1400
+NoConn ~ 7450 1500
+$Comp
+L Connector:Jack-DC J1
+U 1 1 5B39CB4A
+P 6100 2950
+F 0 "J1" H 6178 3275 50  0000 C CNN
+F 1 "Jack-DC" H 6178 3184 50  0000 C CNN
+F 2 "Connector_BarrelJack:BarrelJack_Horizontal" H 6150 2910 50  0001 C CNN
+F 3 "~" H 6150 2910 50  0001 C CNN
+	1    6100 2950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0114
+U 1 1 5B39E7AA
+P 6450 3000
+F 0 "#PWR0114" H 6450 2750 50  0001 C CNN
+F 1 "GND" V 6455 2872 50  0000 R CNN
+F 2 "" H 6450 3000 50  0001 C CNN
+F 3 "" H 6450 3000 50  0001 C CNN
+	1    6450 3000
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	6400 2850 6450 2850
+Wire Wire Line
+	6450 2850 6450 2800
+Wire Wire Line
+	6400 2950 6425 2950
+Wire Wire Line
+	6425 2950 6425 3000
+Wire Wire Line
+	6425 3000 6450 3000
+$Comp
+L power:VCC #PWR0120
+U 1 1 5B3A12FD
+P 6450 2800
+F 0 "#PWR0120" H 6450 2650 50  0001 C CNN
+F 1 "VCC" H 6467 2973 50  0000 C CNN
+F 2 "" H 6450 2800 50  0001 C CNN
+F 3 "" H 6450 2800 50  0001 C CNN
+	1    6450 2800
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:VCC #PWR0124
+U 1 1 5B3A13DB
+P 7450 3100
+F 0 "#PWR0124" H 7450 2950 50  0001 C CNN
+F 1 "VCC" V 7468 3227 50  0000 L CNN
+F 2 "" H 7450 3100 50  0001 C CNN
+F 3 "" H 7450 3100 50  0001 C CNN
+	1    7450 3100
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:VCC #PWR0125
+U 1 1 5B3A155E
+P 3250 2450
+F 0 "#PWR0125" H 3250 2300 50  0001 C CNN
+F 1 "VCC" V 3267 2578 50  0000 L CNN
+F 2 "" H 3250 2450 50  0001 C CNN
+F 3 "" H 3250 2450 50  0001 C CNN
+	1    3250 2450
+	0    1    1    0   
+$EndComp
+Text Notes 5775 3275 0    50   ~ 0
+Input Voltage - 4V to 10V\n
+Wire Notes Line
+	5750 2550 5750 3300
+Wire Notes Line
+	6850 2550 6850 3300
+Wire Notes Line
+	5750 2550 6850 2550
+Wire Notes Line
+	5750 3300 6850 3300
+Wire Wire Line
+	6400 3050 6425 3050
+Wire Wire Line
+	6425 3050 6425 3000
+Connection ~ 6425 3000
+$EndSCHEMATC
