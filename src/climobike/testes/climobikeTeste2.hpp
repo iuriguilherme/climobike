@@ -121,12 +121,12 @@ void loopTeste2() {
 
   /* Escreve linha no cartão */
   log("Tentando escrever no cartão...");
-  File arquivo = SD.open(completo.c_str(), FILE_WRITE);
+  File arquivo = SD.open(completo, FILE_WRITE);
   log("Escrevendo %s", linha);
   log(" no arquivo %s (mentira)\n", completo);
   if (!arquivo) {
     log("Erro tentando abrir o arquivo!");
-  } else if (arquivo.println(linha.c_str())) {
+  } else if (arquivo.println(linha)) {
     log("Arquivo gravado no cartão!");
   } else {
     log("Erro tentando escrever no arquivo!");
