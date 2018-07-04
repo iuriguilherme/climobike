@@ -22,22 +22,22 @@
 #include "WProgram.h"
 #endif
 
-#include <climobikeLog.hpp>
-#include <climobikeBluetooth.hpp>
-#include <climobikeWifi.hpp>
-#include <climobikeGps.hpp>
-#include <climobikeAnal.hpp>
-#include <climobikeDht.hpp>
-#include <climobikeMario.hpp>
+#include <climobike/climobikeLog.hpp>
+#include <climobike/climobikeBluetooth.hpp>
+#include <climobike/climobikeWifi.hpp>
+#include <climobike/climobikeGps.hpp>
+#include <climobike/climobikeAnal.hpp>
+#include <climobike/climobikeDht.hpp>
+#include <climobike/climobikeMario.hpp>
 /* depende de Log */
-#include <climobikeRelogio.hpp>
+#include <climobike/climobikeRelogio.hpp>
 /* depende de Log */
-#include <climobikePersistencia.hpp>
+#include <climobike/climobikePersistencia.hpp>
 /*
  *  depende de Log, Bluetooth, Wifi, Gps, Anal, Dht, Relogio, Persistencia, 
  *  Mario
 */
-#include <climobikeTestes.hpp>
+#include <climobike/climobikeTestes.hpp>
 
 void setup(){
   delay(1000);
