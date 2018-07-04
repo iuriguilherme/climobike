@@ -51,7 +51,7 @@ void setup(){
 
 void loop() {
 //  teste0();
-//  teste1();
-  teste2();
+  teste1();
+//  teste2();
 }
 

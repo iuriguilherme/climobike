@@ -36,6 +36,7 @@
  *    climobikeAnal.hpp
  *    climobikeDht.hpp
  *    climobikePersistencia.hpp
+ *  Status: funcionando na esp32dev v2
 */
 void teste0() {
   loopWifi();
@@ -59,6 +60,7 @@ void teste0() {
  *    climobikeDht.hpp
  *    climobikePersistencia.hpp
  *    climobikeMario.hpp
+ *  Status: funcionando na esp32dev v2
 */
 void teste1() {
   /* Se tudo deu certo */
@@ -76,6 +78,11 @@ void teste1() {
  *    climobikeLog.hpp
  *    climobikeRelogio.hpp
  *    climobikePersistencia.hpp
+ *  Status: FALHANDO na esp32dev v2
+ *  Debug:
+ *    Tentando iniciar Relógio... deu merda!
+ *    Tentando iniciar cartão SD...
+ *    Nenhum cartão SD detectado!
 */
 #define PROJECT_NAME "climobike";
 #define PROJECT_DATA "0.2.0.1";
