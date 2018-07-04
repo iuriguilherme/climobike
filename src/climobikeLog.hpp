@@ -1,8 +1,7 @@
 /*
- *  ClimoBike v0.0.2.1
+ *  ClimoBike Módulo de log v0.0.2.1
  *  Board:  esp32dev (v1, v2)
  *  Authors:
- *    Alisson Claudino (https://inf.ufrgs.br/~acjesus)
  *    Desobediente Civil (https://notabug.org/desci)
  *  License:  GNU GPLv3
  *
@@ -16,38 +15,22 @@
  * Se não, veja http://www.gnu.org/licenses/.
 */
 
+#ifndef CLIMOBIKELOG_H
+#define CLIMOBIKELOG_H
+
 #if defined(ARDUINO) && ARDUINO >= 100
 #include "Arduino.h"
 #else
 #include "WProgram.h"
 #endif
 
-#include <climobikeBluetooth.h>
-#include <climobikeAnal.h>
-#include <climobikeDht.h>
-#include <climobikeRelogio.h>
-#include <climobikeWifi.h>
-#include <climobikePersistencia.h>
-#include <climobikeGps.h>
-#include <climobikeMario.hpp>
-#include <climobikeLog.hpp>
-
-void setup(){
-  delay(300);
-  Serial.begin(9600);
-  setupAnal();
-  setupBluetooth();
-  setupRelogio();
-  setupDht();
-  setupWifi();
-  setupSd();
-  setupHttp();
-  setupGps();
+void logSerial(String mensagem) {
+  Serial.println(mensagem);
 }
 
-void loop() {
-//  teste0();
-//  teste1();
-  teste2();
+void log(String mensagem) {
+  logSerial(mensagem);
 }
+
+#endif
 
