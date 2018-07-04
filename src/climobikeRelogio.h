@@ -36,8 +36,8 @@ void atualizaHora();
 void setupRelogio() {
   Serial.print("Tentando iniciar Relógio...");
   Serial.print(" deu ");
+  relogio.begin();
   if ((relogio.isReady() > 0)) {
-    relogio.begin();
     Serial.print(" certo");
   } else {
     Serial.print(" merda");
