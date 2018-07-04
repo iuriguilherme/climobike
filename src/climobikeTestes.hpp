@@ -38,7 +38,7 @@
  *    climobikePersistencia.hpp
  *  Status: funcionando na esp32dev v2
 */
-void loopTeste0() {
+void setupTeste0() {
   setupAnal();
   setupBluetooth();
   setupRelogio();
@@ -79,7 +79,7 @@ void setupTeste1() {
   loopMario();
   /* trollface */
 }
-void setupTeste1() {
+void loopTeste1() {
   loopTeste0();
 }
 
