@@ -128,7 +128,7 @@ void setupTeste2() {
   /* setupRelogio() */
   Serial.print("Tentando iniciar Relógio...");
   Serial.print(" deu ");
-
+  relogio.begin();
   Wire.beginTransmission(0x68);
   if (Wire.endTransmission() == 0) {
     relogio.begin();
@@ -145,31 +145,41 @@ void setupTeste2() {
   /* setupSd() */
   log("Tentando iniciar cartão SD...");
   /* TODO testar cartão para ver se está funcionando aqui, e tratar erros */
-  uint8_t cardType = SD.cardType();
-  if (!SD.begin()) {
-    log("Falhou tentando inicializar cartão SD!");
-  } else if (cardType == CARD_NONE) {
-    log("Nenhum cartão SD detectado!");
-  } else {
-    Serial.print("\nSucesso! Tipo de cartão: ");
-    if (cardType == CARD_MMC) {
-      Serial.print("MMC");
-    } else if (cardType == CARD_SD) {
-      Serial.print("SDSC");
-    } else if (cardType == CARD_SDHC) {
-      Serial.print("SDHC");
+  if (SD.begin()) {
+    uint8_t cardType = SD.cardType();
+    if (cardType == CARD_NONE) {
+      log("Nenhum cartão SD detectado!");
     } else {
-      Serial.print("UNKNOWN");
+      Serial.print("\nSucesso! Tipo de cartão: ");
+      if (cardType == CARD_MMC) {
+        Serial.print("MMC");
+      } else if (cardType == CARD_SD) {
+        Serial.print("SDSC");
+      } else if (cardType == CARD_SDHC) {
+        Serial.print("SDHC");
+      } else {
+        Serial.print("UNKNOWN");
+      }
+      Serial.println(".");
+      uint64_t cardSize = SD.cardSize() / (1024 * 1024);
+      Serial.printf("Tamanho do cartão: %lluMB\n", cardSize);
     }
-    Serial.println(".");
-    uint64_t cardSize = SD.cardSize() / (1024 * 1024);
-    Serial.printf("Tamanho do cartão: %lluMB\n", cardSize);
+  } else {
+    log("Falhou tentando inicializar cartão SD!");
   }
   /* /setupSd() */
 }
+int loopContador = 0;
+bool criarDiretorio(String caminho) {
+  if (SD.mkdir(caminho.c_str())) {
+    Serial.printf("Criado diretório %s\n", caminho.c_str());
+    return true;
+  }
+  Serial.printf("Erro tentando criar diretório %s\n", caminho.c_str());
+  return false;
+}
 void loopTeste2() {
-  int loopContador = 0;
-  
+  delay(500);
   /* loopRelogio() */
   String timestamp = "";
   Serial.print("timestamp: ");
@@ -190,7 +200,7 @@ void loopTeste2() {
       timestamp += datetime.minute;
     }
   } else {
-    timestamp += "2018-07-03 18:00"; //mentira
+    timestamp += "1970-01-01 00:00:00:00"; //mentira
   }
   
   timestamp += "'";
@@ -199,50 +209,71 @@ void loopTeste2() {
   /* /loopRelogio() */
 
   /* loopSd() */
-  String arquivo = "/rawData.dat";
-  String gravarDados = "";
-  gravarDados += "tempo=";
-  gravarDados += millis();
+  String caminho = "/";
+  String nome = "rawData.dat";
+  caminho = "/climobike";
+  criarDiretorio(caminho);
+  caminho += "/dados";
+  criarDiretorio(caminho);
+  caminho += "/teste2";
+  criarDiretorio(caminho);
+  caminho += "/";
+  caminho += datetime.year;
+  criarDiretorio(caminho);
+  caminho += "/";
+  caminho += datetime.month;
+  criarDiretorio(caminho);
+  caminho += "/";
+  caminho += datetime.day;
+  criarDiretorio(caminho);
+  caminho += "/";
+  caminho += datetime.hour;
+  criarDiretorio(caminho);
+  caminho += "/";
+  nome = datetime.minute;
+  nome += ".";
+  nome += "txt";
+  String completo = "";
+  completo += caminho;
+  completo += nome;
+
+  String mensagem = "";
+  mensagem += "{";
+  mensagem += '"';
+  mensagem += DATETIME_NAME;
+  mensagem += '"';
+  mensagem += ":";
+  mensagem += '"';
+  mensagem += datetime.unixtime;
+  mensagem += '"';
+  mensagem += "}";
 
   Serial.println("Testando escrita no cartão...");
-  /* TODO testar cartão para ver se está funcionando aqui, e tratar erros */
-  escreve(gravarDados.c_str(), arquivo);
+  if (criarDiretorio(caminho)) {
+    File arquivo = SD.open(completo.c_str(), FILE_WRITE);
+    Serial.printf("Escrevendo %s no arquivo %s\n", mensagem.c_str(), completo.c_str());
+    if (!arquivo) {
+      log("Erro tentando abrir o arquivo!");
+    } else if (arquivo.println(mensagem.c_str())) {
+      log("Arquivo gravado no cartão!");
+    } else {
+      log("Erro tentando escrever no arquivo!");
+    }
+  } else {
+    Serial.printf("Erro tentando criar diretório %s\n", caminho.c_str());
+  }
   /* /loopSd() */
 
   loopContador++;
-  if (loopContador > 3) {
+  if (loopContador > 1) {
+    arquivo.close();
+    Serial.println("Lendo conteúdo do arquivo...");
+    arquivo = SD.open(completo.c_str());
+    while (arquivo.available()) {
+      Serial.write(arquivo.read());
+    }
     while(true);
   }
-
-//  RTCDateTime tempo = relogio.getDateTime();
-
-//  String arquivoNome = "/climobike/dados/teste2/";
-//  arquivoNome += tempo.year;
-//  arquivoNome += "/";
-//  arquivoNome += tempo.month;
-//  arquivoNome += "/";
-//  arquivoNome += tempo.day;
-//  arquivoNome += "/";
-//  arquivoNome += tempo.hour;
-//  arquivoNome += "/";
-//  arquivoNome += tempo.minute;
-//  arquivoNome += ".";
-//  arquivoNome += "txt";
-
-//  String linha = "";
-//  linha += "{";
-//  linha += '"';
-//  linha += DATETIME_NAME;
-//  linha += '"';
-//  linha += ":";
-//  linha += '"';
-//  linha += tempo.unixtime;
-//  linha += '"';
-//  linha += "}";
-//  linha += "\n";
-
-//  arquivo = escreveLinhaAbreArquivo(arquivoNome);
-//  escreveLinha(linha.c_str(), arquivo);
 }
 
 /*
