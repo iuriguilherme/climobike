@@ -148,12 +148,12 @@ void loopTeste2() {
   caminho += "/";
   caminho += datetime.hour;
   criarDiretorio(caminho);
-  caminho += "/";
   nome = datetime.minute;
   nome += ".";
   nome += "txt";
   String completo = "";
   completo += caminho;
+  completo += "/";
   completo += nome;
 
   String mensagem = "";
