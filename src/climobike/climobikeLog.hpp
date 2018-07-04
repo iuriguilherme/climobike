@@ -28,8 +28,8 @@
 void logSerial(String mensagem) {
   Serial.print(mensagem);
 }
-void logSerialF(String mensagem) {
-  Serial.printf(mensagem);
+void logSerialF(char * mensagem, String formato) {
+  Serial.printf(mensagem, formato);
 }
 void logSerialLn(String mensagem) {
   Serial.println(mensagem);

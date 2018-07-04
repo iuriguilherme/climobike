@@ -57,7 +57,7 @@ void setupRelogio() {
 void loopRelogio() {
   String timestamp = "";
   timestamp += "{";
-  timestamp += "timestamp"
+  timestamp += "timestamp";
   timestamp += ":";
   timestamp += "'";
 
