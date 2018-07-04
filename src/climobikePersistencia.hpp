@@ -30,9 +30,11 @@
 #include <SD.h>
 #include <SPI.h>
 
-File file;
-
-void escreve(const char * message, String arquivo);
+File arquivo;
+void escreve(const char * mensagem, String nome);
+File escreveLinhaAbreArquivo(String nome);
+bool escreveLinhaFechaArquivo(File arquivo);
+void escreveLinha(const char * mensagem, File arquivo);
 
 void setupSd() {
   log("Tentando iniciar cartão SD...");
@@ -74,18 +76,35 @@ void loopSd() {
 }
 
 /* Escreve no cartão de memória */
-void escreve(const char * message, String arquivo) {
+void escreve(const char * mensagem, String nome) {
   /* TODO testar cartão para ver se está funcionando aqui, e tratar erros */
-  file = SD.open(arquivo, FILE_WRITE);
-  Serial.printf("Escrevendo %s no arquivo: %s\n", message, arquivo.c_str());
-  if (file) {
+  File arquivo = SD.open(nome, FILE_WRITE);
+  Serial.printf("Escrevendo %s no arquivo: %s\n", mensagem, nome.c_str());
+  if (!arquivo) {
     log("Erro tentando abrir o arquivo!");
-  } else if (file.println(message)) {
+  } else if (arquivo.println(mensagem)) {
     log("Arquivo gravado no cartão!");
   } else {
     log("Erro tentando escrever no arquivo!");
   }
-  file.close();
+  arquivo.close();
+}
+File escreveLinhaAbreArquivo(String nome){
+  arquivo = SD.open(nome, FILE_WRITE);
+  return arquivo;
+}
+bool escreveLinhaFechaArquivo(File arquivo){
+  arquivo.close();
+  return !arquivo;
+}
+void escreveLinha(const char * mensagem, File arquivo) {
+  if (!arquivo) {
+    log("Erro tentando abrir o arquivo!");
+  } else if (arquivo.print(mensagem)) {
+    log("Arquivo gravado no cartão!");
+  } else {
+    log("Erro tentando escrever no arquivo!");
+  }
 }
 
 #endif

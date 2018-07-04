@@ -107,18 +107,18 @@ void teste1() {
 void teste2() {
   RTCDateTime tempo = agora();
 
-  String arquivo = "/climobike/dados/teste2/";
-  arquivo += tempo.year;
-  arquivo += "-";
-  arquivo += tempo.month;
-  arquivo += "-";
-  arquivo += tempo.day;
-  arquivo += "-";
-  arquivo += tempo.hour;
-  arquivo += "-";
-  arquivo += tempo.minute;
-  arquivo += ".";
-  arquivo += "txt";
+  String arquivoNome = "/climobike/dados/teste2/";
+  arquivoNome += tempo.year;
+  arquivoNome += "-";
+  arquivoNome += tempo.month;
+  arquivoNome += "-";
+  arquivoNome += tempo.day;
+  arquivoNome += "-";
+  arquivoNome += tempo.hour;
+  arquivoNome += "-";
+  arquivoNome += tempo.minute;
+  arquivoNome += ".";
+  arquivoNome += "txt";
 
   String linha = "";
   linha += "{";
@@ -132,7 +132,8 @@ void teste2() {
   linha += "}";
   linha += "\n";
 
-  escreve(linha.c_str(), arquivo);
+  arquivo = escreveLinhaAbreArquivo(arquivoNome);
+  escreveLinha(linha.c_str(), arquivo);
 }
 
 #endif
