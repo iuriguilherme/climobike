@@ -68,6 +68,7 @@ void setupWifi() {
   Serial.println();
   Serial.print("Nosso IP: ");
   Serial.print(WiFi.localIP());
+  Serial.println();
   Serial.print("WiFi conectado");
 /*  Serial.print(" mentira"); //mentira*/
   Serial.println("!");

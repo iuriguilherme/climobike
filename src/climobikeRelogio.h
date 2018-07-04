@@ -37,6 +37,7 @@ void setupRelogio() {
   Serial.print("Tentando iniciar Relógio...");
   Serial.print(" deu ");
   relogio.begin();
+  /* TODO isReady() trava o programa. Favor testar em um esp32 SEM relógio */
   if ((relogio.isReady() > 0)) {
     Serial.print("certo");
     Serial.println("!");
@@ -55,7 +56,9 @@ void loopRelogio() {
   String timestamp = "";
   timestamp += "'";
   Serial.print("timestamp: ");
-  if ((relogio.isReady() > 0)) {
+  /* TODO isReady() trava o programa. Favor testar em um esp32 SEM relógio */
+/*  if ((relogio.isReady() > 0)) {*/
+  if (true) {
     datetime = relogio.getDateTime();
     if ((int)datetime.year > 0) {
       timestamp += datetime.year;
