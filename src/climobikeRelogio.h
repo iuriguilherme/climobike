@@ -26,9 +26,9 @@
 #endif
 
 #include <DS1307.h>
-#include <Wire.h>  //Inclusão de bibliotecas
+#include <Wire.h>
 
-DS1307 relogio;  //Inicialização de objetos de tipos relógio, data e Serial
+DS1307 relogio;
 RTCDateTime datetime;
 
 void atualizaHora();
@@ -38,8 +38,6 @@ void setupRelogio() {
   Serial.print(" deu ");
 
   Wire.beginTransmission(0x67);
-  /* TODO isReady() trava o programa. Favor testar em um esp32 SEM relógio */
-/*  if ((relogio.isReady() > 0)) {*/
   if (Wire.endTransmission()==0) {
     relogio.begin();
     Serial.print("certo");
@@ -57,11 +55,11 @@ void setupRelogio() {
 
 void loopRelogio() {
   String timestamp = "";
-  timestamp += "'";
   Serial.print("timestamp: ");
-  /* TODO isReady() trava o programa. Favor testar em um esp32 SEM relógio */
-/*  if ((relogio.isReady() > 0)) {*/
-  if (false) {
+  timestamp += "'";
+
+  Wire.beginTransmission(0x67);
+  if (Wire.endTransmission()==0) {
     datetime = relogio.getDateTime();
     if ((int)datetime.year > 0) {
       timestamp += datetime.year;
@@ -77,6 +75,7 @@ void loopRelogio() {
   } else {
     timestamp += "2018-07-03 18:00"; //mentira
   }
+
   timestamp += "'";
   Serial.print(timestamp);
   Serial.println();
