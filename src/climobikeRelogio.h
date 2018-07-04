@@ -38,12 +38,17 @@ void setupRelogio() {
   Serial.print(" deu ");
   relogio.begin();
   if ((relogio.isReady() > 0)) {
-    Serial.print(" certo");
+    Serial.print("certo");
+    Serial.println("!");
+    Serial.print("Atualizando hora...");
+    atualizaHora();
+    Serial.println(" feito!");
   } else {
-    Serial.print(" merda");
+    Serial.print("merda");
+    Serial.println("!");
   }
-/*  Serial.print(" mentira"); //mentira*/
-  Serial.println("!");
+/*  Serial.print("mentira"); //mentira*/
+/*  Serial.println("!"); //mentira*/
 }
 
 void loopRelogio() {
