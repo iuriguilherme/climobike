@@ -26,13 +26,13 @@
 
 /* Escreve no USB */
 void logSerial(String mensagem) {
-  Serial.print(mensagem);
+  Serial.print(mensagem.c_str());
 }
 void logSerialF(char * mensagem, String formato) {
-  Serial.printf(mensagem, formato);
+  Serial.printf(mensagem, formato.c_str());
 }
 void logSerialLn(String mensagem) {
-  Serial.println(mensagem);
+  Serial.println(mensagem.c_str());
 }
 
 void log(String mensagem) {

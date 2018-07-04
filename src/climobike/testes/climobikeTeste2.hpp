@@ -121,16 +121,16 @@ void loopTeste2() {
 
   /* Escreve linha no cartão */
   log("Tentando escrever no cartão...");
-//  File arquivo = SD.open(completo.c_str(), FILE_WRITE);
-  log("Escrevendo %s", linha.c_str());
-  log(" no arquivo %s (mentira)\n", completo.c_str());
-//  if (!arquivo) {
-//    log("Erro tentando abrir o arquivo!");
-//  } else if (arquivo.println(mensagem.c_str())) {
-//    log("Arquivo gravado no cartão!");
-//  } else {
-//    log("Erro tentando escrever no arquivo!");
-//  }
+  File arquivo = SD.open(completo.c_str(), FILE_WRITE);
+  log("Escrevendo %s", linha);
+  log(" no arquivo %s (mentira)\n", completo);
+  if (!arquivo) {
+    log("Erro tentando abrir o arquivo!");
+  } else if (arquivo.println(mensagem.c_str())) {
+    log("Arquivo gravado no cartão!");
+  } else {
+    log("Erro tentando escrever no arquivo!");
+  }
 
   loopContador++;
   if (loopContador >= limite) {
