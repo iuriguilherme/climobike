@@ -125,39 +125,54 @@ void loopTeste1() {
 #define GPS_HDOP_NAME "gpshdop";
 #define GPS_HDOP_DATA "9999";
 void setupTeste2() {
+  setupAnal();
+  setupBluetooth();
   setupRelogio();
+  setupDht();
+  setupWifi();
   setupSd();
+  setupHttp();
+  setupGps();
+  setupMario();
+  loopMario();
 }
 void loopTeste2() {
-  RTCDateTime tempo = relogio.getDateTime();
+  loopWifi();
+  loopRelogio();
+  loopDht();
+  loopAnal();
+  loopGps();
+  loopSd();
 
-  String arquivoNome = "/climobike/dados/teste2/";
-  arquivoNome += tempo.year;
-  arquivoNome += "/";
-  arquivoNome += tempo.month;
-  arquivoNome += "/";
-  arquivoNome += tempo.day;
-  arquivoNome += "/";
-  arquivoNome += tempo.hour;
-  arquivoNome += "/";
-  arquivoNome += tempo.minute;
-  arquivoNome += ".";
-  arquivoNome += "txt";
+//  RTCDateTime tempo = relogio.getDateTime();
 
-  String linha = "";
-  linha += "{";
-  linha += '"';
-  linha += DATETIME_NAME;
-  linha += '"';
-  linha += ":";
-  linha += '"';
-  linha += tempo.unixtime;
-  linha += '"';
-  linha += "}";
-  linha += "\n";
+//  String arquivoNome = "/climobike/dados/teste2/";
+//  arquivoNome += tempo.year;
+//  arquivoNome += "/";
+//  arquivoNome += tempo.month;
+//  arquivoNome += "/";
+//  arquivoNome += tempo.day;
+//  arquivoNome += "/";
+//  arquivoNome += tempo.hour;
+//  arquivoNome += "/";
+//  arquivoNome += tempo.minute;
+//  arquivoNome += ".";
+//  arquivoNome += "txt";
 
-  arquivo = escreveLinhaAbreArquivo(arquivoNome);
-  escreveLinha(linha.c_str(), arquivo);
+//  String linha = "";
+//  linha += "{";
+//  linha += '"';
+//  linha += DATETIME_NAME;
+//  linha += '"';
+//  linha += ":";
+//  linha += '"';
+//  linha += tempo.unixtime;
+//  linha += '"';
+//  linha += "}";
+//  linha += "\n";
+
+//  arquivo = escreveLinhaAbreArquivo(arquivoNome);
+//  escreveLinha(linha.c_str(), arquivo);
 }
 
 /*

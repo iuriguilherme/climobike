@@ -33,7 +33,10 @@
 #include <climobikeRelogio.hpp>
 /* depende de Log */
 #include <climobikePersistencia.hpp>
-/* depende de Log, Relogio, Persistencia */
+/*
+ *  depende de Log, Bluetooth, Wifi, Gps, Anal, Dht, Relogio, Persistencia, 
+ *  Mario
+*/
 #include <climobikeTestes.hpp>
 
 void setup(){
@@ -50,13 +53,15 @@ void setup(){
 //  setupGps();
 
 //  setupTeste0();
-  setupTeste1();
-//  setupTeste2();
+//  setupTeste1();
+  setupTeste2();
+//  setupTeste3();
 }
 
 void loop() {
 //  loopTeste0();
-  loopTeste1();
-//  loopTeste2();
+//  loopTeste1();
+  loopTeste2();
+//  loopTeste3();
 }
 
