@@ -62,11 +62,12 @@ void setupSd() {
 }
 
 void loopSd() {
-  Serial.print("Testando escrita no cartão...");
   String arquivo = "/rawData.dat";
   String gravarDados = "";
   gravarDados += "tempo=";
   gravarDados += millis();
+
+  Serial.print("Testando escrita no cartão...");
   /* TODO testar cartão para ver se está funcionando aqui, e tratar erros */
   writeFile(gravarDados.c_str(), arquivo);
 /*  writeFile("Gravei nada em lugar nenhum!"); //mentira*/
@@ -76,6 +77,7 @@ void loopSd() {
 void writeFile(const char * message, String arquivo) {
   /* TODO testar cartão para ver se está funcionando aqui, e tratar erros */
   file = SD.open(arquivo, FILE_WRITE);
+  Serial.println();
   Serial.printf("Escrevendo %s no arquivo: %s\n", message, arquivo.c_str());
   if (!file) {
     Serial.println("Erro tentando abrir o arquivo!");
