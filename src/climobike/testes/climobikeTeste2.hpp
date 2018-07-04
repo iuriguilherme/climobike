@@ -1,5 +1,5 @@
 /*
- *  ClimoBike Teste 2 v0.2.0.1
+ *  ClimoBike Teste 2 v0.2.0.2
  *  Grava dados no cartão SD de acordo com o modelo proposto em 
  *  doc/modeloDeDados.md
  *  Depende de:

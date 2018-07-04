@@ -1,5 +1,5 @@
 /*
- *  ClimoBike Teste 1 v0.2.0.1
+ *  ClimoBike Teste 1 v0.2.0.2
  *  Faz todos os loops do teste original de 3 de julho de 2018
  *  Quando o sistema inicia, toca a música do Mario
  *  Depende de:

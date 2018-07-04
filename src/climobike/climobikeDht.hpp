@@ -1,5 +1,5 @@
 /*
- *  ClimoBike Módulo DHT v0.0.2.0
+ *  ClimoBike Módulo DHT v0.2.0.2
  *  Board:  esp32dev (v1, v2)
  *  Authors:
  *    Alisson Claudino (https://inf.ufrgs.br/~acjesus)

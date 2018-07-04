@@ -43,7 +43,7 @@ todos dados devem estar em uma única linha, que deve ser gravada com somente o
 último caractere sendo newline.
 
     {
-      "climobike" : "0.2.0.1",
+      "climobike" : "0.2.0.2",
       "json" : "0.2",
       "datetime" : "2018-07-03 18:00",
       "tmp" : "25.0",

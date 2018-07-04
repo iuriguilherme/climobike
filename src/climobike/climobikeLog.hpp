@@ -1,5 +1,5 @@
 /*
- *  ClimoBike Módulo de log v0.0.2.1
+ *  ClimoBike Módulo de log v0.2.0.2
  *  Board:  esp32dev (v1, v2)
  *  Authors:
  *    Desobediente Civil (https://notabug.org/desci)
