@@ -125,23 +125,7 @@ void loopTeste1() {
 #define GPS_HDOP_NAME "gpshdop";
 #define GPS_HDOP_DATA "9999";
 void setupTeste2() {
-  /* setupRelogio() */
-  Serial.print("Tentando iniciar Relógio...");
-  Serial.print(" deu ");
-  relogio.begin();
-  Wire.beginTransmission(0x68);
-  if (Wire.endTransmission() == 0) {
-    relogio.begin();
-    Serial.print("certo");
-    Serial.println("!");
-    Serial.print("Atualizando hora...");
-    atualizaHora();
-    Serial.println(" feito!");
-  } else {
-    Serial.print("merda");
-    Serial.println("!");
-  }
-  /* /setupRelogio() */
+  setupRelogio();
   /* setupSd() */
   log("Tentando iniciar cartão SD...");
   /* TODO testar cartão para ver se está funcionando aqui, e tratar erros */

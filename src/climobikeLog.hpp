@@ -24,12 +24,19 @@
 #include "WProgram.h"
 #endif
 
+/* Escreve no USB */
 void logSerial(String mensagem) {
+  Serial.print(mensagem);
+}
+void logSerialF(String mensagem) {
+  Serial.printf(mensagem);
+}
+void logSerialLn(String mensagem) {
   Serial.println(mensagem);
 }
 
 void log(String mensagem) {
-  logSerial(mensagem);
+  logSerialLn(mensagem);
 }
 
 #endif
