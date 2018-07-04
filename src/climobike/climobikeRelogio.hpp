@@ -35,7 +35,6 @@ DS1307 relogio;
 RTCDateTime datetime;
 
 void atualizaHora();
-RTCDateTime agora();
 
 void setupRelogio() {
   logSerial("Tentando iniciar Relógio...");
@@ -87,7 +86,7 @@ void loopRelogio() {
 
   timestamp += "'";
   timestamp += "}";
-  logSerialLn(timestamp);
+  log(timestamp);
 }
 
 /* Grava a data atual do computador no momento da compilação no relógio */

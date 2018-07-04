@@ -26,15 +26,28 @@
 #endif
 
 /* Pausa o programa */
-void fim() {
-  while(true);
-}
+void fim();
+/* Falha o programa */
+void falha(String mensagem);
+void falha(char * mensagem, String formato);
 
 #include <climobike/testes/climobikeTeste0.hpp>
 /* depende de Teste0 */
 #include <climobike/testes/climobikeTeste1.hpp>
 #include <climobike/testes/climobikeTeste2.hpp>
 #include <climobike/testes/climobikeTeste3.hpp>
+
+void fim() {
+  while(true);
+}
+void falha(String mensagem) {
+  log(mensagem);
+  fim();
+}
+void falha(char * mensagem, String formato) {
+  log(mensagem, formato);
+  fim();
+}
 
 #endif
 

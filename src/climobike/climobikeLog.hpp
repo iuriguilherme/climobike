@@ -38,6 +38,9 @@ void logSerialLn(String mensagem) {
 void log(String mensagem) {
   logSerialLn(mensagem);
 }
+void log(char * mensagem, String formato) {
+  logSerialF(mensagem, formato);
+}
 
 #endif
 
