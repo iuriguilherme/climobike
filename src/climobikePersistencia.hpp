@@ -1,5 +1,5 @@
 /*
- *  ClimoBike Módulo Armazenamento v0.0.2.0
+ *  ClimoBike Módulo Armazenamento v0.0.2.1
  *  Board:  esp32dev (v1, v2)
  *  Authors:
  *    Alisson Claudino (https://inf.ufrgs.br/~acjesus)
@@ -16,8 +16,8 @@
  * Se não, veja http://www.gnu.org/licenses/.
 */
 
-#ifndef CLIMOBIKEPERSISTENCIA_H
-#define CLIMOBIKEPERSISTENCIA_H
+#ifndef CLIMOBIKEPERSISTENCIA_HPP
+#define CLIMOBIKEPERSISTENCIA_HPP
 
 #if defined(ARDUINO) && ARDUINO >= 100
 #include "Arduino.h"
@@ -25,24 +25,25 @@
 #include "WProgram.h"
 #endif
 
+/* TODO incluir no platformio.ini */
 #include <FS.h>
 #include <SD.h>
 #include <SPI.h>
 
 File file;
 
-void writeFile(const char * message, String arquivo);
+void escreve(const char * message, String arquivo);
 
 void setupSd() {
   Serial.print("Tentando iniciar cartão SD...");
-
+  /* TODO testar cartão para ver se está funcionando aqui, e tratar erros */
   uint8_t cardType = SD.cardType();
   if (!SD.begin()) {
-    Serial.println("falhou!");
+    Serial.println(" falhou!");
   } else if (cardType == CARD_NONE) {
-    Serial.println("nenhum cartão detectado!");
+    Serial.println(" nenhum cartão detectado!");
   } else {
-    Serial.print("Sucesso! Tipo de cartão:");
+    Serial.print("\nSucesso! Tipo de cartão: ");
     if (cardType == CARD_MMC) {
       Serial.print("MMC");
     } else if (cardType == CARD_SD) {
@@ -56,9 +57,7 @@ void setupSd() {
     uint64_t cardSize = SD.cardSize() / (1024 * 1024);
     Serial.printf("Tamanho do cartão: %lluMB\n", cardSize);
   }
-
-/*  Serial.print(" mentira"); //mentira*/
-/*  Serial.println("!");*/
+//  Serial.print(" mentira!"); // TODO mentira
 }
 
 void loopSd() {
@@ -67,25 +66,24 @@ void loopSd() {
   gravarDados += "tempo=";
   gravarDados += millis();
 
-  Serial.print("Testando escrita no cartão...");
+  Serial.println("Testando escrita no cartão...");
   /* TODO testar cartão para ver se está funcionando aqui, e tratar erros */
-  writeFile(gravarDados.c_str(), arquivo);
-/*  writeFile("Gravei nada em lugar nenhum!"); //mentira*/
+  escreve(gravarDados.c_str(), arquivo);
+//  escreve("Gravei nada em lugar nenhum!"); // TODO mentira
 
 }
 
-void writeFile(const char * message, String arquivo) {
+/* Escreve no cartão de memória */
+void escreve(const char * message, String arquivo) {
   /* TODO testar cartão para ver se está funcionando aqui, e tratar erros */
   file = SD.open(arquivo, FILE_WRITE);
-  Serial.println();
-  Serial.printf("Escrevendo %s no arquivo: %s\n", message, arquivo.c_str());
-  if (!file) {
-    Serial.println("Erro tentando abrir o arquivo!");
+  log("Escrevendo %s no arquivo: %s\n", message, arquivo.c_str());
+  if (file) {
+    log("Erro tentando abrir o arquivo!");
   } else if (file.println(message)) {
-    file.close();
-    Serial.println("Sucesso!");
+    log("Sucesso!");
   } else {
-    Serial.println("Erro tentando escrever no arquivo");
+    log("Erro tentando escrever no arquivo!");
   }
   file.close();
 }

@@ -1,5 +1,5 @@
 /*
- *  ClimoBike Módulo Relógio v0.0.2.0
+ *  ClimoBike Módulo Relógio v0.0.2.1
  *  Board:  esp32dev (v1, v2)
  *  Authors:
  *    Alisson Claudino (https://inf.ufrgs.br/~acjesus)
@@ -16,8 +16,8 @@
  * Se não, veja http://www.gnu.org/licenses/.
 */
 
-#ifndef CLIMOBIKERELOGIO_H
-#define CLIMOBIKERELOGIO_H
+#ifndef CLIMOBIKERELOGIO_HPP
+#define CLIMOBIKERELOGIO_HPP
 
 #if defined(ARDUINO) && ARDUINO >= 100
 #include "Arduino.h"
@@ -25,20 +25,28 @@
 #include "WProgram.h"
 #endif
 
+/* TODO incluir no platformio.ini */
 #include <DS1307.h>
 #include <Wire.h>
+
+/*
+ *  POSIX Time
+ *  http://pubs.opengroup.org/onlinepubs/9699919799/utilities/date.html
+*/
+#define EPOCH "1970-01-01 00:00:00"
 
 DS1307 relogio;
 RTCDateTime datetime;
 
 void atualizaHora();
+RTCDateTime queHoras();
 
 void setupRelogio() {
   Serial.print("Tentando iniciar Relógio...");
   Serial.print(" deu ");
 
   Wire.beginTransmission(0x67);
-  if (Wire.endTransmission()==0) {
+  if (Wire.endTransmission() == 0) {
     relogio.begin();
     Serial.print("certo");
     Serial.println("!");
@@ -59,7 +67,7 @@ void loopRelogio() {
   timestamp += "'";
 
   Wire.beginTransmission(0x67);
-  if (Wire.endTransmission()==0) {
+  if (Wire.endTransmission() == 0) {
     datetime = relogio.getDateTime();
     if ((int)datetime.year > 0) {
       timestamp += datetime.year;
@@ -81,10 +89,22 @@ void loopRelogio() {
   Serial.println();
 }
 
+/* Grava a data atual do computador no momento da compilação no relógio */
 void atualizaHora() {
-  /* Grava a data atual do computador no momento da compilação no relógio */
   relogio.setDateTime(__DATE__, __TIME__);
 }
+
+/* Que horas? */
+RTCDateTime agora() {
+  Wire.beginTransmission(0x67);
+  if (Wire.endTransmission()==0) {
+    return relogio.getDateTime();
+  }
+  log("Erro tentando obter hora do relógio DS1307");
+  /* Retorna Posix Time 0 caso não tenhamos horário */
+  return EPOCH;
+}
+
 
 #endif
 
