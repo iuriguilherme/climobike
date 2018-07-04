@@ -26,20 +26,23 @@
 #endif
 
 #include <DS1307.h>
+#include <Wire.h>  //Inclusão de bibliotecas
 
 DS1307 relogio;  //Inicialização de objetos de tipos relógio, data e Serial
 RTCDateTime datetime;
 
+void atualizaHora();
+
 void setupRelogio() {
   Serial.print("Tentando iniciar Relógio...");
-/*  Serial.print(" deu ");*/
-/*  if ((relogio.isReady() > 0)) {*/
-/*    relogio.begin();*/
-/*    Serial.print(" certo");*/
-/*  } else {*/
-/*    Serial.print(" merda");*/
-/*  }*/
-  Serial.print(" mentira"); //mentira
+  Serial.print(" deu ");
+  if ((relogio.isReady() > 0)) {
+    relogio.begin();
+    Serial.print(" certo");
+  } else {
+    Serial.print(" merda");
+  }
+/*  Serial.print(" mentira"); //mentira*/
   Serial.println("!");
 }
 
@@ -47,8 +50,7 @@ void loopRelogio() {
   String timestamp = "";
   timestamp += "'";
   Serial.print("timestamp: ");
-/*  if ((relogio.isReady() > 0)) {*/
-  if (false) {
+  if ((relogio.isReady() > 0)) {
     datetime = relogio.getDateTime();
     if ((int)datetime.year > 0) {
       timestamp += datetime.year;
@@ -67,6 +69,11 @@ void loopRelogio() {
   timestamp += "'";
   Serial.print(timestamp);
   Serial.println();
+}
+
+void atualizaHora() {
+  /* Grava a data atual do computador no momento da compilação no relógio */
+  relogio.setDateTime(__DATE__, __TIME__);
 }
 
 #endif
