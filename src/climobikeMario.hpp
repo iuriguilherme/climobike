@@ -15,8 +15,8 @@
  *  TODO: Acrescentar CC0 nos arquivos de licença
 */
 
-#ifndef CLIMOBIKERELOGIO_H
-#define CLIMOBIKERELOGIO_H
+#ifndef CLIMOBIKEMARIO_H
+#define CLIMOBIKEMARIO_H
 
 #if defined(ARDUINO) && ARDUINO >= 100
 #include "Arduino.h"
