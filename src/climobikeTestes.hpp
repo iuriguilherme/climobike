@@ -125,23 +125,23 @@ void loopTeste1() {
 #define GPS_HDOP_NAME "gpshdop";
 #define GPS_HDOP_DATA "9999";
 void setupTeste2() {
-  setupAnal();
-  setupBluetooth();
+//  setupAnal();
+//  setupBluetooth();
   setupRelogio();
-  setupDht();
-  setupWifi();
+//  setupDht();
+//  setupWifi();
   setupSd();
-  setupHttp();
-  setupGps();
+//  setupHttp();
+//  setupGps();
   setupMario();
   loopMario();
 }
 void loopTeste2() {
-  loopWifi();
+//  loopWifi();
   loopRelogio();
-  loopDht();
-  loopAnal();
-  loopGps();
+//  loopDht();
+//  loopAnal();
+//  loopGps();
   loopSd();
 
 //  RTCDateTime tempo = relogio.getDateTime();
