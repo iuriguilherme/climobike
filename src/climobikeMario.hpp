@@ -304,3 +304,6 @@ void loopMario()
 //  sing(1);
   sing(2);
 }
+
+#endif
+
