@@ -35,13 +35,13 @@ File file;
 void escreve(const char * message, String arquivo);
 
 void setupSd() {
-  Serial.print("Tentando iniciar cartão SD...");
+  log("Tentando iniciar cartão SD...");
   /* TODO testar cartão para ver se está funcionando aqui, e tratar erros */
   uint8_t cardType = SD.cardType();
   if (!SD.begin()) {
-    Serial.println(" falhou!");
+    log("Falhou tentando inicializar cartão SD!");
   } else if (cardType == CARD_NONE) {
-    Serial.println(" nenhum cartão detectado!");
+    log("Nenhum cartão SD detectado!");
   } else {
     Serial.print("\nSucesso! Tipo de cartão: ");
     if (cardType == CARD_MMC) {
@@ -77,11 +77,11 @@ void loopSd() {
 void escreve(const char * message, String arquivo) {
   /* TODO testar cartão para ver se está funcionando aqui, e tratar erros */
   file = SD.open(arquivo, FILE_WRITE);
-  log("Escrevendo %s no arquivo: %s\n", message, arquivo.c_str());
+  Serial.printf("Escrevendo %s no arquivo: %s\n", message, arquivo.c_str());
   if (file) {
     log("Erro tentando abrir o arquivo!");
   } else if (file.println(message)) {
-    log("Sucesso!");
+    log("Arquivo gravado no cartão!");
   } else {
     log("Erro tentando escrever no arquivo!");
   }

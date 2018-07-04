@@ -29,17 +29,11 @@
 #include <DS1307.h>
 #include <Wire.h>
 
-/*
- *  POSIX Time
- *  http://pubs.opengroup.org/onlinepubs/9699919799/utilities/date.html
-*/
-#define EPOCH "1970-01-01 00:00:00"
-
 DS1307 relogio;
 RTCDateTime datetime;
 
 void atualizaHora();
-RTCDateTime queHoras();
+RTCDateTime agora();
 
 void setupRelogio() {
   Serial.print("Tentando iniciar Relógio...");
@@ -101,8 +95,15 @@ RTCDateTime agora() {
     return relogio.getDateTime();
   }
   log("Erro tentando obter hora do relógio DS1307");
-  /* Retorna Posix Time 0 caso não tenhamos horário */
-  return EPOCH;
+  return datetime;
+}
+uint32_t agoraU() {
+  Wire.beginTransmission(0x67);
+  if (Wire.endTransmission()==0) {
+    return relogio.getDateTime().unixtime;
+  }
+  log("Erro tentando obter unixtime do relógio DS1307");
+  return datetime.unixtime;
 }
 
 

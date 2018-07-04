@@ -82,7 +82,7 @@ void teste1() {
 #define FILETYPE_NAME "json";
 #define FILETYPE_DATA "0.1";
 #define DATETIME_NAME "datetime";
-#define DATETIME_DATA "1970-01-01 00:00:00";
+#define DATETIME_DATA "0";
 #define DHT_TEMPERATURE_NAME "tmp";
 #define DHT_TEMPERATURE_DATA "25.0";
 #define DHT_HUMIDITY_NAME "hum";
@@ -105,17 +105,34 @@ void teste1() {
 #define GPS_HDOP_NAME "gpshdop";
 #define GPS_HDOP_DATA "9999";
 void teste2() {
-  String linha = '';
-  linha += '{';
+  RTCDateTime tempo = agora();
+
+  String arquivo = "/climobike/dados/teste2/";
+  arquivo += tempo.year;
+  arquivo += "-";
+  arquivo += tempo.month;
+  arquivo += "-";
+  arquivo += tempo.day;
+  arquivo += "-";
+  arquivo += tempo.hour;
+  arquivo += "-";
+  arquivo += tempo.minute;
+  arquivo += ".";
+  arquivo += "txt";
+
+  String linha = "";
+  linha += "{";
   linha += '"';
   linha += DATETIME_NAME;
   linha += '"';
-  linha += ':';
+  linha += ":";
   linha += '"';
-  linha += agora();
+  linha += tempo.unixtime;
   linha += '"';
-  linha += '}';
-  escreve(linha, arquivo);
+  linha += "}";
+  linha += "\n";
+
+  escreve(linha.c_str(), arquivo);
 }
 
 #endif
