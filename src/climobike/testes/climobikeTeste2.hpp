@@ -126,7 +126,7 @@ void loopTeste2() {
   log(" no arquivo %s (mentira)\n", completo);
   if (!arquivo) {
     log("Erro tentando abrir o arquivo!");
-  } else if (arquivo.println(mensagem.c_str())) {
+  } else if (arquivo.println(linha.c_str())) {
     log("Arquivo gravado no cartão!");
   } else {
     log("Erro tentando escrever no arquivo!");
