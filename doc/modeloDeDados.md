@@ -44,13 +44,13 @@ todos dados devem estar em uma única linha, que deve ser gravada com somente o
 
     {
       "climobike" : "0.2.0.1",
-      "json" : "0.1",
+      "json" : "0.2",
       "datetime" : "2018-07-03 18:00",
       "tmp" : "25.0",
       "hum" : "50.0",
       "ch4" : "4096",
-      "no1" : "4096",
-      "co1" : "4096",
+      "tox" : "4096",
+      "co2" : "4096",
       "gpsdate" : "2018-07-03 18:00:00:00",
       "gpslat" : "-30.04",
       "gpslng" : "-51.22",
@@ -66,8 +66,8 @@ todos dados devem estar em uma única linha, que deve ser gravada com somente o
 - "tmp" : Float, temperatura em graus Celsius do DHT;
 - "hum" : Float, umidade relativa do ar em (formato) do DHT;
 - "ch4" : Float, (quantidade) de metano em (formato) do sensor MQ4;
-- "no1" : Float, (quantidade) de (gás) em (formato) do sensor (nome);
-- "co1" : Float, (quantidade) de monóxido de carbono em (formato) do sensor (nome);
+- "tox" : Float, (quantidade) de gases tóxicos em (formato) do sensor MQ135;
+- "co2" : Float, (quantidade) de monóxido de carbono em (formato) do sensor MQ7;
 - "gpsdate" : Datetime, dados do GPS (modelo);
 - "gpslat" : Float, latitude, dados do GPS;
 - "gpslng" : Float, longitude, dados do GPS;
