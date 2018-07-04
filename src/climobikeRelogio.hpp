@@ -1,5 +1,5 @@
 /*
- *  ClimoBike Módulo Relógio v0.0.2.1
+ *  ClimoBike Módulo Relógio v0.2.0.2
  *  Board:  esp32dev (v1, v2)
  *  Authors:
  *    Alisson Claudino (https://inf.ufrgs.br/~acjesus)
@@ -25,6 +25,8 @@
 #include "WProgram.h"
 #endif
 
+#define EPOCH "1970-01-01 00:00:00"
+
 /* TODO incluir no platformio.ini */
 #include <DS1307.h>
 #include <Wire.h>
@@ -36,26 +38,27 @@ void atualizaHora();
 RTCDateTime agora();
 
 void setupRelogio() {
-  Serial.print("Tentando iniciar Relógio...");
-  Serial.print(" deu ");
-
+  logSerial("Tentando iniciar Relógio...");
+  relogio.begin();
+  logSerial(" deu ");
   Wire.beginTransmission(0x68);
   if (Wire.endTransmission() == 0) {
     relogio.begin();
-    Serial.print("certo");
-    Serial.println("!");
-    Serial.print("Atualizando hora...");
-    atualizaHora();
-    Serial.println(" feito!");
+    logSerial("certo");
+//    Serial.print("Atualizando hora...");
+//    atualizaHora();
+//    Serial.println(" feito!");
   } else {
-    Serial.print("merda");
-    Serial.println("!");
+    logSerial("errado");
   }
+  logSerialLn("!");
 }
 
 void loopRelogio() {
   String timestamp = "";
-  Serial.print("timestamp: ");
+  timestamp += "{";
+  timestamp += "timestamp"
+  timestamp += ":";
   timestamp += "'";
 
   Wire.beginTransmission(0x68);
@@ -71,14 +74,20 @@ void loopRelogio() {
       timestamp += datetime.hour;
       timestamp += ":";
       timestamp += datetime.minute;
+      timestamp += ":";
+      timestamp += datetime.second;
+      timestamp += " ";
+      timestamp += "(";
+      timestamp += datetime.unixtime;
+      timestamp += ")";
     }
   } else {
-    timestamp += "2018-07-03 18:00"; //mentira
+    timestamp += EPOCH; //mentira
   }
 
   timestamp += "'";
-  Serial.print(timestamp);
-  Serial.println();
+  timestamp += "}";
+  logSerialLn(timestamp);
 }
 
 /* Grava a data atual do computador no momento da compilação no relógio */
