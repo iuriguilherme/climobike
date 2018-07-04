@@ -105,17 +105,17 @@ void teste1() {
 #define GPS_HDOP_NAME "gpshdop";
 #define GPS_HDOP_DATA "9999";
 void teste2() {
-  RTCDateTime tempo = agora();
+  RTCDateTime tempo = relogio.getDateTime();
 
   String arquivoNome = "/climobike/dados/teste2/";
   arquivoNome += tempo.year;
-  arquivoNome += "-";
+  arquivoNome += "/";
   arquivoNome += tempo.month;
-  arquivoNome += "-";
+  arquivoNome += "/";
   arquivoNome += tempo.day;
-  arquivoNome += "-";
+  arquivoNome += "/";
   arquivoNome += tempo.hour;
-  arquivoNome += "-";
+  arquivoNome += "/";
   arquivoNome += tempo.minute;
   arquivoNome += ".";
   arquivoNome += "txt";

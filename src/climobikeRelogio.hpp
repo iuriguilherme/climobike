@@ -88,24 +88,5 @@ void atualizaHora() {
   relogio.setDateTime(__DATE__, __TIME__);
 }
 
-/* Que horas? */
-RTCDateTime agora() {
-  Wire.beginTransmission(0x67);
-  if (Wire.endTransmission()==0) {
-    return relogio.getDateTime();
-  }
-  log("Erro tentando obter hora do relógio DS1307");
-  return datetime;
-}
-uint32_t agoraU() {
-  Wire.beginTransmission(0x67);
-  if (Wire.endTransmission()==0) {
-    return relogio.getDateTime().unixtime;
-  }
-  log("Erro tentando obter unixtime do relógio DS1307");
-  return datetime.unixtime;
-}
-
-
 #endif
 
