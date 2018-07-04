@@ -38,7 +38,17 @@
  *    climobikePersistencia.hpp
  *  Status: funcionando na esp32dev v2
 */
-void teste0() {
+void loopTeste0() {
+  setupAnal();
+  setupBluetooth();
+  setupRelogio();
+  setupDht();
+  setupWifi();
+  setupSd();
+  setupHttp();
+  setupGps();
+}
+void loopTeste0() {
   loopWifi();
   loopRelogio();
   loopDht();
@@ -62,12 +72,15 @@ void teste0() {
  *    climobikeMario.hpp
  *  Status: funcionando na esp32dev v2
 */
-void teste1() {
+void setupTeste1() {
+  setupTeste0();
   /* Se tudo deu certo */
   setupMario();
   loopMario();
   /* trollface */
-  teste0();
+}
+void setupTeste1() {
+  loopTeste0();
 }
 
 /*
@@ -111,7 +124,11 @@ void teste1() {
 #define GPS_SATELLITES_DATA "0";
 #define GPS_HDOP_NAME "gpshdop";
 #define GPS_HDOP_DATA "9999";
-void teste2() {
+void setupTeste2() {
+  setupRelogio();
+  setupSd();
+}
+void loopTeste2() {
   RTCDateTime tempo = relogio.getDateTime();
 
   String arquivoNome = "/climobike/dados/teste2/";

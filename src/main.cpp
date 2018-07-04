@@ -39,19 +39,24 @@
 void setup(){
   delay(300);
   Serial.begin(9600);
-  setupAnal();
-  setupBluetooth();
-  setupRelogio();
-  setupDht();
-  setupWifi();
-  setupSd();
-  setupHttp();
-  setupGps();
+
+//  setupAnal();
+//  setupBluetooth();
+//  setupRelogio();
+//  setupDht();
+//  setupWifi();
+//  setupSd();
+//  setupHttp();
+//  setupGps();
+
+//  setupTeste0();
+  setupTeste1();
+//  setupTeste2();
 }
 
 void loop() {
-//  teste0();
-  teste1();
-//  teste2();
+//  loopTeste0();
+  loopTeste1();
+//  loopTeste2();
 }
 
