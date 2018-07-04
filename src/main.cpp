@@ -22,13 +22,13 @@
 #include "WProgram.h"
 #endif
 
-#include <climobikeBluetooth.h>
-#include <climobikeAnal.h>
-#include <climobikeDht.h>
-#include <climobikeRelogio.h>
-#include <climobikeWifi.h>
-#include <climobikePersistencia.h>
-#include <climobikeGps.h>
+#include <climobikeBluetooth.hpp>
+#include <climobikeAnal.hpp>
+#include <climobikeDht.hpp>
+#include <climobikeRelogio.hpp>
+#include <climobikeWifi.hpp>
+#include <climobikePersistencia.hpp>
+#include <climobikeGps.hpp>
 #include <climobikeMario.hpp>
 #include <climobikeLog.hpp>
 
