@@ -40,7 +40,7 @@
 #include <climobikeTestes.hpp>
 
 void setup(){
-  delay(300);
+  delay(1000);
   Serial.begin(9600);
 
 //  setupAnal();

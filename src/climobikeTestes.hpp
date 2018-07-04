@@ -125,24 +125,94 @@ void loopTeste1() {
 #define GPS_HDOP_NAME "gpshdop";
 #define GPS_HDOP_DATA "9999";
 void setupTeste2() {
-//  setupAnal();
-//  setupBluetooth();
-  setupRelogio();
-//  setupDht();
-//  setupWifi();
-  setupSd();
-//  setupHttp();
-//  setupGps();
-  setupMario();
-  loopMario();
+  /* setupRelogio() */
+  Serial.print("Tentando iniciar Relógio...");
+  Serial.print(" deu ");
+
+  Wire.beginTransmission(0x68);
+  if (Wire.endTransmission() == 0) {
+    relogio.begin();
+    Serial.print("certo");
+    Serial.println("!");
+    Serial.print("Atualizando hora...");
+    atualizaHora();
+    Serial.println(" feito!");
+  } else {
+    Serial.print("merda");
+    Serial.println("!");
+  }
+  /* /setupRelogio() */
+  /* setupSd() */
+  log("Tentando iniciar cartão SD...");
+  /* TODO testar cartão para ver se está funcionando aqui, e tratar erros */
+  uint8_t cardType = SD.cardType();
+  if (!SD.begin()) {
+    log("Falhou tentando inicializar cartão SD!");
+  } else if (cardType == CARD_NONE) {
+    log("Nenhum cartão SD detectado!");
+  } else {
+    Serial.print("\nSucesso! Tipo de cartão: ");
+    if (cardType == CARD_MMC) {
+      Serial.print("MMC");
+    } else if (cardType == CARD_SD) {
+      Serial.print("SDSC");
+    } else if (cardType == CARD_SDHC) {
+      Serial.print("SDHC");
+    } else {
+      Serial.print("UNKNOWN");
+    }
+    Serial.println(".");
+    uint64_t cardSize = SD.cardSize() / (1024 * 1024);
+    Serial.printf("Tamanho do cartão: %lluMB\n", cardSize);
+  }
+  /* /setupSd() */
 }
 void loopTeste2() {
-//  loopWifi();
-  loopRelogio();
-//  loopDht();
-//  loopAnal();
-//  loopGps();
-  loopSd();
+  int loopContador = 0;
+  
+  /* loopRelogio() */
+  String timestamp = "";
+  Serial.print("timestamp: ");
+  timestamp += "'";
+
+  Wire.beginTransmission(0x68);
+  if (Wire.endTransmission() == 0) {
+    datetime = relogio.getDateTime();
+    if ((int)datetime.year > 0) {
+      timestamp += datetime.year;
+      timestamp += "-";
+      timestamp += datetime.month;
+      timestamp += "-";
+      timestamp += datetime.day;
+      timestamp += " ";
+      timestamp += datetime.hour;
+      timestamp += ":";
+      timestamp += datetime.minute;
+    }
+  } else {
+    timestamp += "2018-07-03 18:00"; //mentira
+  }
+  
+  timestamp += "'";
+  Serial.print(timestamp);
+  Serial.println();
+  /* /loopRelogio() */
+
+  /* loopSd() */
+  String arquivo = "/rawData.dat";
+  String gravarDados = "";
+  gravarDados += "tempo=";
+  gravarDados += millis();
+
+  Serial.println("Testando escrita no cartão...");
+  /* TODO testar cartão para ver se está funcionando aqui, e tratar erros */
+  escreve(gravarDados.c_str(), arquivo);
+  /* /loopSd() */
+
+  loopContador++;
+  if (loopContador > 3) {
+    while(true);
+  }
 
 //  RTCDateTime tempo = relogio.getDateTime();
 

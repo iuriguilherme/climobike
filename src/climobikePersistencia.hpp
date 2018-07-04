@@ -59,7 +59,6 @@ void setupSd() {
     uint64_t cardSize = SD.cardSize() / (1024 * 1024);
     Serial.printf("Tamanho do cartão: %lluMB\n", cardSize);
   }
-//  Serial.print(" mentira!"); // TODO mentira
 }
 
 void loopSd() {
@@ -71,8 +70,6 @@ void loopSd() {
   Serial.println("Testando escrita no cartão...");
   /* TODO testar cartão para ver se está funcionando aqui, e tratar erros */
   escreve(gravarDados.c_str(), arquivo);
-//  escreve("Gravei nada em lugar nenhum!"); // TODO mentira
-
 }
 
 /* Escreve no cartão de memória */

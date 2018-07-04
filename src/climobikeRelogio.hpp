@@ -39,7 +39,7 @@ void setupRelogio() {
   Serial.print("Tentando iniciar Relógio...");
   Serial.print(" deu ");
 
-  Wire.beginTransmission(0x67);
+  Wire.beginTransmission(0x68);
   if (Wire.endTransmission() == 0) {
     relogio.begin();
     Serial.print("certo");
@@ -51,8 +51,6 @@ void setupRelogio() {
     Serial.print("merda");
     Serial.println("!");
   }
-/*  Serial.print("mentira"); //mentira*/
-/*  Serial.println("!"); //mentira*/
 }
 
 void loopRelogio() {
@@ -60,7 +58,7 @@ void loopRelogio() {
   Serial.print("timestamp: ");
   timestamp += "'";
 
-  Wire.beginTransmission(0x67);
+  Wire.beginTransmission(0x68);
   if (Wire.endTransmission() == 0) {
     datetime = relogio.getDateTime();
     if ((int)datetime.year > 0) {
