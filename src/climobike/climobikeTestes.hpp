@@ -25,6 +25,11 @@
 #include "WProgram.h"
 #endif
 
+/* Pausa o programa */
+void fim() {
+  while(true);
+}
+
 #include <climobike/testes/climobikeTeste0.hpp>
 /* depende de Teste0 */
 #include <climobike/testes/climobikeTeste1.hpp>

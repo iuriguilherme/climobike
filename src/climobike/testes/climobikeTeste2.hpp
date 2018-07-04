@@ -61,9 +61,9 @@
 #define GPS_HDOP_DATA "9999";
 void setupTeste2() {
   setupRelogio();
-  /* setupSd() */
-  log("Tentando iniciar cartão SD...");
-  /* TODO testar cartão para ver se está funcionando aqui, e tratar erros */
+  loopRelogio();
+
+  logSerial("Tentando iniciar cartão SD...");
   if (SD.begin()) {
     uint8_t cardType = SD.cardType();
     if (cardType == CARD_NONE) {
@@ -85,8 +85,9 @@ void setupTeste2() {
     }
   } else {
     log("Falhou tentando inicializar cartão SD!");
+    fim();
   }
-  /* /setupSd() */
+
 }
 int loopContador = 0;
 bool criarDiretorio(String caminho) {
@@ -119,7 +120,7 @@ void loopTeste2() {
       timestamp += datetime.minute;
     }
   } else {
-    timestamp += "1970-01-01 00:00:00:00"; //mentira
+    timestamp += "1970-01-01 00:00:00"; //mentira
   }
   
   timestamp += "'";
