@@ -29,6 +29,7 @@
 #include <climobikeWifi.h>
 #include <climobikePersistencia.h>
 #include <climobikeGps.h>
+#include <climobikeMario.hpp>
 
 void setup(){
   delay(300);
@@ -41,6 +42,10 @@ void setup(){
   setupSd();
   setupHttp();
   setupGps();
+  /* Se tudo deu certo */
+  setupMario();
+  loopMario();
+  /* trollface */
 }
 
 void loop() {

@@ -6,7 +6,23 @@
   the other side of the 1 k ohm resistor to
   ground(GND) pin on the Arduino.
   */
-#include <Arduino.h>
+/*
+ *  Alterado para operar no protótipo do ClimoBike
+ *  Authors:
+ *    Alisson Claudino (https://inf.ufrgs.br/~acjesus)
+ *    Desobediente Civil (https://notabug.org/desci)
+ *  License: CC0
+ *  TODO: Acrescentar CC0 nos arquivos de licença
+*/
+
+#ifndef CLIMOBIKERELOGIO_H
+#define CLIMOBIKERELOGIO_H
+
+#if defined(ARDUINO) && ARDUINO >= 100
+#include "Arduino.h"
+#else
+#include "WProgram.h"
+#endif
 
 #define NOTE_B0  31
 #define NOTE_C1  33
@@ -254,7 +270,8 @@ void sing(int s) {
 void buzz(int targetPin, long frequency, long length) {
   if(frequency!=0)
   {
-  digitalWrite(16, HIGH);
+  /* led */
+//  digitalWrite(16, HIGH);
   long delayValue = 1000000 / frequency / 2; // calculate the delay value between transitions
   //// 1 second's worth of microseconds, divided by the frequency, then split in half since
   //// there are two phases to each cycle
@@ -267,21 +284,23 @@ void buzz(int targetPin, long frequency, long length) {
     digitalWrite(targetPin, LOW); // write the buzzer pin low to pull back the diaphram
     delayMicroseconds(delayValue); // wait again or the calculated delay value
   }
-  digitalWrite(16, LOW);
+  /* led */
+//  digitalWrite(16, LOW);
 }
 }
 
-void setup(void)
-{
-	Serial.begin(9600);
+void setupMario() {
   pinMode(4, OUTPUT);//buzzer
-  pinMode(16, OUTPUT);//led indicator when singing a note
+  /* Estamos usando o 16 pro GPS */
+  /* led */
+//  pinMode(16, OUTPUT);//led indicator when singing a note
   Serial.print("deu certo!");
 }
-void loop()
+
+void loopMario()
 {
   //sing the tunes
   sing(1);
-  sing(1);
+//  sing(1);
   sing(2);
 }
