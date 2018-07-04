@@ -160,5 +160,19 @@ void loopTeste2() {
   escreveLinha(linha.c_str(), arquivo);
 }
 
+/*
+ *  Teste 3
+ *  Toca a música do Mario pra sempre
+ *  Depende de:
+ *    climobikeMario.hpp
+ *  Status: tomara que ninguém teste, huehuehue
+*/
+void setupTeste3() {
+  setupMario();
+}
+void loopTeste3() {
+  loopMario();
+}
+
 #endif
 
