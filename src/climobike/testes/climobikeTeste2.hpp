@@ -86,22 +86,34 @@ void loopTeste2() {
   delay(500);
 
   /* Nome do arquivo */
-  String caminho = "/";
-  String nome = "rawData.dat";
+  String caminho = "/sd";
+  String nome = "/rawData.dat";
 
-  caminho = "/climobike";
-  caminho += "/dados";
-  caminho += "/teste2";
+  caminho = "dados";
+  criarDiretorio(caminho);
   caminho += "/";
-  caminho += datetime.year;
+  caminho += "teste2";
+  criarDiretorio(caminho);
   caminho += "/";
-  caminho += datetime.month;
-  caminho += "/";
-  caminho += datetime.day;
-  caminho += "/";
-  caminho += datetime.hour;
-  caminho += "/";
-  caminho += datetime.minute;
+  if (loopTeste2RelogioBool()) {
+    caminho += datetime.year;
+    criarDiretorio(caminho);
+    caminho += "/";
+    caminho += datetime.month;
+    criarDiretorio(caminho);
+    caminho += "/";
+    caminho += datetime.day;
+    criarDiretorio(caminho);
+    caminho += "/";
+    caminho += datetime.hour;
+    criarDiretorio(caminho);
+    caminho += "/";
+    caminho += datetime.minute;
+    criarDiretorio(caminho);
+  } else {
+    caminho += "erro";
+    criarDiretorio(caminho);
+  }
   criarDiretorio(caminho);
 
   nome = datetime.second;
@@ -109,6 +121,7 @@ void loopTeste2() {
   nome += "txt";
 
   String completo = "";
+  completo += "/";
   completo += caminho;
   completo += "/";
   completo += nome;
@@ -121,9 +134,15 @@ void loopTeste2() {
 
   /* Escreve linha no cartão */
   log("Tentando escrever no cartão...");
+  if (!SD.exists(caminho)) {
+    log("Caminho %s não existe!", caminho);
+  }
+  if (!SD.exists(completo)) {
+    log("Arquivo %s não existe!", completo);
+  }
   File arquivo = SD.open(completo, FILE_WRITE);
   log("Escrevendo %s", linha);
-  log(" no arquivo %s (mentira)\n", completo);
+  log(" no arquivo %s\n", completo);
   if (!arquivo) {
     log("Erro tentando abrir o arquivo!");
   } else if (arquivo.println(linha)) {
@@ -136,7 +155,7 @@ void loopTeste2() {
   if (loopContador >= limite) {
     arquivo.close();
     log("Lendo conteúdo do arquivo...");
-    arquivo = SD.open(completo.c_str(), FILE_READ);
+    arquivo = SD.open(completo, FILE_READ);
     while (arquivo.available()) {
       Serial.write(arquivo.read());
     }
@@ -145,7 +164,7 @@ void loopTeste2() {
 }
 
 bool criarDiretorio(String caminho) {
-  if (SD.mkdir(caminho.c_str())) {
+  if (SD.mkdir(caminho)) {
     log("Criado diretório %s\n", caminho);
     return true;
   }
