@@ -20,8 +20,8 @@
  * Se não, veja http://www.gnu.org/licenses/.
 */
 
-#ifndef CLIMOBIKETESTE0_HPP
-#define CLIMOBIKETESTE0_HPP
+#ifndef CLIMOBIKETESTE3_HPP
+#define CLIMOBIKETESTE3_HPP
 
 #if defined(ARDUINO) && ARDUINO >= 100
 #include "Arduino.h"
