@@ -35,7 +35,7 @@ const char * httpHost = "192.168.0.195"; // precisao
 const char * streamId   = "1DygKVeN0luAy3mPZdDWudlPXWB";
 const char * privateKey = "a70nN8gMz3uwN8peYjEbTvG6PWa";
 //const int httpPort = 8080; // Phant
-const int httpPort = 5001; // ipfs-1
+const int httpPort = 8081; // ipfs-1
 
 String url;
 String data;
