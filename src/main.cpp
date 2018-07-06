@@ -25,6 +25,7 @@
 #include <climobike/climobikeLog.hpp>
 #include <climobike/climobikeBluetooth.hpp>
 #include <climobike/climobikeWifi.hpp>
+#include <climobike/climobikeHttp.hpp>
 #include <climobike/climobikeGps.hpp>
 #include <climobike/climobikeAnal.hpp>
 #include <climobike/climobikeDht.hpp>
@@ -54,14 +55,16 @@ void setup(){
 
 //  setupTeste0();
 //  setupTeste1();
-  setupTeste2();
+//  setupTeste2();
 //  setupTeste3();
+  setupTeste4();
 }
 
 void loop() {
 //  loopTeste0();
 //  loopTeste1();
-  loopTeste2();
+//  loopTeste2();
 //  loopTeste3();
+  loopTeste4();
 }
 

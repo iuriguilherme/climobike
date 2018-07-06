@@ -1,5 +1,11 @@
 /*
- *  ClimoBike Módulo de testes v0.2.0.2
+ *  ClimoBike Teste 6 v0.2.0.2
+ *  Envia dados para servidor HTTP
+ *  Depende de:
+ *    climobikeLog.hpp
+ *    climobikeWifi.hpp
+ *    climobikeHttp.hpp
+ *  Status: Testando na esp32dev v1
  *  Board:  esp32dev (v1, v2)
  *  Authors:
  *    Alisson Claudino (https://inf.ufrgs.br/~acjesus)
@@ -16,8 +22,8 @@
  * Se não, veja http://www.gnu.org/licenses/.
 */
 
-#ifndef CLIMOBIKETESTES_HPP
-#define CLIMOBIKETESTES_HPP
+#ifndef CLIMOBIKETESTE4_HPP
+#define CLIMOBIKETESTE4_HPP
 
 #if defined(ARDUINO) && ARDUINO >= 100
 #include "Arduino.h"
@@ -25,29 +31,14 @@
 #include "WProgram.h"
 #endif
 
-/* Pausa o programa */
-void fim();
-/* Falha o programa */
-void falha(String mensagem);
-void falha(char * mensagem, String formato);
-
-#include <climobike/testes/climobikeTeste0.hpp>
-/* depende de Teste0 */
-#include <climobike/testes/climobikeTeste1.hpp>
-#include <climobike/testes/climobikeTeste2.hpp>
-#include <climobike/testes/climobikeTeste3.hpp>
-#include <climobike/testes/climobikeTeste4.hpp>
-
-void fim() {
-  while(true);
+void setupTeste4() {
+  setupWifi();
+  setupHttp();
 }
-void falha(String mensagem) {
-  log(mensagem);
-  fim();
-}
-void falha(char * mensagem, String formato) {
-  log(mensagem, formato);
-  fim();
+
+void loopTeste4() {
+//  loopWifi();
+  loopHttp();
 }
 
 #endif

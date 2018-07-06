@@ -26,149 +26,57 @@
 #endif
 
 #include <WiFi.h>
-#include <WiFiClient.h>
-#include <WiFiUdp.h>
 
 /* Foi o Alisson que botou as senhas de todas as redes do Velivery aqui */
-//pdelete key 40BaPA7qvxhwda0XOorVfO6wlVZ
 const char * networkName = "Velivery 2";
 const char * networkPswd = "salvaroplaneta";
 
-/* HTTP */
-//const char * httpHost = "192.168.0.100"; // AlissonTop
-//const char * httpHost = "192.168.0.198"; // mineiro-2
-//const char * httpHost = "192.168.0.195"; // precisao
-const char * httpHost = "cb1.r.velivery.com.br"; // op1
-/* Phant */
-const char * streamId   = "1DygKVeN0luAy3mPZdDWudlPXWB";
-const char * privateKey = "a70nN8gMz3uwN8peYjEbTvG6PWa";
-//const int httpPort = 8080; // Phant
-const int httpPort = 8081; // ipfs-1
-int iteract=0;
-String url;
-String data;
-
-WiFiClient server;
-
-void printServer(String keyword, float data);
-void printServer(String keyword, String data);
-void ipfsObject(String dict);
-
 void setupWifi() {
-  Serial.print("Tentando iniciar Wifi...");
-  WiFi.begin(networkName, networkPswd);
+  Serial.print("Tentando iniciar Wifi");
   Serial.print(" em ");
   Serial.print(networkName);
   Serial.print(" com ");
   Serial.print(networkPswd);
-  while (WiFi.status() != WL_CONNECTED) {
+
+  WiFi.begin(networkName, networkPswd);
+  while (WiFi.status() == WL_IDLE_STATUS) {
     delay(1000);
     Serial.print(".");
   }
-  Serial.println();
-  Serial.print("Nosso IP: ");
-  Serial.print(WiFi.localIP());
-  Serial.println();
-  Serial.print("WiFi conectado");
-/*  Serial.print(" mentira"); //mentira*/
-  Serial.println("!");
-}
 
-void setupHttp() {
-  Serial.print("Tentando conectar no servidor http...");
-//  Serial.print(httpHost);
-//  Serial.print(":");
-//  Serial.print(httpPort);
-//  Serial.print("...");
-//  if (server.connect(httpHost, httpPort)) {
-//    Serial.println(" sucesso!");
-//  } else {
-//    Serial.println(" falhou!");
-//  }
-  Serial.print(" mentira"); //mentira
-  Serial.println("!");
+  Serial.println();
 }
 
 void loopWifi() {
-  Serial.print("ipv4: ");
-  Serial.print(WiFi.localIP());
-  Serial.println();
-}
-
-void printServer(String keyword, float data) {
-//  if (iteract==20) {
-//    if(file) {
-//      file.close();
-//    }
-//  } else {
-//    String url="";
-//    String sdData="\n";
-//    sdData+=keyword;
-//    sdData+="=";
-//    sdData+=data;
-
-//    if (!server.connect(httpHost, httpPort)) {
-//      Serial.println("connection failed");
-//    }
-
-//    url = "/input/";
-//    url += streamId;
-//    url += "?private_key=";
-//    url += privateKey;
-//    url += "&";
-//    url += keyword;
-//    url += "=";
-//    url += data;
-
-//    server.print(String("GET ") +
-//      url +
-//      " HTTP/1.1\r\n" +
-//      "Host: " +
-//      httpHost +
-//      "\r\n" +
-//      "Connection: close\r\n\r\n");
-
-//    while (server.available()) {
-//      String line = server.readStringUntil('\n');
-//      Serial.print(line);
-//    }
-
-//    writeFile(sdData.c_str());
-//    delay(1000);
-//    iteract++;
-//  }
-}
-
-void ipfsObject(String dict) {
-//    String url="";
-
-//    if (!server.connect(httpHost, httpPort)) {
-//      Serial.println("connection failed");
-//    }
-
-//    // ipfs-1
-//    url = "/ipfs/";
-//    url += "add";
-//    url += "?arg=";
-//    url += dict;
-
-//    server.print(String("GET ") +
-//      url +
-//      " HTTP/1.1\r\n" +
-//      "Host: " +
-//      httpHost +
-//      "\r\n" +
-//      "Connection: close\r\n\r\n");
-
-//    while (server.available()) {
-//      String line = server.readStringUntil('\n');
-//      Serial.print(line);
-//    }
-
-//    writeFile(sdData.c_str());
-//    delay(1000);
-//    iteract++;
-//  }
+  switch (WiFi.status()) {
+    case WL_CONNECTED:
+      Serial.println("assigned when connected to a WiFi network");
+      break;
+    case WL_NO_SHIELD:
+      Serial.println("assigned when no WiFi shield is present");
+      break;
+    case WL_IDLE_STATUS:
+      Serial.println("it is a temporary status assigned when WiFi.begin() is called and remains active until the number of attempts expires (resulting in WL_CONNECT_FAILED) or a connection is established (resulting in WL_CONNECTED)");
+      break;
+    case WL_NO_SSID_AVAIL:
+      Serial.println("assigned when no SSID are available");
+      break;
+    case WL_SCAN_COMPLETED:
+      Serial.println("assigned when the scan networks is completed");
+      break;
+    case WL_CONNECT_FAILED:
+      Serial.println("assigned when the connection fails for all the attempts");
+      break;
+    case WL_CONNECTION_LOST:
+      Serial.println("assigned when the connection is lost");
+      break;
+    case WL_DISCONNECTED:
+      Serial.println("assigned when disconnected from a network");
+      break;
+    default:
+      Serial.println("nunca deveria aparecer isto");
+  }
+  delay(3000);
 }
 
 #endif
