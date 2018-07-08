@@ -53,11 +53,10 @@ void setupHttp() {
   Serial.print(httpPort);
   Serial.print("...");
   if (server.connect(httpHost, httpPort)) {
-    Serial.println(" sucesso");
+    Serial.print(" sucesso");
   } else {
-    Serial.println(" falhou");
+    Serial.print(" falhou");
   }
-//  Serial.print(" mentira"); //mentira
   Serial.println("!");
 }
 
