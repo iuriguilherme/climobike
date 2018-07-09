@@ -53,6 +53,17 @@ void setupHttpUrl();
 void setupHttp() {
   setupHttpIp();
 //  setupHttpUrl();
+  Serial.print("Tentando conectar no servidor http...");
+  Serial.print(httpHost);
+  Serial.print(":");
+  Serial.print(httpPort);
+  Serial.print("...");
+  if (server.connect(httpHost, httpPort)) {
+    Serial.print(" sucesso");
+  } else {
+    Serial.print(" falhou");
+  }
+  Serial.println("!");
 }
 
 void loopHttp() {

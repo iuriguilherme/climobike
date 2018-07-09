@@ -58,5 +58,32 @@ void loopDht() {
 //  printServer("humid",dht.readHumidity());
 }
 
+void loopDhtFake() {
+  String resultado = "";
+  resultado += "{";
+  String tempNome = "temp";
+  String humidNome = "humid";
+  float temp = 25.0;
+  float humid = 50.0;
+  resultado += "'";
+  resultado += tempNome;
+  resultado += "'";
+  resultado += ":";
+  resultado += "'";
+  resultado += temp;
+  resultado += "'";
+  resultado += ",";
+  resultado += "'";
+  resultado += humidNome;
+  resultado += "'";
+  resultado += ":";
+  resultado += "'";
+  resultado += humid;
+  resultado += "'";
+  resultado += ",";
+  resultado += "}";
+  logSerialLn(resultado);
+}
+
 #endif
 

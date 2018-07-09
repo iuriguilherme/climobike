@@ -89,6 +89,32 @@ void loopRelogio() {
   log(timestamp);
 }
 
+void loopRelogio() {
+  String timestamp = "";
+  timestamp += "{";
+  timestamp += "datetime";
+  timestamp += ":";
+  timestamp += "'";
+  timestamp += "2018";
+  timestamp += "-";
+  timestamp += "07";
+  timestamp += "-";
+  timestamp += "03";
+  timestamp += " ";
+  timestamp += "18";
+  timestamp += ":";
+  timestamp += "00";
+  timestamp += ":";
+  timestamp += "00";
+  timestamp += " ";
+  timestamp += "(";
+  timestamp += "0";
+  timestamp += ")";
+  timestamp += "'";
+  timestamp += "}";
+  logSerialLn(timestamp);
+}
+
 /* Grava a data atual do computador no momento da compilação no relógio */
 void atualizaHora() {
   relogio.setDateTime(__DATE__, __TIME__);

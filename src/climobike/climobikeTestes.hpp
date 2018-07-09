@@ -37,6 +37,7 @@ void falha(char * mensagem, String formato);
 #include <climobike/testes/climobikeTeste2.hpp>
 #include <climobike/testes/climobikeTeste3.hpp>
 #include <climobike/testes/climobikeTeste4.hpp>
+#include <climobike/testes/climobikeTeste5.hpp>
 
 void fim() {
   while(true);

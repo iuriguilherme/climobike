@@ -69,5 +69,47 @@ void loopAnal() {
 //  printServer("CO",monca);
 }
 
+void loopAnalFake() {
+  String resultado = "";
+  resultado += "{";
+  /* Metano MQ4 */
+  String metanNome = "ch4";
+  metan = 42;
+  resultado += "'";
+  resultado += metanNome;
+  resultado += "'";
+  resultado += ":";
+  resultado += "'";
+  resultado += metan;
+  resultado += "'";
+  resultado += ",";
+  delay(300);
+  /* Gases tóxicos */
+  String toxicNome = "no1";
+  toxic = 42;
+  resultado += "'";
+  resultado += toxicNome;
+  resultado += "'";
+  resultado += ":";
+  resultado += "'";
+  resultado += toxic;
+  resultado += "'";
+  resultado += ",";
+  delay(300);
+  /* Dioxido de Carbono */
+  String moncaNome = "co2";
+  monca = 42;
+  resultado += moncaNome;
+  resultado += "'";
+  resultado += ":";
+  resultado += "'";
+  resultado += monca;
+  resultado += "'";
+  resultado += ",";
+  delay(300);
+  resultado += "}";
+  logSerialLn(resultado);
+}
+
 #endif
 

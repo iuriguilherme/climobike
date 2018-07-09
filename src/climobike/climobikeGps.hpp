@@ -87,6 +87,52 @@ String dadosGps() {
   return dadosGpsString;
 }
 
+String dadosGpsFake() {
+  String dadosGpsString = "";
+  dadosGpsString += "{";
+  dadosGpsString += "'";
+  dadosGpsString += "gpsdate";
+  dadosGpsString += "'";
+  dadosGpsString += ":";
+  dadosGpsString += "'";
+  dadosGpsString += "2018-07-03 18:00:00";
+  dadosGpsString += "'";
+  dadosGpsString += ",";
+  dadosGpsString += "'";
+  dadosGpsString += "gpslat";
+  dadosGpsString += "'";
+  dadosGpsString += ":";
+  dadosGpsString += "'";
+  dadosGpsString += "-30.04;
+  dadosGpsString += "'";
+  dadosGpsString += ",";
+  dadosGpsString += "'";
+  dadosGpsString += "gpslng";
+  dadosGpsString += "'";
+  dadosGpsString += ":";
+  dadosGpsString += "'";
+  dadosGpsString += "-51.22";
+  dadosGpsString += "'";
+  dadosGpsString += ",";
+  dadosGpsString += "'";
+  dadosGpsString += "gpssat";
+  dadosGpsString += "'";
+  dadosGpsString += ":";
+  dadosGpsString += "'";
+  dadosGpsString += "42";
+  dadosGpsString += "'";
+  dadosGpsString += ",";
+  dadosGpsString += "'";
+  dadosGpsString += "hdop";
+  dadosGpsString += "'";
+  dadosGpsString += ":";
+  dadosGpsString += "'";
+  dadosGpsString += "42";
+  dadosGpsString += "'";
+  dadosGpsString += ",";
+  dadosGpsString += "}";
+  return dadosGpsString;
+}
 void setupGps() {
   /* Escolher UMA dessas opções */
   /* SoftwareSerial */
@@ -109,7 +155,9 @@ void setupGps() {
 void loopGps() {
   String nossosDadosGps = dadosGps();
   if (nossosDadosGps != "") {
-    Serial.println(nossosDadosGps);
+    logSerialLn(nossosDadosGps);
+  } else {
+    logSerialLn(dadosGpsFake());
   }
 }
 
