@@ -17,7 +17,7 @@
 */
 
 #ifndef CLIMOBIKEHTTP_H
-#define CLIMOBIKETTP_H
+#define CLIMOBIKEHTTP_H
 
 #if defined(ARDUINO) && ARDUINO >= 100
 #include "Arduino.h"
@@ -27,42 +27,36 @@
 
 #include <WiFiClient.h>
 
-//const char * httpHost = "192.168.0.100"; // AlissonTop
-//const char * httpHost = "192.168.0.198"; // mineiro-2
-const char * httpHost = "192.168.0.195"; // precisao
-//const char * httpHost = "cb1.r.velivery.com.br"; // op1
+//const char * connectIp = "192.168.0.100"; // AlissonTop
+//const char * connectIp = "192.168.0.198"; // mineiro-2
+const char * connectIp = "192.168.0.195"; // precisao
+String connectUrl = "cb1.r.velivery.com.br"; // op1
+
 /* Phant */
-const char * streamId   = "1DygKVeN0luAy3mPZdDWudlPXWB";
-const char * privateKey = "a70nN8gMz3uwN8peYjEbTvG6PWa";
-//const int httpPort = 8080; // Phant
-const int httpPort = 8081; // ipfs-1
+//const char * streamId   = "1DygKVeN0luAy3mPZdDWudlPXWB";
+//const char * privateKey = "a70nN8gMz3uwN8peYjEbTvG6PWa";
 
-String url;
-String data;
+//const int connectPort = 8080; // Phant@AlissonTop
+const int connectPort = 8081; // ipfs-1@precisao
 
-WiFiClient server;
+//String url;
+//String data;
+
+WiFiClient client;
 
 void printServer(String keyword, float data);
 void printServer(String keyword, String data);
 void ipfsObject(String dict);
+void setupHttpIp();
+void setupHttpUrl();
 
 void setupHttp() {
-  Serial.print("Tentando conectar no servidor http...");
-  Serial.print(httpHost);
-  Serial.print(":");
-  Serial.print(httpPort);
-  Serial.print("...");
-  if (server.connect(httpHost, httpPort)) {
-    Serial.println(" sucesso");
-  } else {
-    Serial.println(" falhou");
-  }
-//  Serial.print(" mentira"); //mentira
-  Serial.println("!");
+  setupHttpIp();
+//  setupHttpUrl();
 }
 
 void loopHttp() {
-  server.println("GET /api/v0/swarm/peers HTTP/1.0");
+  client.println("GET /api/v0/swarm/peers HTTP/1.0");
 }
 
 void printServer(String keyword, float data) {
@@ -139,6 +133,34 @@ void ipfsObject(String dict) {
 //    delay(1000);
 //    iteract++;
 //  }
+}
+
+void setupHttpIp() {
+  logSerial("Tentando conectar no ip ");
+  logSerial(connectIp);
+  logSerial(", porta ");
+  logSerial(String(connectPort));
+  logSerial("...");
+  if (client.connect(connectIp, connectPort)) {
+    logSerial(" sucesso");
+  } else {
+    logSerial(" falhou");
+  }
+  logSerialLn("!");
+}
+
+void setupHttpUrl() {
+  logSerial("Tentando conectar no URL ");
+  logSerial(connectUrl.c_str());
+  logSerial(", porta ");
+  logSerial(String(connectPort));
+  logSerial("...");
+  if (client.connect(connectUrl.c_str(), connectPort)) {
+    logSerial(" sucesso");
+  } else {
+    logSerial(" falhou");
+  }
+  logSerialLn("!");
 }
 
 #endif

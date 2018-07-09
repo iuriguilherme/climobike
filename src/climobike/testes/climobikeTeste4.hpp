@@ -38,7 +38,19 @@ void setupTeste4() {
 
 void loopTeste4() {
 //  loopWifi();
-  loopHttp();
+  /* loopHttp() */
+   if (client.available()) {
+    char c = client.read();
+    Serial.print(c);
+  }
+
+  if (!client.connected()) {
+    Serial.println();
+    Serial.println("disconnecting.");
+    client.stop();
+    fim();
+  }
+  /* /loopHttp() */
 }
 
 #endif
