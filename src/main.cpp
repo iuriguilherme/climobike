@@ -54,19 +54,19 @@ void setup(){
 //  setupGps();
 
 //  setupTeste0();
-//  setupTeste1();
+  setupTeste1();
 //  setupTeste2();
 //  setupTeste3();
 //  setupTeste4();
-  setupTeste5();
+//  setupTeste5();
 }
 
 void loop() {
 //  loopTeste0();
-//  loopTeste1();
+  loopTeste1();
 //  loopTeste2();
 //  loopTeste3();
 //  loopTeste4();
-  loopTeste5();
+//  loopTeste5();
 }
 

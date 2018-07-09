@@ -89,7 +89,7 @@ void loopRelogio() {
   log(timestamp);
 }
 
-void loopRelogio() {
+void loopRelogioFake() {
   String timestamp = "";
   timestamp += "{";
   timestamp += "datetime";

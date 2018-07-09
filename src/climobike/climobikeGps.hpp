@@ -103,7 +103,7 @@ String dadosGpsFake() {
   dadosGpsString += "'";
   dadosGpsString += ":";
   dadosGpsString += "'";
-  dadosGpsString += "-30.04;
+  dadosGpsString += "-30.04";
   dadosGpsString += "'";
   dadosGpsString += ",";
   dadosGpsString += "'";
@@ -156,9 +156,12 @@ void loopGps() {
   String nossosDadosGps = dadosGps();
   if (nossosDadosGps != "") {
     logSerialLn(nossosDadosGps);
-  } else {
-    logSerialLn(dadosGpsFake());
   }
+}
+
+void loopGpsFake() {
+  String nossosDadosGps = dadosGpsFake();
+  logSerialLn(nossosDadosGps);
 }
 
 #endif

@@ -37,7 +37,7 @@ String connectUrl = "cb1.r.velivery.com.br"; // op1
 //const char * privateKey = "a70nN8gMz3uwN8peYjEbTvG6PWa";
 
 //const int connectPort = 8080; // Phant@AlissonTop
-const int connectPort = 8081; // ipfs-1@precisao
+const int connectPort = 5001; // ipfs-1@precisao
 
 //String url;
 //String data;
@@ -54,11 +54,11 @@ void setupHttp() {
   setupHttpIp();
 //  setupHttpUrl();
   Serial.print("Tentando conectar no servidor http...");
-  Serial.print(httpHost);
+  Serial.print(connectIp);
   Serial.print(":");
-  Serial.print(httpPort);
+  Serial.print(connectPort);
   Serial.print("...");
-  if (server.connect(httpHost, httpPort)) {
+  if (client.connect(connectIp, connectPort)) {
     Serial.print(" sucesso");
   } else {
     Serial.print(" falhou");

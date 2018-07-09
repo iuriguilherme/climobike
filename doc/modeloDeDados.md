@@ -58,6 +58,16 @@ todos dados devem estar em uma única linha, que deve ser gravada com somente o
       "gpshdop" : "535",
     }
 
+Como deveria aparecer em um arquivo gravado no cartão microsd, para garantir a
+consistência da escrita, leitura, e envio para servidores HTTP remotos,
+assumindo uma gravação em arquivo hipotética com intervalo de um minuto:
+
+    {"climobike":"0.2.0.2","json":"0.2","datetime":"2018-07-03 18:00","tmp":"25.0","hum":"50.0","ch4":"4096","tox":"4096","co2":"4096","gpsdate":"2018-07-03 18:00:00:00","gpslat":"-30.04","gpslng":"-51.22","gpssat":"5","gpshdop":"535",}
+    {"climobike":"0.2.0.2","json":"0.2","datetime":"2018-07-03 18:01","tmp":"25.1","hum":"49.9","ch4":"4095","tox":"4097","co2":"4098","gpsdate":"2018-07-03 18:01:00:00","gpslat":"-30.04","gpslng":"-51.22","gpssat":"5","gpshdop":"535",}
+    {"climobike":"0.2.0.2","json":"0.2","datetime":"2018-07-03 18:02","tmp":"25.4","hum":"49.9","ch4":"4099","tox":"4092","co2":"4094","gpsdate":"2018-07-03 18:02:00:00","gpslat":"-30.04","gpslng":"-51.22","gpssat":"5","gpshdop":"535",}
+    {"climobike":"0.2.0.2","json":"0.2","datetime":"2018-07-03 18:03","tmp":"25.5","hum":"50.1","ch4":"4095","tox":"4093","co2":"4088","gpsdate":"2018-07-03 18:03:00:00","gpslat":"-30.04","gpslng":"-51.22","gpssat":"5","gpshdop":"535",}
+    {"climobike":"0.2.0.2","json":"0.2","datetime":"2018-07-03 18:04","tmp":"25.4","hum":"50.3","ch4":"4094","tox":"4096","co2":"4090","gpsdate":"2018-07-03 18:04:00:00","gpslat":"-30.04","gpslng":"-51.22","gpssat":"5","gpshdop":"535",}
+
 ### Legenda
 
 - "climobike" : String, versão do ClimoBike;

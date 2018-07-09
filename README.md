@@ -17,6 +17,7 @@ Versões
 v0.1.0.0, 2017-10-05 -- sistema de monitoramento da qualidade do ar e das condições climáticas adaptável a bicicletas, <https://github.com/smjacques/climobike>  
 v0.2.0.0, 2018-06-10 -- ClimoBike + Velivery <https://notabug.org/velivery/climobike>  
 v0.2.0.1, 2018-06-30 -- ESP32 Devkit + GPS, sensor de metano, sensor de gases tóxicos, sensor de umidade relativa do ar e temperatura  
+v0.2.0.2, 2018-07-07 -- ESP32 Devkit v2 soldado em placa dentro de invólucro de acrílico com GPS, módulo de cartão SD, sensor de metano, sensor de gases tóxicos, sensor de dióxido de carbono, sensor de umidade relativa do ar e temperatura, buzzer, relógio, e sensor de luminosidade   
 
 Licença
 ---
