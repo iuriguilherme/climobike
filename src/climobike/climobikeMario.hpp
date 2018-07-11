@@ -114,7 +114,7 @@
 #define NOTE_D8  4699
 #define NOTE_DS8 4978
 
-#define melodyPin 4
+#define melodyPin 13
 //Mario main theme melody
 int melody[] = {
   NOTE_E7, NOTE_E7, 0, NOTE_E7,
@@ -290,7 +290,7 @@ void buzz(int targetPin, long frequency, long length) {
 }
 
 void setupMario() {
-  pinMode(4, OUTPUT);//buzzer
+  pinMode(13, OUTPUT);//buzzer
   /* Estamos usando o 16 pro GPS */
   /* led */
 //  pinMode(16, OUTPUT);//led indicator when singing a note

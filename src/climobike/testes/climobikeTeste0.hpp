@@ -35,23 +35,38 @@
 #include "WProgram.h"
 #endif
 
+int count=0;
+
+SdCard sd;
+ClimobikeRelogio Relogio;
+ClimobikeWiFi Wifi;
+
 void setupTeste0() {
   setupAnal();
   setupBluetooth();
-  setupRelogio();
+  Relogio.setupRelogio();
   setupDht();
-  setupWifi();
-  setupSd();
+  Wifi.setupWifi();
+  sd.setupSd();
   setupHttp();
-  setupGps();
+  GPS.setupGps();
 }
 void loopTeste0() {
-  loopWifi();
-  loopRelogio();
-  loopDht();
+  Wifi.loopWifi();
+  Relogio.loopRelogio();
+  //loopDht();
   loopAnal();
-  loopGps();
-  loopSd();
+  GPS.loopGps();
+  if(count<20)
+  {
+    sd.loopSd(loopDht());
+    count++;
+  }
+  else
+  {
+    sd.escreveLinhaFechaArquivo(sd.arquivo);
+    Serial.println("deu");
+  }
 }
 
 #endif

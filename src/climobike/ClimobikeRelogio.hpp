@@ -1,7 +1,8 @@
 /*
- *  ClimoBike Módulo de log v0.2.0.2
+ *  ClimoBike Módulo Relógio v0.2.0.2
  *  Board:  esp32dev (v1, v2)
  *  Authors:
+ *    Alisson Claudino (https://inf.ufrgs.br/~acjesus)
  *    Desobediente Civil (https://notabug.org/desci)
  *  License:  GNU GPLv3
  *
@@ -15,8 +16,8 @@
  * Se não, veja http://www.gnu.org/licenses/.
 */
 
-#ifndef CLIMOBIKELOG_H
-#define CLIMOBIKELOG_H
+#ifndef CLIMOBIKERELOGIO_HPP
+#define CLIMOBIKERELOGIO_HPP
 
 #if defined(ARDUINO) && ARDUINO >= 100
 #include "Arduino.h"
@@ -24,23 +25,28 @@
 #include "WProgram.h"
 #endif
 
-/* Escreve no USB */
-void logSerial(String mensagem) {
-  Serial.print(mensagem.c_str());
-}
-void logSerialF(char * mensagem, String formato) {
-  Serial.printf(mensagem, formato.c_str());
-}
-void logSerialLn(String mensagem) {
-  Serial.println(mensagem.c_str());
-}
+#define EPOCH "1970-01-01 00:00:00"
 
-void log(String mensagem) {
-  logSerialLn(mensagem);
-}
-void log(char * mensagem, String formato) {
-  logSerialF(mensagem, formato);
-}
+/* TODO incluir no platformio.ini */
+#include <DS1307.h>
+#include <Wire.h>
+#include "ClimobikeLog.hpp"
 
+
+
+class ClimobikeRelogio
+{
+  public:
+  	DS1307 relogio;
+	RTCDateTime actualtime;
+	ClimobikeLog LogRelogio;
+	
+    void setupRelogio() ;
+
+    void loopRelogio() ;
+
+    /* Grava a data atual do computador no momento da compilação no relógio */
+    void atualizaHora() ;
+};
 #endif
 

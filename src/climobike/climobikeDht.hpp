@@ -28,7 +28,7 @@
 #include <DHT.h>
 
 #define DHTTYPE DHT22
-#define DHTPIN 27
+#define DHTPIN 14
 
 DHT dht(DHTPIN,DHTTYPE);
 
@@ -40,22 +40,17 @@ void setupDht() {
   Serial.println("!");
 }
 
-void loopDht() {
+String loopDht() {
   /* Imprime dados DHT */
-
-  Serial.print("tempe: ");
-  Serial.print(dht.readTemperature());
-/*  Serial.print("25.0"); // mentira*/
-  Serial.println();
-
-//  printServer("tempe",dht.readTemperature());    
-
-  Serial.print("humid: ");
-  Serial.print(dht.readHumidity());
-/*  Serial.print("50.0"); // mentira*/
-  Serial.println();
-
-//  printServer("humid",dht.readHumidity());
+  String dado="";
+  dado+="\ntempe: ";
+  dado+=(String)dht.readTemperature();
+  dado+="\nhumid: ";
+  dado+=(String)dht.readHumidity();
+  dado+="\n";
+  
+  Serial.print(dado);
+  return dado;
 }
 
 void loopDhtFake() {

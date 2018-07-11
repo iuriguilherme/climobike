@@ -22,18 +22,20 @@
 #include "WProgram.h"
 #endif
 
-#include <climobike/climobikeLog.hpp>
+#include <climobike/SdCard.hpp>
+//#include <climobike/climobikeLog.hpp>
 #include <climobike/climobikeBluetooth.hpp>
-#include <climobike/climobikeWifi.hpp>
+#include <climobike/ClimobikeWiFi.hpp>
 #include <climobike/climobikeHttp.hpp>
-#include <climobike/climobikeGps.hpp>
+#include <climobike/ClimobikeGPS.hpp>
 #include <climobike/climobikeAnal.hpp>
 #include <climobike/climobikeDht.hpp>
 #include <climobike/climobikeMario.hpp>
+
 /* depende de Log */
-#include <climobike/climobikeRelogio.hpp>
+
 /* depende de Log */
-#include <climobike/climobikePersistencia.hpp>
+
 /*
  *  depende de Log, Bluetooth, Wifi, Gps, Anal, Dht, Relogio, Persistencia, 
  *  Mario

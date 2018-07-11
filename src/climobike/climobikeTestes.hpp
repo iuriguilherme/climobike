@@ -25,6 +25,10 @@
 #include "WProgram.h"
 #endif
 
+#include "ClimobikeRelogio.hpp"
+
+ClimobikeLog LogTestes;
+ClimobikeGPS GPS;
 /* Pausa o programa */
 void fim();
 /* Falha o programa */
@@ -34,20 +38,26 @@ void falha(char * mensagem, String formato);
 #include <climobike/testes/climobikeTeste0.hpp>
 /* depende de Teste0 */
 #include <climobike/testes/climobikeTeste1.hpp>
+<<<<<<< HEAD
+//#include <climobike/testes/climobikeTeste2.hpp>
+//#include <climobike/testes/climobikeTeste3.hpp>
+//#include <climobike/testes/climobikeTeste4.hpp>
+=======
 #include <climobike/testes/climobikeTeste2.hpp>
 #include <climobike/testes/climobikeTeste3.hpp>
 #include <climobike/testes/climobikeTeste4.hpp>
 #include <climobike/testes/climobikeTeste5.hpp>
+>>>>>>> dde23a1cbcdcfdab9c28de62986f8d4cd6baea5b
 
 void fim() {
   while(true);
 }
 void falha(String mensagem) {
-  log(mensagem);
+  LogTestes.log(mensagem);
   fim();
 }
 void falha(char * mensagem, String formato) {
-  log(mensagem, formato);
+  LogTestes.log(mensagem, formato);
   fim();
 }
 
