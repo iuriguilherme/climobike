@@ -43,6 +43,7 @@ const int connectPort = 5001; // ipfs-1@precisao
 //String data;
 
 WiFiClient client;
+ClimobikeLog LogHttp;
 
 void printServer(String keyword, float data);
 void printServer(String keyword, String data);
@@ -147,31 +148,31 @@ void ipfsObject(String dict) {
 }
 
 void setupHttpIp() {
-  logSerial("Tentando conectar no ip ");
-  logSerial(connectIp);
-  logSerial(", porta ");
-  logSerial(String(connectPort));
-  logSerial("...");
+  LogHttp.logSerial("Tentando conectar no ip ");
+  LogHttp.logSerial(connectIp);
+  LogHttp.logSerial(", porta ");
+  LogHttp.logSerial(String(connectPort));
+  LogHttp.logSerial("...");
   if (client.connect(connectIp, connectPort)) {
-    logSerial(" sucesso");
+    LogHttp.logSerial(" sucesso");
   } else {
-    logSerial(" falhou");
+    LogHttp.logSerial(" falhou");
   }
-  logSerialLn("!");
+  LogHttp.logSerialLn("!");
 }
 
 void setupHttpUrl() {
-  logSerial("Tentando conectar no URL ");
-  logSerial(connectUrl.c_str());
-  logSerial(", porta ");
-  logSerial(String(connectPort));
-  logSerial("...");
+  LogHttp.logSerial("Tentando conectar no URL ");
+  LogHttp.logSerial(connectUrl.c_str());
+  LogHttp.logSerial(", porta ");
+  LogHttp.logSerial(String(connectPort));
+  LogHttp.logSerial("...");
   if (client.connect(connectUrl.c_str(), connectPort)) {
-    logSerial(" sucesso");
+    LogHttp.logSerial(" sucesso");
   } else {
-    logSerial(" falhou");
+    LogHttp.logSerial(" falhou");
   }
-  logSerialLn("!");
+  LogHttp.logSerialLn("!");
 }
 
 #endif

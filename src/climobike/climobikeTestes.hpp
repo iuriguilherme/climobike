@@ -38,16 +38,11 @@ void falha(char * mensagem, String formato);
 #include <climobike/testes/climobikeTeste0.hpp>
 /* depende de Teste0 */
 #include <climobike/testes/climobikeTeste1.hpp>
-<<<<<<< HEAD
+
 //#include <climobike/testes/climobikeTeste2.hpp>
 //#include <climobike/testes/climobikeTeste3.hpp>
 //#include <climobike/testes/climobikeTeste4.hpp>
-=======
-#include <climobike/testes/climobikeTeste2.hpp>
-#include <climobike/testes/climobikeTeste3.hpp>
-#include <climobike/testes/climobikeTeste4.hpp>
-#include <climobike/testes/climobikeTeste5.hpp>
->>>>>>> dde23a1cbcdcfdab9c28de62986f8d4cd6baea5b
+
 
 void fim() {
   while(true);

@@ -11,49 +11,73 @@ void ClimobikeRelogio::setupRelogio() {
 	    //    Serial.print("Atualizando hora...");
 	    //    atualizaHora();
 	    //    Serial.println(" feito!");
-	} 
-	else 
+	}
+	else
 	{
 		LogRelogio.logSerial("errado");
 	}
 	LogRelogio.logSerialLn("!");
-} 
+}
 
-void ClimobikeRelogio::loopRelogio() {
+String ClimobikeRelogio::getDatetime()
+{
+	String date;
+	actualtime = relogio.getDateTime();
+	date += actualtime.year;
+	date += "-";
+	date += actualtime.month;
+	date += "-";
+	date += actualtime.day;
+	date += "-";
+	date += actualtime.hour;
+	date += "-";
+	date += actualtime.minute;
+	return date;
+}
+
+int ClimobikeRelogio::getHour()
+{
+	actualtime=relogio.getDateTime();
+	return (int)actualtime.hour;
+}
+
+int ClimobikeRelogio::getMinute()
+{
+	actualtime=relogio.getDateTime();
+	return (int)actualtime.minute;
+}
+
+String ClimobikeRelogio::getTimeStamp()
+{
+	actualtime=relogio.getDateTime();
 	String timestamp = "";
-	timestamp += "{";
-	timestamp += "timestamp";
+	timestamp += actualtime.year;
+	timestamp += "-";
+	timestamp += actualtime.month;
+	timestamp += "-";
+	timestamp += actualtime.day;
+	timestamp += " ";
+	timestamp += actualtime.hour;
 	timestamp += ":";
-	timestamp += "'";
+	timestamp += actualtime.minute;
+	timestamp += ":";
+	timestamp += actualtime.second;
+	return timestamp;
+}
+
+void ClimobikeRelogio::loopRelogio()
+{
 
 	Wire.beginTransmission(0x68);
-	if (Wire.endTransmission() == 0) {
-		actualtime = relogio.getDateTime();
-		if ((int)actualtime.year > 0) {
-			timestamp += actualtime.year;
-			timestamp += "-";
-			timestamp += actualtime.month;
-			timestamp += "-";
-			timestamp += actualtime.day;
-			timestamp += " ";
-			timestamp += actualtime.hour;
-			timestamp += ":";
-			timestamp += actualtime.minute;
-			timestamp += ":";
-			timestamp += actualtime.second;
-			timestamp += " ";
-			timestamp += "(";
-			timestamp += actualtime.unixtime;
-			timestamp += ")";
-		}
-		} else {
-	        timestamp += EPOCH; //mentira
-	    }
-
-	    timestamp += "'";
-	    timestamp += "}";
-	    LogRelogio.log(timestamp);
+	if (Wire.endTransmission() == 0)
+	{
+		 LogRelogio.log(getTimeStamp());
 	}
+	else
+	{
+		Serial.println("Deu ruim no relogio");
+	}
+}
 
 	/* Grava a data atual do computador no momento da compilação no relógio */
 	void ClimobikeRelogio::atualizaHora() {

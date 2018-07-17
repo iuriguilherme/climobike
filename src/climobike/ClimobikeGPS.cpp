@@ -1,12 +1,16 @@
 #include "ClimobikeGPS.hpp"
-  
+#include <string>
+
   HardwareSerial ss(1);
   String ClimobikeGPS::dadosGps() {
     String dadosGpsString = "";
     while (ss.available() > 0) {
       gps.encode(ss.read());
+
     }
     if (gps.location.isUpdated()) {
+      latitude = gps.location.lat();
+      longitude = gps.location.lng();
       dadosGpsString += "{";
       dadosGpsString += "date";
       dadosGpsString += ":";
@@ -26,11 +30,11 @@
       dadosGpsString += ",";
       dadosGpsString += "latitude";
       dadosGpsString += ":";
-      dadosGpsString += gps.location.lat();
+      dadosGpsString += latitude;
       dadosGpsString += ",";
       dadosGpsString += "longitude";
       dadosGpsString += ":";
-      dadosGpsString += gps.location.lng();
+      dadosGpsString += longitude;
       dadosGpsString += ",";
       dadosGpsString += "satellites";
       dadosGpsString += ":";
@@ -64,9 +68,42 @@
     Serial.println(" deu certo!");
   }
 
-  void ClimobikeGPS::loopGps() {
+String ClimobikeGPS::getLatitude()
+{
+  char buffer[11];
+  String out;
+  if(gps.location.isValid())
+  {
+    sprintf(buffer,"%.6lf",gps.location.lat());
+    out=String(buffer);
+  }
+  Serial.print("\n\n\n");
+  Serial.print(out);
+  Serial.print("\n\n\n");
+  return out;
+}
+
+String ClimobikeGPS::getLongitude()
+{
+  char buffer[11];
+  String out;
+  if(gps.location.isValid())
+  {
+    sprintf(buffer,"%.6lf",gps.location.lng());
+    out=String(buffer);
+  }
+  Serial.print("\n\n\n");
+  Serial.print(out);
+  Serial.print("\n\n\n");
+  return out;
+}
+
+  String ClimobikeGPS::loopGps() {
     String nossosDadosGps = dadosGps();
     if (nossosDadosGps != "") {
       Serial.println(nossosDadosGps);
+      return nossosDadosGps;
     }
+    else
+      return "";
   }

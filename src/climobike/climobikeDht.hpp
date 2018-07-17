@@ -25,16 +25,17 @@
 #include "WProgram.h"
 #endif
 
-#include <DHT.h>
+#include "DHTesp.h"
 
-#define DHTTYPE DHT22
+
 #define DHTPIN 14
 
-DHT dht(DHTPIN,DHTTYPE);
-
+DHTesp dht;
+ClimobikeLog LogDht;
 void setupDht() {
+  //pinMode(DHTPIN,INPUT_PULLUP);
   Serial.print("Tentando iniciar DHT...");
-  dht.begin();
+  dht.setup(DHTPIN);
   Serial.print(" feito");
 /*  Serial.print(" mentira"); //mentira*/
   Serial.println("!");
@@ -43,13 +44,12 @@ void setupDht() {
 String loopDht() {
   /* Imprime dados DHT */
   String dado="";
-  dado+="\ntempe: ";
-  dado+=(String)dht.readTemperature();
-  dado+="\nhumid: ";
-  dado+=(String)dht.readHumidity();
-  dado+="\n";
-  
-  Serial.print(dado);
+  dado+="tempe: ";
+  dado+=(String)dht.getTemperature();
+  dado+=" humid: ";
+  dado+=(String)dht.getHumidity();
+
+  Serial.println(dado);
   return dado;
 }
 
@@ -77,8 +77,7 @@ void loopDhtFake() {
   resultado += "'";
   resultado += ",";
   resultado += "}";
-  logSerialLn(resultado);
+  LogDht.logSerialLn(resultado);
 }
 
 #endif
-

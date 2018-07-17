@@ -28,19 +28,41 @@
 #include <driver/adc.h>
 
 float metan,toxic,monca;
-
+ClimobikeLog LogAnal;
 void setupAnal() {
-  Serial.print("Tentando iniciar sensores analógicos de gasese tóxicos...");
+  Serial.print("Tentando iniciar sensores analógicos de gases tóxicos...");
   adc_power_on();
+  adc_gpio_init(ADC_UNIT_1,ADC_CHANNEL_0);
   adc_gpio_init(ADC_UNIT_1,ADC_CHANNEL_6);
   adc_gpio_init(ADC_UNIT_1,ADC_CHANNEL_5);
   adc_gpio_init(ADC_UNIT_1,ADC_CHANNEL_4);
   adc1_config_width(ADC_WIDTH_12Bit);
-  adc1_config_channel_atten(ADC1_CHANNEL_6,ADC_ATTEN_0db);
-  adc1_config_channel_atten(ADC1_CHANNEL_5,ADC_ATTEN_0db);
-  adc1_config_channel_atten(ADC1_CHANNEL_4,ADC_ATTEN_0db);
+  adc1_config_channel_atten(ADC1_CHANNEL_6,ADC_ATTEN_11db);
+  adc1_config_channel_atten(ADC1_CHANNEL_5,ADC_ATTEN_11db);
+  adc1_config_channel_atten(ADC1_CHANNEL_4,ADC_ATTEN_11db);
+  adc1_config_channel_atten(ADC1_CHANNEL_0,ADC_ATTEN_11db);
   Serial.print(" feito");
   Serial.println("!");
+}
+
+float getMetan()
+{
+  return adc1_get_raw(ADC1_CHANNEL_5);
+}
+
+float getMonca()
+{
+  return adc1_get_raw(ADC1_CHANNEL_6);
+}
+
+float getToxic()
+{
+  return adc1_get_raw(ADC1_CHANNEL_4);
+}
+
+float getLdr()
+{
+  return adc1_get_raw(ADC1_CHANNEL_0);
 }
 
 void loopAnal() {
@@ -108,8 +130,7 @@ void loopAnalFake() {
   resultado += ",";
   delay(300);
   resultado += "}";
-  logSerialLn(resultado);
+  LogAnal.logSerialLn(resultado);
 }
 
 #endif
-

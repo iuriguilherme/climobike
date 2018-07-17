@@ -40,6 +40,26 @@ int count=0;
 SdCard sd;
 ClimobikeRelogio Relogio;
 ClimobikeWiFi Wifi;
+float aleartorio=0,dadoFicticio=0;
+String dadoGps;
+String nomeArquivo;
+bool test=false;
+
+int hour=25,minute=00;
+String temp,hum;
+void novoArquivoDados()
+{
+  if(sd.arquivo)
+  {
+    sd.fechaArquivo(sd.arquivo);
+  }
+  hour=Relogio.getHour();
+  minute=Relogio.getMinute();
+  nomeArquivo="/dados/";
+  nomeArquivo+=Relogio.getDatetime();
+  nomeArquivo+=".json";
+  sd.abreArquivo(nomeArquivo);
+}
 
 void setupTeste0() {
   setupAnal();
@@ -50,24 +70,52 @@ void setupTeste0() {
   sd.setupSd();
   setupHttp();
   GPS.setupGps();
+  novoArquivoDados();
 }
 void loopTeste0() {
   Wifi.loopWifi();
   Relogio.loopRelogio();
   //loopDht();
-  loopAnal();
-  GPS.loopGps();
-  if(count<20)
+  //loopAnal();
+  dadoGps=GPS.loopGps();
+  if(!(Relogio.actualtime.minute==minute+10 && Relogio.actualtime.hour==hour)&&(sd.arquivo))
   {
-    sd.loopSd(loopDht());
+    //delay(1000);
+    aleartorio=millis();
+    sd.loopSd("","init");
+    sd.loopSd(Relogio.getTimeStamp(),"timestamp");
+
+    sd.loopSd((String)getMetan(),"CH4");
+    sd.loopSd((String)getMonca(),"CO");
+    sd.loopSd((String)getToxic(),"NH3");
+    temp=(String)dht.getTemperature();
+    hum=(String)dht.getHumidity();
+    if(temp!="nan")
+      sd.loopSd(temp,"temp");
+    if(hum!="nan")
+      sd.loopSd(hum,"hum");
+    dadoFicticio=aleartorio/3;
+
+    dadoFicticio=aleartorio/5;
+
+    if(dadoGps!="")
+    {
+      sd.loopSd(GPS.getLatitude(),"lat");
+      sd.loopSd(GPS.getLongitude(),"long");
+      //sd.loopSd(dadoGps,"GPS");
+      //test=true;
+      tocaGPS();
+    }
+    sd.loopSd((String)getLdr(),"ldr");
+
+
     count++;
   }
   else
   {
-    sd.escreveLinhaFechaArquivo(sd.arquivo);
     Serial.println("deu");
+    novoArquivoDados();
   }
 }
 
 #endif
-

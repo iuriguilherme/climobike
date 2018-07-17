@@ -16,8 +16,8 @@
  * Se não, veja http://www.gnu.org/licenses/.
 */
 
-#ifndef CLIMOBIKESDCARD_HPP
-#define CLIMOBIKESDCARD_HPP
+#ifndef SDCARD_HPP
+#define SDCARD_HPP
 
 #if defined(ARDUINO) && ARDUINO >= 100
 #include "Arduino.h"
@@ -35,11 +35,10 @@ class SdCard
 public:
   File arquivo;
   void escreve(const char * mensagem, String nome);
-  File escreveLinhaAbreArquivo(String nome);
-  bool escreveLinhaFechaArquivo(File arquivo);
+  File abreArquivo(String nome);
+  bool fechaArquivo(File arquivo);
   void escreveLinha(const char * mensagem, File arquivo);
   void setupSd();
-  void loopSd(String);
+  void loopSd(String dado, String tipoDado);
 };
 #endif
-

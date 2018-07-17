@@ -41,7 +41,7 @@ void setupTeste1() {
   setupTeste0();
   /* Se tudo deu certo */
   setupMario();
-  loopMario();
+ // loopMario();
   /* trollface */
 }
 void loopTeste1() {

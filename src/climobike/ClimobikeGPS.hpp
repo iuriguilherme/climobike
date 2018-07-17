@@ -38,19 +38,21 @@ class ClimobikeGPS
 {
 public:
   //SoftwareSerial ss(RXPin, TXPin);
-  
-  TinyGPSPlus gps;
 
+  TinyGPSPlus gps;
+  double latitude=0,longitude=0;
+  char x='.';
   /* ESP32 */
   static const int gpsRxPin = 16;
   static const int gpsTxPin = 17;
   static const uint32_t gpsBaud = 9600;
 
   String dadosGps();
+  String getLatitude();
+  String getLongitude();
 
   void setupGps();
 
-  void loopGps();
+  String loopGps();
 };
 #endif
-

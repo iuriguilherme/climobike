@@ -40,13 +40,17 @@ class ClimobikeRelogio
   	DS1307 relogio;
 	RTCDateTime actualtime;
 	ClimobikeLog LogRelogio;
-	
+
     void setupRelogio() ;
 
     void loopRelogio() ;
 
     /* Grava a data atual do computador no momento da compilação no relógio */
     void atualizaHora() ;
+    String getDatetime();
+    String getTimeStamp();
+    int getHour();
+    int getMinute();
+
 };
 #endif
-
